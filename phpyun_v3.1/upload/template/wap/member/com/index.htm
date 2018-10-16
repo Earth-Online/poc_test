@@ -1,0 +1,18 @@
+{yun:}include file="$wap_style/member/cheader.htm"{/yun} 
+<section class="wap_member">
+<div class="wap_member_comp">
+<span>你好：<em>{yun:}$username{/yun}</em></span>
+<aside>{yun:}$company.name{/yun}</aside>
+<i><a href="index.php?c=logout">退出登录</a></i>
+</div>
+<div class="wap_member_mrecord">
+<a href="index.php?c=hr" class="wap_member_mrecord_list">申请职位的人才（<em>{yun:}$sqnum{/yun}</em>个）</a>
+<a href="index.php?c=info" class="wap_member_mrecord_list">完善基本资料</a>
+<a href="index.php?c=job" class="wap_member_mrecord_list">职位管理（<em>{yun:}$statis.job{/yun}</em>个）</a>
+<a href="index.php?c=com" class="wap_member_mrecord_list">账户管理</a>
+<a href="index.php?c=password" class="wap_member_mrecord_list wap_member_mrecord_list_no">更改密码</a>
+</div>
+
+</section>
+
+{yun:}include file="$wap_style/footer.htm"{/yun} 

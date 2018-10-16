@@ -1,0 +1,19 @@
+{yun:}include file="$comstyle/header.htm"{/yun} 
+{yun:}include file="$comstyle/left.htm"{/yun} 
+  <div class="brief">
+    <div class="clear"></div>
+    <div class="environment">
+      <h1><span>公司环境</span></h1>
+      {yun:}showpage limit=5{/yun}
+      {yun:}if !empty($showpage){/yun}
+             {yun:}section name=show loop=$showpage{/yun}
+      <dl><dt><img src="{yun:}$config.sy_weburl{/yun}/{yun:}$showpage[show].picurl{/yun}" width="155" height="110"/></dt> <dd>{yun:}$showpage[show].title{/yun}</dd></dl>
+       {yun:}/section{/yun}       
+        <div class="page">{yun:}$pagenav{/yun}</div> 
+    	{yun:}else{/yun}
+        <div class="comapply_no_msg"> <div class="comapply_no_msg_cont"><span></span><em>该公司还没有上传环境展示!</em></div></div>
+      	{yun:}/if{/yun} 
+    </div>
+  </div>
+  <div class="clear"></div>
+{yun:}include file="$comstyle/footer.htm"{/yun} 

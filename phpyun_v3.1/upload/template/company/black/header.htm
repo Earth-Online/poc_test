@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{yun:}$title{/yun}</title>
+<META name=keywords content="{yun:}$keywords{/yun}">
+<META name=description content="{yun:}$description{/yun}">
+<link rel="stylesheet" href="{yun:}$com_style{/yun}images/css.css" type="text/css">
+<!--[if IE 6]>
+<script src="{yun:}$config.sy_weburl{/yun}/js/png.js"></script>
+<script>
+  DD_belatedPNG.fix('.png,.brief-center h1 span,.post li,.brief-right h1 span,.environment h1 span,.post-post h1 span');
+</script>
+<![endif]-->
+</head>
+<body>
+<script> var weburl = "{yun:}$config.sy_weburl{/yun}"</script>
+<div id="background_bg">
+
+<div class="touch_logoin Pop-up_box" id="touch_lo" style="display:none">
+    <div class="h1"><span>用户登录</span><a href="javascript:;" onclick="closecomlogin();"></a></div>
+     <div class="touch_logoin_logoin">
+       <div class="touch_logoin_logoin_p">
+<form action="{yun:}$config.sy_weburl{/yun}/index.php?m=login&c=loginsave" method="post">
+           用户名：
+           <input type="text" id="username" value="" tabindex="1" style="width:150px;" size="18" name="username" class="po_neme">
+          <br>
+          <br>
+          密&nbsp;&nbsp;码：
+          <input type="password" id="password" tabindex="2" style="width:150px;" size="18" name="password" value=""class="po_neme">
+          <br>
+          <div class="clear"></div>
+          <div style="line-height:25px; margin-top:10px; line-height:30px"> <span style="display:block; float:left;height:30px; line-height:30px;">验证码 ：</span>
+            <input id="authcode" type="text" tabindex="3"  style="width:60px; float:left; margin-top:5px; margin-right:5px;" maxlength="4" name="authcode">
+            <img id="vcode_img" src="{yun:}$config.sy_weburl{/yun}/include/authcode.inc.php" >&nbsp;<a href="javascript:check_code();">看不清?</a> </div>
+          <div class="clear"></div>
+          <br>
+          <input type="hidden"  value="1"  name="usertype">
+          <input type="hidden" name="path" value="backurl" />
+          <input type="hidden" id="comid" name="comid" value="{yun:}$com.uid{/yun}" />
+          <input onclick="checklogin()" id="loginsubmit" type="button" value=" " name="loginsubmit" style="  background:url({yun:}$style{/yun}/images/lay1.gif) no-repeat; border:0; width:79px; height:30px ; float:left; margin-left:10px; cursor:pointer">
+          <a href="{yun:}$config.sy_weburl{/yun}/{yun:}url m=login{/yun}" style=" display:block; float:left; margin-left:10px; background:url({yun:}$style{/yun}/images/lay2.gif) no-repeat;; border:0; width:79px; height:30px ;"></a>
+          <a href="{yun:}$config.sy_weburl{/yun}/{yun:}url m=forgetpw{/yun}"><font color="#006699">忘记密码了？</font></a>
+          </form>
+          <div class="pp" id="msg"> </div>
+      </div>
+    </div>
+  </div> 
+<div class="centent">
+
+  <div class="header">
+    <div class="logo">
+    <div class="logo_bg"><img src="{yun:}$com.logo{/yun}" width="150" height="52"></div>
+      <div class="name">{yun:}$com.name{/yun}</div>
+    </div>
+    <div class="fh"><a href="{yun:}$config.sy_weburl{/yun}">{yun:}$config.sy_webname{/yun}首页</a></div>
+    <ul class="nav">
+      <li {yun:}if $smarty.get.tp==""{/yun} class="nav_atc"{yun:}/if{/yun}><a href="{yun:}curl url=id:$id{/yun}">首页</a></li>
+      <li {yun:}if $smarty.get.tp=="post"{/yun} class="nav_atc"{yun:}/if{/yun}><a href="{yun:}curl url=id:$id,tp:post{/yun}">加入我们</a></li>
+      <li {yun:}if $smarty.get.tp=="show"{/yun} class="nav_atc"{yun:}/if{/yun}><a href="{yun:}curl url=id:$id,tp:show{/yun}">企业形象</a></li>
+      <li {yun:}if $smarty.get.tp=="product"{/yun} class="nav_atc"{yun:}/if{/yun}><a href="{yun:}curl url=id:$id,tp:product{/yun}">产品展示</a></li>
+      <li {yun:}if $smarty.get.tp=="intro"{/yun} class="nav_atc"{yun:}/if{/yun}><a href="{yun:}curl url=id:$id,tp:intro{/yun}">公司简介</a></li>
+      <li {yun:}if $smarty.get.tp=="news"{/yun} class="nav_atc"{yun:}/if{/yun}><a href="{yun:}curl url=id:$id,tp:news{/yun}">新闻中心</a></li>
+      <li {yun:}if $smarty.get.tp=="position"{/yun} class="nav_atc"{yun:}/if{/yun}><a href="{yun:}curl url=id:$id,tp:position{/yun}">地理位置</a></li>
+      <li {yun:}if $smarty.get.tp=="connection"{/yun} class="nav_atc"{yun:}/if{/yun}><a href="{yun:}curl url=id:$id,tp:connection{/yun}">联系我们</a></li>
+    </ul>
+  </div>
+  <div class="clear"></div>
+  <div class="banner"> <img src="{yun:}$banner.pic{/yun}"width="980"height="279"></div>
+</div>
+<div class="clear"></div>
+<div class="content">
+<div class="content_cont">

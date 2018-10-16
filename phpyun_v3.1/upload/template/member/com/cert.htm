@@ -1,0 +1,242 @@
+{yun:}include file="$comstyle/header.htm"{/yun}
+<script type="text/javascript" src="{yun:}$config.sy_weburl{/yun}/js/ajaxfileupload.js"></script>
+<div class="w950">
+  <div class="admin_mainbody">
+  {yun:}include file="$comstyle/left.htm"{/yun}
+    <script>
+function resetemail(type){
+	if(type=='1'){
+		$("#email_cert").val("");
+	}else if(type=='2'){
+		$("#moblie_cert").val("");
+	}
+	$.post("index.php?c=Resetrz",{type:type},function(data){
+		if(data){
+			window.location.reload();
+		}
+	});
+}
+$(document).ready(function() {
+	$(".com_admin_ask").hover(function(){
+		layer.tips("增加企业可信度，使招聘更有优势！", this, {
+			guide: 1,
+			style: ['background-color:#F26C4F; color:#fff;top:-7px', '#F26C4F']
+		});
+	},function(){layer.closeTips();});
+});
+</script>
+    <div class=right_box>
+      <div class=admincont_box>
+        <div class=admin_tit><span class="admin_tit_bg">企业认证</span><i class="com_admin_ask"></i></div>
+        <div>
+          <ul id="renzheng-scrool" class="renzheng-scrool">
+            <li {yun:}if $type=='1'{/yun}class="hover"{yun:}/if{/yun} name="email"><a href="javascript:void(0);">邮箱认证</a> <span {yun:}if $email_row.status==1{/yun}class="yan"{yun:}else{/yun}class="wei"{yun:}/if{/yun}></span></li>
+            <li {yun:}if $type=='2'{/yun}class="hover"{yun:}/if{/yun} name="moblie"><a href="javascript:void(0);">手机认证</a> <span {yun:}if $moblie_row.status==1{/yun}class="yan"{yun:}else{/yun}class="wei"{yun:}/if{/yun}></span></li>
+            <li {yun:}if $type=='3'{/yun}class="hover"{yun:}/if{/yun} name="yyzz"><a href="javascript:void(0);">营业执照认证</a> <span id="bizicon" {yun:}if $yyzz_row.status==1{/yun}class="yan"{yun:}else{/yun}class="wei"{yun:}/if{/yun}></span></li>
+          </ul>
+        </div>
+        <!--邮箱认证 statr-->
+        <div class="renzheng" id="email_rz" {yun:}if $type=='2' || $type=='3'{/yun}style="display:none;"{yun:}/if{/yun}>
+        {yun:}if $email_row.status!=1{/yun}
+        <div class="flow_step_no1 clearfix">
+          <div class="flow_step">
+            <ol class="cols5">
+              <li class="step_1">
+                <div><i>1</i>填写邮箱<span></span></div>
+                <em class="f1"></em></li>
+              <li class="step_v3">
+                <div><i>2</i>邮箱激活<span></span></div>
+                </li>
+            </ol>
+          </div>
+        </div>
+      <table  style=" float:left;width:610px; margin-top:10px;">
+          <tbody id="email_step1">
+            <tr>
+              <th>您的邮箱：</th>
+              <td><input type="text" size="25" name="email" id="email_cert" value="" class="com_info_text">
+                <span id="email_cert_id" style="line-height:28px; font-size:14px;"></span></td>
+            </tr>
+            <tr>
+              <th>&nbsp; </th>
+              <td><input type="button" id="email_btn" value=" 认证 " class="btn_01" style="margin-top:10px;"/></td>
+            </tr>
+          </tbody>
+          <tbody style="display:none;" id="email_step2">
+            <tr>
+              <th>&nbsp;</th>
+              <td id="erroremail"><div style="margin-top:20px;">已经发送邮件到你的邮箱中，请到邮箱打开链接确认 <a href="javascript:;" onclick="resetemail('1')" ><font color="#FF0000"><b>重新认证</b></font></a></div></td>
+            </tr>
+          </tbody>
+        </table>
+        {yun:}if $email_row.step==1{/yun}
+        <script>
+$(document).ready(function(){
+$("#email_rz .clearfix").attr("class","flow_step_no5 clearfix");
+$("#email_step1").hide();
+$("#email_step2").show();
+})
+</script>
+        {yun:}/if{/yun}
+        {yun:}/if{/yun}
+        <table style=" float:left; margin-top:10px; {yun:}if $email_row.status!=1{/yun}display:none;{yun:}/if{/yun}">
+          <tbody>
+            <tr>
+              <th>状 态：</th>
+              <td><strong class="greenc">已认证</strong> <span class="sjyz"></span></td>
+            </tr>
+            <tr>
+              <th>您的邮箱：</th>
+              <td><strong>{yun:}$email_row.check{/yun}</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!--手机认证 end-->
+      <div class="renzheng" id="moblie_rz" {yun:}if $type!='2'{/yun}style="display:none;"{yun:}/if{/yun}>
+      {yun:}if $config.sy_msg_cert=='2'{/yun}
+		<table  style=" float:left;width:610px;margin-top:10px;">
+          <tbody id="moblie_step1">
+			<tr><td align="center"><div class="con_banner_no" style="margin-top:20px;"><span></span><em>网站已关闭手机认证功能！</em></div></td></tr>
+		   </tbody>
+        </table>
+	  {yun:}elseif $moblie_row.status!=1{/yun}
+        <div class="flow_step_no1 clearfix">
+          <div class="flow_step">
+            <ol class="cols5">
+              <li class="step_1">
+                <div><i>1</i>填写手机<span></span></div>
+                <em class="f1"></em></li>
+              <li class="step_v2">
+                <div><i>2</i>填写验证码<span></span></div>
+              </li>
+              <li class="step_v3">
+                <div><i>3</i>完成认证<span></span></div>
+                </li>
+            </ol>
+          </div>
+        </div>
+
+        <table  style=" float:left;width:610px;margin-top:10px;">
+          <tbody id="moblie_step1">
+            <tr>
+              <th>填写手机：</th>
+              <td><input type="text" size="25" name="moblie" id="moblie_cert" value=""class="com_info_text ">
+                <span id="moblie_cert_id" style="line-height: 28px; font-size: 14px; display:inline-block"></span></td>
+            </tr>
+            <tr>
+              <th>&nbsp; </th>
+              <td><input type="button" id="moblie_btn" value=" 获取验证码 " class="btn_01" style="margin-top:10px;"/></td>
+            </tr>
+          </tbody>
+          <tbody id="moblie_step2" style="display:none;">
+            <tr>
+              <th>填写验证码：</th>
+              <td><input type="text" size="25" name="moblie_code" id="moblie_code" value="" style="height:35px;">
+                <input type="button" value="" id="time" class="btn_01" style="margin-top:10px;"/ >
+                <span id="moblie_code_id"></span></td>
+            </tr>
+            <tr>
+              <th>&nbsp; </th>
+              <td><input type="button" id="moblie_submit" value=" 认证 " class="btn_01" style="margin-top:10px;"/></td>
+            </tr>
+            <tr>
+              <th>&nbsp;</th>
+              <td id="errormsg">已经发送验证码到你的手机上</td>
+            </tr>
+          </tbody>
+          <tbody id="moblie_step3" style="display:none;">
+            <tr>
+              <th>&nbsp;</th>
+              <td><div class="cert_rz_cg"><span></span><em>认证成功</em></div></td>
+            </tr>
+          </tbody>
+        </table>
+        {yun:}/if{/yun}
+        <div style="clear:both;"></div>
+        <table style=" float:left; margin-top:10px; {yun:}if $moblie_row.status!=1{/yun}display:none;{yun:}/if{/yun}">
+          <tbody>
+            <tr>
+              <th>状 态：</th>
+              <td><strong class="greenc">已认证</strong> <span class="maileyz"></span></td>
+            </tr>
+            <tr>
+              <th>手机：</th>
+              <td><strong>{yun:}$moblie_row.check{/yun}</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!--手机认证 end-->
+      <div class="renzheng" id="yyzz_rz" {yun:}if $type!='3'{/yun}style="display:none;"{yun:}/if{/yun}> {yun:}if $yyzz_row.status!=1{/yun}
+        <div class="flow_step_no1 clearfix">
+          <div class="flow_step">
+            <ol class="cols5">
+              <li class="step_1">
+                <div><i>1</i>上传执照<span></span></div>
+                <em class="f1"></em></li>
+              <li class="step_v3">
+                <div><i>2</i>等待审核<span></span></div>
+               </li>
+            </ol>
+          </div>
+        </div>
+        <div style="clear:both;"></div>
+    <table  style=" float:left;width:610px;margin-top:10px;">
+          <tbody id="yyzz_step1">
+            <tr>
+              <th>上传营业执照：</th>
+              <td><input type="file" size="25" value="" id="fileToUpload" name="fileToUpload" class="inputbtn011" >
+                <span id="yyzz_cert_id"></span></td>
+            </tr>
+            <tr>
+              <th>&nbsp; </th>
+              <td><input type="button" id="yyzz_submit" value=" 上传 " onClick="return ajaxFileUpload();" class="btn_01" style="margin-top:10px;"/></td>
+            </tr>
+          </tbody>
+          <tbody style="display:none;" id="yyzz_step2">
+            <tr>
+              <th>&nbsp;</th>
+              <td><div style="margin-top:20px;">上传成功，请等待管理员审核 <a href="javascript:;" onclick="resetemail('3')"><font color="#FF0000"><b>重新认证</b></font></a></div></td>
+            </tr>
+          </tbody>
+        </table>
+        {yun:}if $yyzz_row.step==1{/yun}
+        <script>
+$(document).ready(function(){
+$("#yyzz_rz .clearfix").attr("class","flow_step_no5 clearfix");
+$("#yyzz_step1").hide();
+$("#yyzz_step2").show();
+})
+</script>
+        {yun:}/if{/yun}
+        {yun:}/if{/yun}
+        <table  style=" margin-top:10px;  float:left; {yun:}if $yyzz_row.status!=1 && $yyzz_row.status!=2{/yun} display:none;{yun:}/if{/yun}">
+          <tbody>
+            <tr>
+              <th>状 态：</th>
+              <td>{yun:}if $yyzz_row.status==2{/yun}<strong class="greenc">审核失败</strong>{yun:}else{/yun}<strong class="greenc">已认证</strong> <span class="zzyz"></span>{yun:}/if{/yun}</td>
+            </tr>
+          {yun:}if $yyzz_row.status==2{/yun}
+          <tr>
+            <th>失败原因：</th>
+            <td><strong class="greenc">{yun:}$yyzz_row.statusbody{/yun}</strong></td>
+          </tr>
+          {yun:}/if{/yun}
+          <tr>
+            <th>您的营业执照：</th>
+          </tr>
+          <tr>
+            <th></th>
+            <td><img src="{yun:}$config.sy_weburl{/yun}{yun:}$yyzz_row.check{/yun}" width="480" height="350"></td>
+          </tr>
+            </tbody>
+
+        </table>
+      </div>
+      <!--营业执照认证 end-->
+    </div>
+  </div>
+</div>
+</div>
+{yun:}include file="$comstyle/footer.htm"{/yun}

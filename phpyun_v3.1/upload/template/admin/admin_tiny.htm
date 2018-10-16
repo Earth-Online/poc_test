@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" />
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script>
+<script> 
+function audall(status){
+	var codewebarr="";
+	$(".check_all:checked").each(function(){  
+		if(codewebarr==""){codewebarr=$(this).val();}else{codewebarr=codewebarr+","+$(this).val();}
+	});
+	if(codewebarr==""){
+		 parent.layer.msg('您还未选择任何信息！', 2, 8);	return false;
+	}else{
+		var pytoken=$("#pytoken").val();
+		$.post("index.php?m=admin_tiny&c=status",{allid:codewebarr,status:status,pytoken:pytoken},function(data){
+			if(data=="1") { 
+				parent.layer.msg('批量审核成功！', 2, 9,function(){window.location.reload();});
+				
+			}else{ 	
+				parent.layer.msg('批量取消审核成功！', 2, 9,function(){window.location.reload();}); 
+			}
+		});
+	}
+} 
+function show_status(id){ 
+	$.get("index.php?m=admin_tiny&c=ajax&id="+id,function(data){
+		var data=eval('('+data+')');
+		$("#username").html(data.username);
+		$("#sex").html(data.sex);
+		$("#exp").html(data.exp);
+		$("#job").html(data.job);
+		$("#mobile").html(data.mobile);
+		$("#production").html(data.production);
+		$("#time").html(data.time);
+		$("#status_"+data.status).attr("checked","checked");
+		$("#statusid").val(id);
+		$.layer({
+			type : 1,
+			title : '审核操作',
+			closeBtn : [0 , true], 
+			offset : ['20%' , '30%'], 
+			border : [10 , 0.3 , '#000', true],
+			area : ['560px','auto'],
+			page : {dom : '#preview'}
+		}); 
+	})
+}  
+function check_status(){
+	var id=$("#statusid").val();
+	var status=$("input[name='status']:checked").val();
+	var pytoken=$("#pytoken").val();
+	$.post("index.php?m=admin_tiny&c=status",{allid:id,status:status,pytoken:pytoken},function(data){
+		if(data=="1"){ 
+			parent.layer.msg('审核成功！', 2, 9,function(){window.location.reload();});
+		}else{ 	
+			parent.layer.msg('取消审核成功！', 2, 9,function(){window.location.reload();}); 
+		}
+	});
+}
+</script>
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp">
+  <div class="infoboxp_top">
+    <h6>微简历列表</h6>
+  </div>
+  <div class="company_job">
+    <div class="company_job_list_h1">
+      <form action="index.php" name="myform" method="get">
+        <span class="company_m6" style="float:left; margin-left:10px;">
+        <input name="m" value="admin_tiny" type="hidden"/>
+        <span class="company_s_l"> 检索类型：</span> 
+		 <select name="sex">
+		<option value="">性别</option>
+		{yun:}foreach from=$userdata.user_sex item=sex{/yun}
+          <option value="{yun:}$sex{/yun}" {yun:} if $get_type.sex=="$sex"{/yun} selected="selected" {yun:}/if{/yun}>{yun:}$userclass_name[$sex]{/yun}</option>
+        {yun:}/foreach{/yun}
+        </select>
+        <select name="exp">
+		<option value="">工作年限</option>
+		{yun:}foreach from=$userdata.user_word item=exp{/yun}
+          <option value="{yun:}$exp{/yun}" {yun:} if $get_type.exp=="$exp"{/yun} selected="selected" {yun:}/if{/yun}>{yun:}$userclass_name[$exp]{/yun}</option>
+        {yun:}/foreach{/yun}
+        </select>
+        <select name="type">
+          <option value="1" {yun:} if $get_type.type=="1"{/yun} selected="selected" {yun:}/if{/yun} >用户姓名</option>
+          <option value="2" {yun:} if $get_type.type=="2"{/yun} selected="selected" {yun:}/if{/yun} >意向职位</option>
+          <option value="3" {yun:} if $get_type.type=="3"{/yun} selected="selected" {yun:}/if{/yun} >手机号码</option>
+        </select>
+
+        <input class="company_job_text" type="text" name="keyword"  size="25"/>
+        <input class="company_job_new_sub"  type="submit" name="news_search" value="检索简历"/>
+        &nbsp; </span> <span class="company_job_a"><a href="index.php?m=admin_tiny&status=2" class="company_job_bg1"><em>未审核简历</em></a></span> <span class="company_job_a"> <a href="index.php?m=admin_tiny&status=1" class="company_job_bg2"><em>已审核简历</em></a></span> <span class="company_job_a"> <a href="index.php?m=admin_tiny" class="company_job_all"><em>全部简历</em></a></span>
+		
+      </form>
+    </div>
+  </div>
+  <div class="table-list">
+    <div class="admin_table_border">
+      <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+      <form action="index.php" target="supportiframe" name="myform" method="get" id='myform'>
+        <input name="m" value="admin_tiny" type="hidden"/>
+        <input name="c" value="del" type="hidden"/>
+		<input type="hidden" name="pytoken" id="pytoken" value="{yun:}$pytoken{/yun}">
+        <table width="100%">
+          <thead>
+            <tr class="admin_table_top">
+              <th width="5%"><label for="chkall"><input type="checkbox" id='chkAll' onclick='CheckAll(this.form)'/></label></th>
+              
+              <th>
+			  {yun:}if $smarty.get.t=="id" && $smarty.get.order=="asc"{/yun}
+			  <a href="index.php?m=admin_tiny&order=desc&t=id">简历ID<img src="images/sanj.jpg"/></a>
+              {yun:}else{/yun}
+              <a href="index.php?m=admin_tiny&order=asc&t=id">简历ID<img src="images/sanj2.jpg"/></a>
+              {yun:}/if{/yun}
+			  </th>
+              <th align="left">姓名</th>
+              <th align="left">性别</th>
+              <th>工作年限</th>
+              <th>意向职位</th>
+              <th>手机</th>
+			  <th>QQ</th>
+              <th>
+			  {yun:}if $smarty.get.t=="time" && $smarty.get.order=="asc"{/yun}
+			  <a href="index.php?m=admin_tiny&order=desc&t=time">发布时间<img src="images/sanj.jpg"/></a>
+              {yun:}else{/yun}
+              <a href="index.php?m=admin_tiny&order=asc&t=time">发布时间<img src="images/sanj2.jpg"/></a>
+              {yun:}/if{/yun}
+			  </th>
+              <th>状态</th>
+              <th class="admin_table_th_bg">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+          {yun:}foreach item=v key=key from=$rows{/yun}
+          <tr align="center">
+            <td><input type="checkbox" class="check_all" value="{yun:}$v.id{/yun}" name='del[]' onclick='unselectall()' rel="del_chk"/></td>
+            <td align="center" class="td1"><span>{yun:}$v.id{/yun}</span></td>
+            <td class="ud" align="left"><a href="index.php?m=admin_tiny&c=show&id={yun:}$v.id{/yun}">{yun:}$v.username{/yun}</a></td>
+            <td class="od" align="left">{yun:}$v.sex{/yun}</td>
+            <td class="gd">{yun:}$v.exp{/yun}</td>
+            <td>{yun:}$v.job{/yun}</td>
+            <td>{yun:}$v.mobile{/yun}</td>
+			<td>{yun:}$v.qq{/yun}</td>			
+            <td>{yun:}$v.time|date_format:"%Y-%m-%d"{/yun}</td>
+            <td>{yun:}if $v.status==1{/yun}<font color="blue">已审核</font>{yun:}elseif $v.status==0{/yun}<font color="red">未审核</font>{yun:}else{/yun}<font color="orange">已过期</font>{yun:}/if{/yun}</td>
+            <td><div class="admin_Operating_c" id="list_{yun:}$v.id{/yun}" aid="{yun:}$v.id{/yun}">
+                <div class="admin_Operating">操作</div>
+                <div class="admin_Operating_list admin_Operating_down" id="list{yun:}$v.id{/yun}" style="display:none;"> 
+                <a href="javascript:void(0)" class="status admin_cz_sh" onClick="show_status('{yun:}$v.id{/yun}');">审核</a> 
+                 <a href="index.php?m=admin_tiny&c=show&id={yun:}$v.id{/yun}"class="admin_cz_yl">预览</a> <a href="javascript:void(0)" onClick="layer_del('确定要删除？','index.php?m=admin_tiny&c=del&id={yun:}$v.id{/yun}');"class="admin_cz_sc">删除</a> </div>
+              </div></td>
+          </tr>
+          {yun:}/foreach{/yun}
+          <tr style="background:#f1f1f1;">
+            <td colspan="4">
+             <input class="admin_submit4" type="button" name="delsub" value="删除所选" onClick="return really('del[]')" />
+              &nbsp;&nbsp;
+              <input class="admin_submit4" type="button" name="delsub" value="批量审核" onClick="audall('1');" />
+              &nbsp;&nbsp;
+              <input class="admin_submit6" type="button" name="delsub" value="批量取消审核" onClick="audall('0');" /></td>
+            <td colspan="7" class="digg">{yun:}$pagenav{/yun}</td>
+          </tr>
+            </tbody>
+        </table> 
+      </form>
+    </div>
+  </div>
+</div>
+<div id="preview"  style="display:none;width:560px "> 
+	<div style="height:300px;overflow:auto;width:560px;" > 
+ 		<input id="statusid" type="hidden">
+        <table width="100%" class="table_form" style="background:#fff; font-size:14px;">
+		<tr class="admin_table_trbg"><th width="120">姓名：</th><td id="username"></td></tr>
+        <tr><th>性别：</th><td id="sex"></td></tr>
+		<tr class="admin_table_trbg"><th>工作年限：</th><td id="exp"></td></tr>
+		<tr><th>意向职位：</th><td id="job"></td></tr>
+		<tr class="admin_table_trbg"><th>手机：</th><td id="mobile"></td></tr>
+    	<tr><th>自我介绍：</th><td id="production"></td></tr>
+		<tr class="admin_table_trbg"><th width="120">时　　间：</th><td id="time"></td></tr>
+		</table>
+		<div style="text-align:center;margin-top:10px;">状态：
+        <span><input name='status' type='radio' value='1' id='status_1'>已审核 &nbsp;
+        <input name='status' type='radio' value='0' id='status_0'>未审核</span></div>
+		<div style="text-align:center;margin-top:10px;" ><input class="admin_submit4" type="button" onClick="check_status();" value="提交" ></div>
+	</div> 
+</div> 
+</body>
+</html>

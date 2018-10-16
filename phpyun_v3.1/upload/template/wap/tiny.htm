@@ -1,0 +1,21 @@
+{yun:}include file="$wapstyle/header_cont.htm"{/yun}
+<div class="fm">
+  <form action="index.php" method="get">
+  <input type="hidden" name="m" value="tiny" />
+    <div class="seach_post">
+    	<input type="hidden"  value="tiny" name="m"/>
+      <input type="text" name="keyword" value="{yun:}$smarty.get.keyword{/yun}" class="seach_post_text placeholder" placeholder="ÇëÊäÈë¹Ø¼ü×Ö" />
+      <input type="submit" value="" class="seach_post_sbm"/>
+    </div>
+  </form>
+</div>
+<section>
+  <div class="main"> 
+  {yun:}tiny item=wres  islt=4 ispage=1 limit=20 keyword=auto.keyword {/yun} <a href="{yun:}wapurl url=m:tiny,c:show,id:`$wres.id`{/yun}" class="tiny_list">
+    <h3>{yun:}$wres.username{/yun} / {yun:}$wres.sex_name{/yun}</h3>
+    <aside> {yun:}$wres.job{/yun}</aside>
+    <i>{yun:}$wres.exp_name{/yun}</i> {yun:}/tiny{/yun} </a> </div>
+</section>
+<div class="pages"> {yun:}$pagenav{/yun}</div>
+<div>
+{yun:}include file="$wapstyle/footer.htm"{/yun} 

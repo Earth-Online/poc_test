@@ -1,0 +1,41 @@
+{yun:}include file="$userstyle/header.htm"{/yun} 
+<div class="w950"> 
+{yun:}include file="$userstyle/left.htm"{/yun}
+<div class="mian_right fltR mt20 re">
+  <div class="tabmenubox01 mt9">
+    <ul>
+      <li><a href="index.php?c=job" title="职位管理">申请的职位</a></li>
+      <li><a href="index.php?c=favorite">收藏的职位</a></li>
+      <li class="cur"> <a href="index.php?c=blacklist">公司黑名单</a> </li>
+    </ul>
+  </div>
+  <div class="Commissioned_Resume"><a href="index.php?c=searchcom">公司搜索</a></div>
+  <div class="remindbox01 mt10">
+    <div id="gms_showclew"></div>
+    <div class="resumelistbox01 mt10">
+      <div class="resume_box_list">
+        <table border="0" cellspacing="1" cellpadding="0" class="resume" style="width:690px;">
+          <tr>
+            <th nowrap>公司名称</th>
+            <th nowrap>屏蔽时间</th>
+            <th nowrap>操作</th>
+          </tr>
+          {yun:}foreach item=log from=$rows{/yun}
+          <tr>
+            <td nowrap><span><a href="{yun:}curl url=id:`$log.c_uid`{/yun}">{yun:}$log.com_name{/yun}</A></span></td>
+            <td nowrap>{yun:}$log.inputtime|date_format:'%Y-%m-%d'{/yun}</td>
+            <td nowrap><a href="javascript:void(0)"  onclick="layer_del('您确定要取消屏蔽？', '{yun:}$config.sy_weburl{/yun}/member/index.php?c=blacklist&del={yun:}$log.id{/yun}');">取消屏蔽</a></td>
+          </tr>
+          {yun:}foreachelse{/yun} 
+          <tr style="height:30px">
+            <td colspan="4">暂无信息。</td>
+          </tr>
+          {yun:}/foreach{/yun}  
+        </table>
+      </div>
+    </div>
+    <div class="diggg" style="width:700px">{yun:}$pagenav{/yun}</div>
+  </div>
+</div>
+</div>
+{yun:}include file="$userstyle/footer.htm"{/yun} 

@@ -1,0 +1,61 @@
+{yun:}include file="$wapstyle/header_cont.htm"{/yun} 
+<div class="post_content">
+<div class="post_list">
+<div class="post_title">
+<h3>{yun:}$Info.username_n{/yun} / {yun:}$Info.user_sex{/yun}</h3>
+<aside>意向职位：{yun:}$Info.jobname{/yun}</aside>
+<i>{yun:}$Info.lastupdate{/yun}</i>
+</div>
+</div>
+
+
+
+<section class="com_post_title">
+<header  class="index_post_h2"><span>自我描述</span></header>
+  <ul class="com_post_msg">
+  <li>[简历名称] {yun:}$row.username{/yun}</li>
+  <li>[工作年限] {yun:}$Info.user_exp{/yun}</li>
+  <li>[意向行业] {yun:}$Info.hy{/yun}</li>
+  <li>[期望薪资] {yun:}$Info.salary{/yun}元</li>
+ 
+  <li>[自我介绍] {yun:}$Info.description{/yun}</li>
+  </ul>
+</section>
+
+<section class="com_post_title">
+<header  class="index_post_h2"><span>工作经历</span></header>
+
+
+<div class="user_jl_jy_list">
+ {yun:}if is_array($Info.user_work){/yun}
+  {yun:}foreach from=$Info.user_work item=worklist{/yun}
+  <div class="job_jl_list">
+      <div> 
+      {yun:}$worklist.sdate|date_format:"%Y-%m-%d"{/yun} 至 {yun:}if $worklist.edate{/yun}{yun:}$worklist.edate|date_format:"%Y-%m-%d"{/yun}{yun:}else{/yun}至今{yun:}/if{/yun}</div>  
+      <div class="">
+      <em>在</em>{yun:}$worklist.name{/yun}&nbsp;&nbsp;
+      <em>担任</em>{yun:}$worklist.title{/yun} </div>
+      <em>主要工作</em>{yun:}$worklist.content{/yun}
+      </div>   
+          {yun:}/foreach{/yun}
+     {yun:}/if{/yun}
+
+</div>
+</section>
+<section class="com_post_title">
+<header  class="index_post_h2"><span>联系方式</span></header>
+
+ {yun:}if $Info.m_status=="1"{/yun}
+         <ul class="com_post_msg">
+        <li> [身份证] {yun:}image uid=$Info.uid action=idcard width=180{/yun}{yun:}if $Info.idcard_status==1{/yun}已认证{yun:}/if{/yun}</li>
+        <li> [手机] {yun:}image uid=$Info.uid action=telphone width=200{/yun}</li>
+         <li> [联系邮箱]{yun:}$Info.email{/yun}</li>
+         </ul>
+         {yun:}else{/yun}
+        <div class="com_post_login">  您没有权限查看，请登录网页版！</div>
+          {yun:}/if{/yun}
+   
+</section>
+
+</div>
+{yun:}include file="$wapstyle/footer.htm"{/yun}

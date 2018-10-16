@@ -1,0 +1,47 @@
+{yun:}include file="$wapstyle/header_cont.htm"{/yun} 
+<div class="post_content">
+<div class="post_list">
+<div class="post_title">
+<h3>{yun:}$row.name{/yun}</h3>
+<aside>发布日期： {yun:}$row.lastupdate{/yun}</aside>
+<i>{yun:}$city_name[$row.provinceid]{/yun}/{yun:}$city_name[$row.cityid]{/yun}</i>
+</div>
+
+</div>
+
+
+<section class="com_post_title">
+<header  class="index_post_h2"><span>基本信息</span></header>
+<aside class="post_list_span">
+<ul class="com_post_msg">
+<li>[企业性质] {yun:}$comclass_name[$row.pr]{/yun}</li>
+<li>[所属行业] {yun:}$industry_name[$row.hy]{/yun}</li>
+<li>[注册资金] {yun:}$row.money{/yun}万元</li>
+<li>[公司规模] {yun:}$comclass_name[$row.mun]{/yun}</li>
+</ul>
+
+</aside>
+</section>
+<section class="com_post_title">
+<header  class="index_post_h2"><span>公司简介</span></header>
+<div class="com_post_jj">{yun:}$row.content{/yun}</div>
+
+</section>
+
+<section class="com_post_title">
+<header  class="index_post_h2"><span>联系方式</span></header>
+{yun:}if !$cookie.uid && $cookie.usertype==1{/yun}
+       <div class="com_post_login"> 请 <a href="{yun:}wapurl m=login{/yun}">[登录]</a> 后查看联系方式 
+    没有帐号？<a href="{yun:}wapurl m=register{/yun}">[免费注册]</a></div>
+
+{yun:}else{/yun}
+ <ul class="com_post_msg">
+    <li>[联系人]  {yun:}$row.linkman{/yun}</li>
+    <li>[联系电话] {yun:}$row.linkphone{/yun}</li>
+   <li>[公司地址] {yun:}$row.address{/yun}</li>
+  </ul>
+{yun:}/if{/yun}
+</section>
+
+</div>
+{yun:}include file="$wapstyle/footer.htm"{/yun} 

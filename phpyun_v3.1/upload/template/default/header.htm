@@ -1,0 +1,68 @@
+<div class="top icon3">
+  <div class="top_cot">
+   <div class="top_cot_content icon3">
+    <div class="top_left fl">欢迎来到{yun:}$config.sy_webname{/yun}！&nbsp;| <a href="{yun:}$config.sy_weburl{/yun}/wap" class="wap_icon">手机站</a></div>
+    <div class="top_right fr yundown">
+      <SCRIPT LANGUAGE='JavaScript' src='{yun:}$config.sy_weburl{/yun}/index.php?m=includejs&c=RedLoginHead'></SCRIPT>
+      <a onClick="setHomepage('{yun:}$config.sy_weburl{/yun}');" href="javascript:;">设为首页</a> | <a href="javascript:addwebfav('{yun:}$config.sy_weburl{/yun}','{yun:}$config.sy_webname{/yun}')" >加入收藏</a> </div>
+  </div>
+</div>
+</div>
+<div class="header">
+  <div class="logo fl"><a href="{yun:}$config.sy_weburl{/yun}"><img src="{yun:}$config.sy_weburl{/yun}/{yun:}$config.sy_logo{/yun}" class="png"></a></div>
+  <div class="header_city fl">
+    <SCRIPT LANGUAGE='JavaScript' src='{yun:}$config.sy_weburl{/yun}/index.php?m=includejs&c=Site'></SCRIPT>
+  </div>
+  <div class="header_seach fr">
+    <form action="{yun:}$config.sy_weburl{/yun}/index.php" method="get" onsubmit="return search_keyword(this);">
+      <input type="hidden" name="m" value="com" />
+      <input type="hidden" name="c" value="search" id="search" />
+      <input type="text" id="keyword" name="keyword" class="header_seach_txt icon2 placeholder" value='' placeholder='快速搜索'>
+      <div class="header_seach_find">
+      <span id='search_name'>找工作</span>
+      <div class="header_seach_find_list" style="display:none">
+		  <a href="javascript:void(0)" onclick="top_search('com','找工作');$('#search').attr('name','c');">>找工作</a>
+		  <a href="javascript:void(0)" onclick="top_search('user','招人才');$('#search').attr('name','c');">>招人才</a>
+		  <a href="javascript:void(0)" onclick="top_search('tiny','微简历');$('#search').attr('name','');">>微简历</a>
+		  <a href="javascript:void(0)" onclick="top_search('news','新闻');$('#search').attr('name','');" style="display:none">>新闻</a>
+		  <a href="javascript:void(0)" onclick="top_search('once','微招聘');$('#search').attr('name','');">>微招聘</a>
+      </div>
+      </div>
+      <input type="submit" value="" class="header_seach_sub">
+    </form>
+    <div class="header_seach_tag">关键字：{yun:}key limit=6 recom=1 item=top_key{/yun} <a href="{yun:}$top_key.url{/yun}">{yun:}$top_key.key_name{/yun}</a>{yun:}/key{/yun} </div>
+  </div>
+</div>
+<div class="nav icon3">
+<div class="nav_bg2">
+<div class="nav_cont_content icon3">
+  <div class="nav_cont">
+    <ul class="nav_list">
+      {yun:}nav item=navlist hovclass=nav_list_hover nid=1{/yun}
+      <li class="{yun:}$navlist.navclass{/yun}"> <a href="{yun:}$navlist.url{/yun}" {yun:}if $navlist.eject{/yun} target="_blank"{yun:}/if{/yun}> <em></em><span style="{yun:}if $navlist.color{/yun}color:{yun:}$navlist.color{/yun};{yun:}/if{/yun}{yun:}if $navlist.bold==1{/yun}font-weight:bolder;{yun:}/if{/yun}">{yun:}$navlist.name{/yun}</span> </a>
+      <div class="nav_icon">
+      {yun:}if $navlist.model=="new"{/yun}
+      <img src="{yun:}$style{/yun}/images/new.gif">
+      {yun:}elseif $navlist.model=="hot"{/yun}
+      <img src="{yun:}$style{/yun}/images/hotn.gif">
+      {yun:}/if{/yun}</div>
+      </li>
+    {yun:}/nav{/yun}
+    </ul>
+  </div>
+  <div class="nav_right_content">
+  <div class="nav_right icon3">
+    <div class="nav_right_a"> {yun:}nav item=nav nid=5{/yun} <a href="{yun:}$nav.url{/yun}" style=" position:relative;{yun:}if $nav.color{/yun}color:{yun:}$nav.color{/yun};{yun:}/if{/yun}{yun:}if $nav.bold==1{/yun}font-weight:bolder;{yun:}/if{/yun}">{yun:}$nav.name{/yun}      <div class="nav_icon">
+      {yun:}if $nav.model=="new"{/yun}
+      <img src="{yun:}$style{/yun}/images/new.gif">
+      {yun:}elseif $nav.model=="hot"{/yun}
+      <img src="{yun:}$style{/yun}/images/hotn.gif">
+      {yun:}/if{/yun}</div></a>
+
+    {yun:}/nav{/yun} </div>
+  </div>
+  </div>
+   </div>
+    </div>
+</div>
+<!--header  end-->

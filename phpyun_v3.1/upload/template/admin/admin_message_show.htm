@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" />
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script>
+<title>后台管理</title>
+<script>
+function Showsub(){
+	var content=$("#content").val();
+	if($.trim(content)==''){
+		parent.layer.msg('请输入内容！', 2, 2);return false;
+	}
+}
+function Close(id){
+	$("#user"+id).remove();
+}
+</script>
+</head>
+<body class="body_ifm">
+<div class="infoboxp">
+  <div class="infoboxp_top">
+    <h6>站内信回复</h6>
+    <div class="infoboxp_right"> <a href="index.php?m=admin_message" class=" infoboxp_tj">站内信管理</a></div>
+  </div>
+  <div class="admin_table_border">
+    <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+    {yun:}if $id!=""{/yun}
+    <table width="100%" style="background:#fff;" >
+      <tbody>
+      {yun:}foreach item=v from=$rows{/yun}
+     <tr align="center">
+        <td class="ud" align="left" width="27%" height="23%"><div style="padding:5px;">用户名:{yun:}$v.username{/yun}</div></td>
+        <td class="ud"  width="28%" align="right"><div style="padding:5px;">时间:{yun:}$v.ctime|date_format:"%Y-%m-%d %H:%M"{/yun}</div></td>
+      </tr>
+      <tr class="admin_table_trbg" >
+        <td width="400" colspan="2" align="left" class="td" style="padding-top:5px; padding-bottom:5px;" ><div style="padding:5px;"><strong>回复内容:</strong><br>
+            {yun:}$v.content{/yun}</div></td>
+      </tr>
+      {yun:}/foreach{/yun}
+      <tr>
+        <td colspan="2" class="digg"><div style="padding:5px;">{yun:}$pagenav{/yun}</div></td>
+      </tr>
+      <tr>
+        <td colspan="2"></tbody>
+    </table>
+    <form name=myform onSubmit="return Showsub();" action='' method="post"  target="supportiframe" >
+      <table width="100%" class="table_form">
+        <tr class="admin_table_trbg" >
+          <th>内容：</th>
+          <td><textarea rows="10" cols="90" name="content" id='content' style="margin-top:5px;"></textarea></td>
+        </tr>
+        <tr>
+          <input type="hidden" value="{yun:}$id{/yun}" name="keyid">
+          <td colspan="2" ><div style="width:400px; text-align:right">
+              <input type="submit" class="admin_submit4" name="submit" value="提交" >
+            </div></td>
+        </tr>
+      </table>
+      <input type="hidden" name="pytoken" value="{yun:}$pytoken{/yun}">
+    </form>
+    {yun:}else{/yun}
+    <form name=myform onSubmit="return Showsub();" action='' method="post" target="supportiframe">
+      <table width="100%" class="table_form">
+         <tr>
+          <td colspan="2" style="background:#fff">
+      <div class="admin_message_choose">
+      <div class="admin_messahe_yx">已选用户</div>
+        <ul class="admin_message_selected">&nbsp;
+        {yun:}foreach item=v from=$member{/yun}
+            <li id="user{yun:}$v.uid{/yun}">
+            <a  href="javascript:Close('{yun:}$v.uid{/yun}');"><span class="text">{yun:}$v.username{/yun}</span><span class="delete" >移除</span></a>
+            <input type="hidden" name="uid[]" value="{yun:}$v.uid{/yun}">
+            </li>
+        {yun:}/foreach{/yun}
+        </ul>
+    </div>
+      </td>
+      </tr>
+        <tr class="admin_table_trbg" >
+          <th>新增户名：</th>
+          <td><input type="text" name="name" value="" size="40" class='input-text'>（多个用户以半角逗号“,”隔开）</td>
+        </tr>
+        <tr >
+          <th>内容：</th>
+          <td><textarea rows="10" cols="90" name="content" id='content'></textarea></td>
+        </tr>
+        <tr>
+          <input type="hidden" value="{yun:}$id{/yun}" name="keyid">
+          <td colspan="2" align="center"><input type="submit" class="admin_submit4" name="submits" value="提交" ></td>
+        </tr>
+      </table>
+      <input type="hidden" name="pytoken" value="{yun:}$pytoken{/yun}">
+    </form>
+    {yun:}/if{/yun} </div>
+</div>
+</body>
+</html>

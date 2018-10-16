@@ -1,0 +1,15 @@
+
+  <div class="content">
+  <div class="sidebar-left" style="width:230px;">
+    <div class="position" style="width:230px;">
+      <div class="position-title" style="width:230px;"><span>ÕÐÆ¸Ö°Î»</span></div>
+      <div class="post_content" style="width:230px;">
+         <img src="{yun:}$com_style{/yun}images/mm.jpg" width="217"height="60">
+      <ul class="post">
+{yun:}joblist limit=5 uid=@id item=job{/yun}
+<li><a href="{yun:}$job.job_url{/yun}" style="overflow:hidden;" title="{yun:}$job.name{/yun}">{yun:}$job.name{/yun}</a></li>
+{yun:}/joblist{/yun}
+      </ul>
+      </div>
+    </div>
+  </div>

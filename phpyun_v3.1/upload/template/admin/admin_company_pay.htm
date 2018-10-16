@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" />
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script>
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp">
+  <div class="infoboxp_top">
+    <h6>消费记录</h6>
+  </div>
+  <div class="company_job">
+    <div class="company_job_list_h1">
+      <form action="index.php" name="myform" method="get">
+        <span class="company_m6" style="float:left; margin-left:10px;">
+        <input name="m" value="company_pay" type="hidden"/>
+		<span class="company_s_l"> <font color="#666;">检索类型：</font></span> 
+		<span class="company_fl">
+        <select name="type">
+		   <option value="1" {yun:} if $get_type.type=="1"{/yun} selected="selected" {yun:}/if{/yun} >消费单号</option>
+          <option value="2" {yun:} if $get_type.type=="2"{/yun} selected="selected" {yun:}/if{/yun}>用户名称</option>
+		  <option value="3" {yun:} if $get_type.type=="3"{/yun} selected="selected" {yun:}/if{/yun}>备注说明</option>
+        </select>
+        </span>
+        <input class="company_job_text"  type="text" name="keyword"  size="25"/>
+        <input class="company_job_new_sub"  type="submit" name="news_search" value="检索消费"/>
+        &nbsp;</span>
+      </form>
+    </div>
+  </div>
+  <div class="table-list">
+    <div class="admin_table_border">
+      <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+      <form action="index.php" name="myform" method="get" target="supportiframe" id='myform'>
+      <input type="hidden" name="pytoken" id='pytoken' value="{yun:}$pytoken{/yun}">
+        <input name="m" value="company_pay" type="hidden"/>
+        <input name="c" value="del" type="hidden"/>
+        <table width="100%">
+          <thead>
+            <tr class="admin_table_top">
+              <th style="width:20px;"><label for="chkall">
+                <input type="checkbox" id='chkAll'  onclick='CheckAll(this.form)'/>
+                </label></th>
+              <th> {yun:}if $smarty.get.t=="id" && $smarty.get.order=="asc"{/yun} <a href="{yun:}seacrh_url order=desc t=id m=company_pay untype=order,t{/yun}">ID<img src="images/sanj.jpg"/></a> {yun:}else{/yun} <a href="{yun:}seacrh_url order=asc t=id m=company_pay untype=order,t{/yun}">ID<img src="images/sanj2.jpg"/></a> {yun:}/if{/yun} </th>
+              <th>消费单号</th>
+              <th>用户名</th>
+              <th>金额</th>
+              <th>备注</th>
+              <th> {yun:}if $smarty.get.t=="pay_time" && $smarty.get.order=="asc"{/yun} <a href="{yun:}seacrh_url order=desc t=pay_time m=company_pay untype=order,t{/yun}">时间<img src="images/sanj.jpg"/></a> {yun:}else{/yun} <a href="{yun:}seacrh_url order=asc t=pay_time m=company_pay untype=order,t{/yun}">时间<img src="images/sanj2.jpg"/></a> {yun:}/if{/yun} </th>
+              <th>状态</th>
+              <th class="admin_table_th_bg">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+          
+          {yun:}foreach item=v from=$rows{/yun}
+          <tr align="center">
+            <td><input type="checkbox" value="{yun:}$v.id{/yun}"  name='del[]' onclick='unselectall()' rel="del_chk" /></td>
+            <td align="left" class="td1" style="text-align:center;"><span>{yun:}$v.id{/yun}</span></td>
+            <td>{yun:}$v.order_id{/yun}</td>
+            <td class="gd">{yun:}$v.username{/yun}</td>
+            <td>{yun:}$v.order_price{/yun}({yun:}if $v.type==2{/yun}金额购买{yun:}else{/yun}{yun:}$config.integral_pricename{/yun}购买{yun:}/if{/yun})</td>
+            <td>{yun:}$v.pay_remark{/yun}</td>
+            <td>{yun:}$v.pay_time|date_format:"%Y-%m-%d"{/yun}</td>
+            <td>{yun:}$v.pay_state_n{/yun}</td>
+            <td><a href="javascript:void(0)" onClick="layer_del('确定要删除？', 'index.php?m=company_pay&c=del&id={yun:}$v.id{/yun}');" class="admin_cz_sc">删除</a></td>
+          </tr>
+          {yun:}/foreach{/yun}
+          <tr style="background:#f1f1f1;">
+            <td colspan="3" ><input class="admin_submit4"  type="button" name="delsub" value="删除所选" onClick="return really('del[]')" /></td>
+            <td colspan="6" class="digg">{yun:}$pagenav{/yun}</td>
+          </tr>
+          </tbody>
+          
+        </table>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

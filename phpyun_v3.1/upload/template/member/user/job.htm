@@ -1,0 +1,47 @@
+{yun:}include file="$userstyle/header.htm"{/yun}
+<div class="w950"> 
+{yun:}include file="$userstyle/left.htm"{/yun}
+<div class="mian_right fltR mt20">
+  <div class="tabmenubox01 mt9">
+    <ul>
+      <li class="cur"><a href="javascript:void(0);">申请的职位</a></li>
+      <li><a href="index.php?c=favorite">收藏的职位</a></li>
+      <li> <a href="index.php?c=blacklist">公司黑名单</a> </li>
+   
+    </ul>
+  </div>
+  <div class="remind-job-msg mt10"> 友情提示：您已申请 <span style="color:red;">{yun:}$fnum{/yun}</span> 条职位 </div>
+  <div class="resume_box_list">
+    <div class="clear"></div>
+    <div id="gms_showclew"></div>
+    <div class="resumelistbox01 ">
+       <div style="width:685px;">
+        <table border="0" cellspacing="1" cellpadding="0" class="resume">
+          <tr>
+            <th>申请的职位</th>
+            <th>所属公司</th>
+            <th>状态</th>
+            <th>申请时间</th>
+            <th>删除</th>
+          </tr>
+          {yun:}foreach item=job from=$rows{/yun}
+          <tr>
+            <td   style="text-align:left;width:180px;"><a href="../{yun:}url m=com url=c:comapply,id:`$job.job_id`{/yun}" target="_blank" title="{yun:}$job.job_name{/yun}" class="job_name">{yun:}$job.job_name{/yun}</a> </td>
+            <td   style="text-align:left;width:180px;"> <a href="{yun:}curl url=id:`$job.com_id`{/yun}" target="_blank" title="{yun:}$job.com_name{/yun}">{yun:}$job.com_name{/yun}</a> </td>
+            <td><span>{yun:}if $job.is_browse=='1'{/yun}对方未浏览简历{yun:}else{/yun}对方已浏览{yun:}/if{/yun}</span></td>
+            <td ><span>{yun:}$job.datetime|date_format:'%Y-%m-%d'{/yun}</span></td>
+            <td ><a href="javascript:void(0)" onclick="layer_del('确定要删除？', 'index.php?c=job&del={yun:}$job.id{/yun}');" class="re_sc"><img src="{yun:}$userstyle{/yun}/images/com_sc.jpg"  alt="删除" title="删除"/></a></td>
+          </tr>
+           {yun:}foreachelse{/yun}
+           <tr>
+            <td colspan='5'><div class="msg_no">你还没有申请职位哦！<a href="{yun:}$config.sy_weburl{/yun}/{yun:}url m=com {/yun}" class="msg_no_sq">马上去申请职位</a></div></td>
+          </tr>
+          {yun:}/foreach{/yun}
+        </table>
+      </div>
+      <div class="diggg" style="margin-top:10px; float:right">{yun:}$pagenav{/yun}</div>
+    </div>
+  </div>
+</div>
+</div>
+{yun:}include file="$userstyle/footer.htm"{/yun}

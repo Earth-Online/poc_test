@@ -1,0 +1,30 @@
+
+{yun:}include file="$comstyle/header.htm"{/yun} 
+{yun:}include file="$comstyle/left.htm"{/yun} 
+  <div class="brief">
+    <div class="clear"></div>
+    <div class="environment">
+      <h1><span>产品中心</span></h1>
+       <div class="h1">{yun:}$row.title{/yun}</div>
+       <div class="info_list">
+
+
+   <div style="border:1px solid #ccc;width:300px;height:210px;"><img src="{yun:}$config.sy_weburl{/yun}/{yun:}$row.pic{/yun}" width="300" height="210"></div>
+
+
+<ul>
+
+<li class="info_para1">
+
+<b>产品介绍：</b>
+
+</li>
+
+       <div class="divp" >{yun:}$row.body{/yun}</div>
+
+         
+</div>
+  </div>
+    </div>
+  <div class="clear"></div>
+{yun:}include file="$comstyle/footer.htm"{/yun} 

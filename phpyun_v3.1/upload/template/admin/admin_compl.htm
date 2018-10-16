@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" />
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script>
+<script src="js/show_pub.js"></script>
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp">
+  <div class="infoboxp_top">
+    <h6>企业评论</h6>
+  </div>
+  <div class="company_job">
+    <div class="company_job_list_h1">
+      <form action="index.php"  method="get">
+        <span class="company_m6" style="float:left">
+        <input name="m" value="com_pl" type="hidden"/>
+        <span class="company_s_l">检索类型：</span><span class="company_fl">
+        <select name="searchtype" style="height:20px; ">
+          <option value="1" {yun:} if $get_type.searchtype=="1"{/yun} selected="selected" {yun:}/if{/yun}>评论人</option>
+          <option value="2" {yun:} if $get_type.searchtype=="2"{/yun} selected="selected" {yun:}/if{/yun}>公司名称</option>
+		  <option value="3" {yun:} if $get_type.searchtype=="3"{/yun} selected="selected" {yun:}/if{/yun}>评论内容</option>
+		  <option value="4" {yun:} if $get_type.searchtype=="4"{/yun} selected="selected" {yun:}/if{/yun}>回复内容</option>
+        </select>
+        </span>
+        <input class="company_job_text" type="text" name="keyword"  size="25"/ style="float:left">
+        <input class="company_job_new_sub"  type="submit" name="search" value="检索评论"style="float:left"/>
+        &nbsp; </span>
+      </form>
+    </div>
+  </div>
+  <div class="table-list">
+    <div class="admin_table_border">
+      <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+      <form action="index.php?m=com_pl&c=del" name="myform" target="supportiframe" id='myform' method="post">
+       <input type="hidden" name="pytoken" id='pytoken' value="{yun:}$pytoken{/yun}">
+        <table width="100%">
+          <thead>
+            <tr class="admin_table_top">
+              <th style="width:20px;"><label for="chkall"><input type="checkbox" id='chkAll'  onclick='CheckAll(this.form)'/></label></th>
+                <th width="60" >
+                {yun:}if $smarty.get.order=="asc"{/yun}
+                <a href="{yun:}seacrh_url order=desc t=id m=com_pl untype=order,t{/yun}">ID<img src="images/sanj.jpg"/></a>
+                {yun:}else{/yun}
+                <a href="{yun:}seacrh_url order=asc t=id m=com_pl untype=order,t{/yun}">ID<img src="images/sanj2.jpg"/></a>
+                {yun:}/if{/yun}
+                </th>
+              <th align="left" width="100">评论人</th>
+              <th align="left">公司名称</th>
+              <th align="left">评论内容</th>
+              <th align="left">回复内容</th>
+			   <th align="left" width="120" >发送时间</th>
+              <th align="center" width="120" class="admin_table_th_bg">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+          {yun:}foreach item=v from=$mes_list{/yun}
+          <tr align="center">
+            <td><input type="checkbox" value="{yun:}$v.id{/yun}"  name='del[]' onclick='unselectall()' rel="del_chk" /></td>
+            <td align="left" width="60" class="td1" style="text-align:center;"><span>{yun:}$v.id{/yun}</span></td>
+            <td align="left" width="100">{yun:}$v.username{/yun}</td>
+            <td align="left" width="250">{yun:}$v.com_name{/yun}</td>
+            <td align="left" width="300">{yun:}$v.content{/yun}</td>
+            <td align="left" width="300">{yun:}$v.reply{/yun}</td>
+			 <td align="left" width="120">{yun:}$v.ctime|date_format:"%Y-%m-%d %H:%M"{/yun}</td>
+            <td width="120"><div class="admin_Operating_c" id="list_{yun:}$v.id{/yun}" aid="{yun:}$v.id{/yun}">
+				<div class="admin_Operating">操作</div>
+				<div class="admin_Operating_list admin_Operating_down" id="list{yun:}$v.id{/yun}" style="display:none;"><span onClick="showdiv4('houtai_div','{yun:}$v.content{/yun}','{yun:}$v.reply{/yun}')" class="admin_cz_yl" style="cursor:pointer;"> 预览</span> <a href="javascript:void(0)" onClick="layer_del('确定要删除？', 'index.php?m=com_pl&c=del&id={yun:}$v.id{/yun}');" class="admin_cz_sc">删除</a></div></div></td>
+          </tr>
+          {yun:}/foreach{/yun}
+          <tr style="background:#f1f1f1;">
+            <td colspan="3" ><input class="admin_submit4" type="button" name="delsub" value="删除所选" onClick="return really('del[]')" /></td>
+            <td colspan="5" class="digg">{yun:}$pagenav{/yun}</td>
+          </tr>
+            </tbody>
+        </table>
+      </form>
+    </div>
+  </div>
+</div>
+<div id="houtai_div" style=" width:408px; border:1px solid #ccc; position:fixed; display:none;margin: 0 auto;
+    padding: 0;">
+	<form id="formstatus" method="post" target="supportiframe" action="index.php?m=admin_company_job&c=status">
+    <input type="hidden" name="pytoken" value="{yun:}$pytoken{/yun}">
+	  <table class="table_form "  id="infobox">
+			<tr><td>评论内容：</td><td><textarea name="beizhu" id="beizhu" rows="3" cols="45" class="text" readonly></textarea></td></tr>
+			<tr><td>回复内容：</td><td><textarea name="reply" id="reply" rows="3" cols="45" class="text" readonly></textarea></td></tr>
+	  </table>
+	 </form>
+</div>
+</body>
+</html>

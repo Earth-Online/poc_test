@@ -1,0 +1,11 @@
+version: '3'
+services:
+  web:
+    build: .
+    image: phpyun
+    ports:
+     - "9200:80"
+       
+  mysql:
+    image: "mysql/mysql-server:5.7"
+

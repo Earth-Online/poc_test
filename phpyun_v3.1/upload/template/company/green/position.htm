@@ -1,0 +1,19 @@
+{yun:}include file="$comstyle/header.htm"{/yun} 
+<script src="http://api.map.baidu.com/api?v=1.4"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/map.js" language="javascript"></script>
+{yun:}include file="$comstyle/left.htm"{/yun} 
+  <div class="brief">
+    <div class="position">
+      <h1><span>地理位置</span></h1>
+      {yun:}if $com.y!='' && $com.x!=''{/yun}
+      <div id="map_container" style="width:100%;height:350px;"></div>
+    <script>
+  getmapshowcont('map_container',"{yun:}$com.x{/yun}","{yun:}$com.y{/yun}","{yun:}$com.name{/yun}","{yun:}$com.address{/yun}");
+  </script>
+  {yun:}else{/yun}
+<div class="comapply_no_msg"> <div class="comapply_no_msg_cont"><span></span><em>该公司还没有标注地理位置!</em></div></div>
+{yun:}/if{/yun}
+</div>
+</div>
+  <div class="clear"></div>
+{yun:}include file="$comstyle/footer.htm"{/yun}

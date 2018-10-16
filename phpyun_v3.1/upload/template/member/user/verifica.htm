@@ -1,0 +1,79 @@
+{yun:}include file="$userstyle/header.htm"{/yun}
+<div class="w950"> 
+{yun:}include file="$userstyle/left.htm"{/yun}
+<liNK href="{yun:}$config.sy_weburl{/yun}/template/member/com/images/user-n2012.css" type=text/css rel=stylesheet>
+<div class="mian_right fltR mt20">
+  <div class="tabmenubox01 mt9">
+    <ul>
+      <li><a href="index.php?c=info" title="个人基本信息">基本信息</a></li>
+      <li><a href="index.php?c=uppic">照片管理</a></li>
+      <li class="cur"> <a href="index.php?c=verifica">身份验证</a></li>
+    </ul>
+  </div>
+  <div class="clear"></div>
+  <div>
+    <div class="Verification_step" id="yyzz_rz" >
+      <div class="guid" {yun:}if $row.idcard_status=="1"{/yun} style="display:none;"{yun:}/if{/yun}>
+        <div >
+          <ul>
+            <li class="fst cu"> 第一步：基本资料 <i></i> </li>
+            <li class="sed cu"> 第二步：上传身份证 <i></i> </li>
+            <li class="thrd">第三步：等待审核</li>
+          </ul>
+        </div>
+      </div>
+      <div class="clear"></div>
+      <div class="Verification_sc">
+	   <iframe id="supportiframe" name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+      <form  name=MyForm action="" method="post" enctype="multipart/form-data" onsubmit="return check();" target='supportiframe'>
+        <div class="Verification_content" id="yyzz_step1"{yun:}if $row.idcard_pic!=""{/yun} style="display:none;"{yun:}/if{/yun}>
+        <div class="Verification_sc_left">上传身份证</div>
+        <div class="Verification_sc_c">
+          <input type="file" size="25" value="" id="fileToUpload" name="pic" class="Verification_sc_bth1" >
+          <span id="yyzz_cert_id"></span> </div>
+        <div class="Verification_sc_r">
+          <input type="submit" id="yyzz_submit" name="submit" value="立即上传 " class="Verification_sc_bth2"/>
+        </div>
+        </div>
+      </form> 
+      <div  class="Verification_content" id="yyzz_step2"{yun:}if $row.idcard_pic==''||$row.idcard_status=="1"{/yun} style="display:none;"{yun:}/if{/yun}>
+        <div class="Verification_sc_left" style="width:400px;">{yun:}if $row.idcard_status!="2"{/yun}上传成功，请等待管理员审核{yun:}else{/yun} 审核未通过{yun:}/if{/yun} <a href="javascript:;" onclick="resets()"><font color="#FF0000">重新认证</font></a></div>
+      </div>
+    </div>
+  </div>
+<script>
+function check(){
+	if($("#fileToUpload").val()==''){
+		$("#yyzz_cert_id").css("color","red");
+		$("#yyzz_cert_id").html("请选择图片");
+		return false;
+	}
+}
+function resets(){
+	$("#yyzz_step1").show();
+	$("#yyzz_step2").hide();
+	$("#rested").hide();
+}
+		</script>
+  <div id="rested" style=" float:left; {yun:}if $row.idcard_status!='1' && $row.idcard_status!='2'{/yun} display:none;{yun:}/if{/yun}">
+    <div class="ver_zt">
+      <div class="ver_zt_left">状 态：</div>
+      <div class="ver_zt_right">{yun:}if $row.idcard_status=="2"{/yun}<font color="red">审核失败</font>{yun:}else{/yun}<font color="green">已认证</font>{yun:}/if{/yun}</div>
+    </div>
+    <div class="clear"></div>
+    {yun:}if $row.idcard_status=="2"{/yun}
+    <div class="ver_zt">
+      <div class="ver_zt_left">失败原因：</div>
+      <div class="ver_zt_right">{yun:}$row.statusbody{/yun}</div>
+    </div>
+    {yun:}/if{/yun}
+     <div class="clear"></div>
+    <div class="ver_zt">
+      <div class="ver_zt_left">身份证图片：</div>
+      <div class="ver_zt_right" style="width:570px; overflow:hidden"><img src="{yun:}$row.idcard_pic{/yun}"></div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+{yun:}include file="$userstyle/footer.htm"{/yun}

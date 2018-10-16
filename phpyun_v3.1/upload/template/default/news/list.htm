@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{yun:}$title{/yun}</title>
+<META name="keywords" content="{yun:}$keywords{/yun}">
+<META name="description" content="{yun:}$description{/yun}">
+<link rel="stylesheet" href="{yun:}$style{/yun}/style/css.css" type="text/css">
+<link rel="stylesheet" href="{yun:}$style{/yun}/style/news.css" type="text/css">
+<!--[if IE 6]>
+<script src="{yun:}$config.sy_weburl{/yun}/js/png.js"></script>
+<script>
+DD_belatedPNG.fix('.png,.index_logoin,.index_logoin_current,.nav_list,.fairs_Status,.fairs_Status,.logoin_qybj,.logoin_grbj,.logoin_Shadow_right,.logoin_Shadow_left,.whitebg,.micro_resume_fast,.nav_list_hover a,#bg,.left_comapply_cont li,.icon2,.nav_list .nav_list_hover em,.Fast_right_icon_l,.Fast_right_icon_r,.index_logoin_after,.logoin_after em,.logoin_after_su2,.logoin_after_su1,.hbg,.pagination li a,.firm_post_list,.Auction_tit,.yun_title,.Recommended_tit,.Com_Search_Results_r ul .All_post_h1_act,.sButtonBlock a.closeButton,.Comment_list_top,.icon,.yun_wap_m_bg,.micro_box,.fast_issuance');
+</script>
+<![endif]--> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/lazyload.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/public.js" language="javascript"></script>
+<script>var integral_pricename='{yun:}$config.integral_pricename{/yun}';var weburl="{yun:}$config.sy_weburl{/yun}"; </script>
+</head>
+<body>
+{yun:}include file="$tplstyle/header.htm"{/yun}
+<div class="yun_content">
+  <div class="current_Location icon"> 您当前的位置：<a href="{yun:}$config.sy_weburl{/yun}" title="{yun:}$config.sy_webname{/yun}">首页</a> > 职场资讯 </div>
+  <div class="left_sidebar fl">
+    <div class="left_h1 hbg">
+      <div class="left_h1_l fl hbg"></div>
+      <div class="left_h1_c fl hbg">推荐文章</div>
+      <div class="left_h1_r fr hbg"></div>
+    </div>
+    <div class="news_left fl m5">
+      <div class="news_left_cont"> {yun:}article limit=6 type=tj pic=1 t_len=7 urlstatic=1 item=news_jian{/yun}
+        <dl>
+          <dt><a href="{yun:}$news_jian.url{/yun}"><img src="/{yun:}$news_jian.newsphoto{/yun}" alt="{yun:}$news_jian.title{/yun}" style="width:106px; height:69px;" /></a></dt>
+          <dd><strong><a href="{yun:}$news_jian.url{/yun}" title="{yun:}$news_jian.title{/yun}">{yun:}$news_jian.title{/yun}</a></strong>{yun:}$news_jian.description|mb_substr:0:22:'gbk'{/yun}<a href="{yun:}$news_jian.url{/yun}">[详情]</a></dd>
+        </dl>
+        {yun:}/article{/yun} </div>
+    </div>
+    <div class="left_h1 hbg fl  m10">
+      <div class="left_h1_l fl hbg"></div>
+      <div class="left_h1_c fl hbg">热点文章</div>
+      <div class="left_h1_r fr hbg"></div>
+    </div>
+    <div class="news_left fl m5">
+      <div class="news_left_cont">
+        <ul>
+          {yun:}article limit=6 order=hits t_len=17 urlstatic=1 item=news_hits{/yun}
+          <li><a href="{yun:}$news_hits.url{/yun}" title="{yun:}$news_hits.title{/yun}" class="icon2">{yun:}$news_hits.title{/yun}</a></li>
+          {yun:}/article{/yun}
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="right_sidebar fr"> {yun:}article nid=auto.nid ispage=1 urlstatic=1 limit=20  t_len=30 item=news{/yun}
+    <div class="news_right_list fl">
+      <div class="news_right_list_h1"><a href="{yun:}$news.url{/yun}" title="{yun:}$news.title{/yun}">{yun:}$news.title{/yun}</a> <em>{yun:}$news.time{/yun}</em></div>
+      <div class="news_right_list_p"> {yun:}$news.description|mb_substr:0:100:'gbk'{/yun} </div>
+    </div>
+    {yun:}/article{/yun}
+    <div class="clear"></div>
+    <div class="clear"></div>
+    <div class="pages"> {yun:}$pagenav{/yun} </div>
+  </div>
+</div>
+{yun:}include file="$tplstyle/footer.htm"{/yun} 

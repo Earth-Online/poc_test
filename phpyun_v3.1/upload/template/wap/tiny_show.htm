@@ -1,0 +1,25 @@
+{yun:}include file="$wapstyle/header_cont.htm"{/yun}
+<div class="post_content">
+<div class="post_list">
+<div class="post_title">
+<h3>{yun:}$row.username{/yun}</h3>
+<aside>意向职位：{yun:}$row.job{/yun}</aside>
+<i>{yun:}$row.time|date_format:"%Y-%m-%d"{/yun}</i>
+</div>
+</div>
+
+
+
+<section class="com_post_title">
+<header  class="index_post_h2"><span>自我描述</span></header>
+  <ul class="com_post_msg">
+  <li>[工作年限] {yun:}$userclass_name[$row.exp]{/yun}</li>
+  <li>[联系电话] {yun:}$row.mobile{/yun}</li>
+  <li>[自我介绍] {yun:}$row.production{/yun}</li>
+  </ul>
+</section>
+
+
+</div>
+
+{yun:}include file="$wapstyle/footer.htm"{/yun} 

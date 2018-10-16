@@ -1,0 +1,31 @@
+{yun:}include file="$comstyle/header.htm"{/yun} 
+{yun:}include file="$comstyle/left.htm"{/yun} 
+  <div class="brief">
+    <div class="post-post">
+      <h1><span>招聘职位</span></h1>
+      {yun:}jobpage limit=5{/yun}
+      {yun:}if !empty($jobpage){/yun}
+      <ul class="post-centent">
+        <li  class="post-centent-li"><span class="id">ID</span>
+        <span class="name">职位名称</span>
+        <span class="address">工作地点</span>
+        <span class="start">发布日期</span>
+        <span class="end">截止日期</span>
+        <span class="people">招聘人数</span></li>        
+       {yun:}foreach item=list from=$jobpage{/yun}
+       <li><span class="id">{yun:}$list.id{/yun}</span>
+        <span  class="name"><a href="../{yun:}url m=com url=c:comapply,id:`$list.id`{/yun}" style="overflow:hidden;">{yun:}$list.name{/yun}</a></span> 
+        <span  class="address">{yun:}$list.province{/yun} {yun:}$list.city{/yun} {yun:}$list.job_city_three{/yun}</span> 
+        <span class="start">{yun:}totime time=$list.sdate{/yun}</span> 
+        <span  class="end">{yun:}totime time=$list.edate{/yun}</span> 
+        <span class="people">{yun:}$list.nums{/yun}</span> </li>
+        {yun:}/foreach{/yun}
+      </ul>
+      <div class="page">{yun:}$pagenav{/yun}</div>
+      {yun:}else{/yun}
+<div class="comapply_no_msg"> <div class="comapply_no_msg_cont"><span></span><em>该公司还没有发布职位!</em></div></div>
+    {yun:}/if{/yun}
+    </div>
+  </div>
+  <div class="clear"></div>
+{yun:}include file="$comstyle/footer.htm"{/yun} 

@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBliC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEaD>
+<TITLE>个人用户管理平台 - {yun:}$config.sy_webname{/yun} - Powered by PHPYun.</TITLE>
+<METa http-equiv=Content-Type content="text/html; charset=GBK">
+<SCRIPT type="text/javascript" src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></SCRIPT>
+<script type="text/javascript" src="{yun:}$config.sy_weburl{/yun}/js/setday.js"></SCRIPT>
+<script type="text/javascript" src="{yun:}$config.sy_weburl{/yun}/js/member_public.js"></SCRIPT>
+<script type="text/javascript" src="{yun:}$config.sy_weburl{/yun}/js/public.js"></SCRIPT>
+<script type="text/javascript" src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js"></SCRIPT>
+<liNK href="{yun:}$userstyle{/yun}/images/m_css.css" type="text/css" rel="stylesheet">
+<liNK href="{yun:}$userstyle{/yun}/images/m_header.css" type="text/css" rel="stylesheet">
+<!--[if IE 6]>
+<script src="{yun:}$config.sy_weburl{/yun}/js/png.js"></script>
+<script>
+  DD_belatedPNG.fix('.png,.#bg');
+</script>
+<![endif]-->
+<METa content="MSHTML 6.00.6000.16939" name=GENERaTOR>
+
+</HEaD>
+<BODY>
+<script>
+var weburl="{yun:}$config.sy_weburl{/yun}";
+</script>
+<div class="header">
+
+  <div class="w950">
+    <div class="logo mt10 fltL"> <a href="{yun:}$config.sy_weburl{/yun}" target="_blank" title='返回网站首页'><IMG alt="{yun:}$config.sy_webname{/yun}" src="{yun:}$config.sy_weburl{/yun}/{yun:}$config.sy_member_logo{/yun}" class="png"></a> </div>
+    <div class="header_seach fltL">
+      <form action="{yun:}$config.sy_weburl{/yun}/index.php" method="get" target="_blank" onSubmit="return search_keyword(this);">
+        <input type="hidden" name="m" value="com"/>
+		<input type="hidden" name="c" value="search"/>
+        <input type="text" id="keywords" name="keyword" class="he_input placeholder" value="请输入关键字" placeholder="请输入关键字" onclick="if(this.value=='请输入关键字'){this.value=''}" onblur="if(this.value==''){this.value='请输入关键字'}" >
+        <input type="submit" value="" class="he_submit">
+      </form>
+    </div>
+    <div class="header_r fltR">
+      <ul class="header_mune">
+        <li {yun:}if $js_def=='1'{/yun}class="header_mune_cur"{yun:}/if{/yun}><a href="index.php">我的首页</a></li>
+        <li {yun:}if $js_def=='2'{/yun}class="header_mune_cur"{yun:}/if{/yun}><a class="thickbox" href="index.php?c=resume" title="简历管理">我的简历</a></li>
+        <li {yun:}if $js_def=='3'{/yun}class="header_mune_cur"{yun:}/if{/yun}><a href="index.php?c=job" title="职位管理">求职申请</a></li>
+        <li {yun:}if $js_def=='4'{/yun}class="header_mune_cur"{yun:}/if{/yun}><a href="index.php?c=msg">面试邀请</a></li>
+      </ul>
+     </div>
+  </div>
+</div>

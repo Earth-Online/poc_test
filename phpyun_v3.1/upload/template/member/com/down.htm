@@ -1,0 +1,143 @@
+{yun:}include file="$comstyle/header.htm"{/yun}
+<div class="w950">
+  <div class="admin_mainbody"> {yun:}include file="$comstyle/left.htm"{/yun}
+    <link href="{yun:}$comstyle{/yun}/images/index_style.css" type=text/css rel=stylesheet>
+    <script>
+$(function(){
+$(".status").click(function(){
+$("input[name=eid]").val($(this).attr("eid"));
+$("input[name=r_uid]").val($(this).attr("r_uid"));
+$("input[name=r_name]").val($(this).attr("r_name"));
+
+$.layer({
+	type : 1,
+	title :'举报',
+	offset: [($(window).height() - 160)/2 + 'px', ''],
+	closeBtn : [0 , true],
+	border : [10 , 0.3 , '#000', true],
+	area : ['320px','160px'],
+	page : {dom :"#infobox"}
+});
+});
+});
+$(document).ready(function(){
+
+	$('#zxxCancelBtn').click(function(){
+		layer.closeAll();
+	});
+
+});
+
+
+</script>
+    <div class=right_box>
+      <div class=admincont_box>
+        <div class=admin_tit><span class="admin_tit_bg">已下载简历的人才</span> </div>
+        <div class=admin_note>
+          <form action="index.php" method="get" />
+
+          <input name="c" type="hidden" value="down">
+          <ul>
+            <li><span class="span_name">输入姓名：</span>
+              <input name="keyword" type="text"class="com_text_news">
+              <input name="" type="submit" class=com_tj value="搜索已有人才"  />
+            </li>
+          </ul>
+          </form>
+        </div>
+        <div class=admin_note>
+          <h2>特别提示</h2>
+          <div class="admin_note_p" style="width:300px;">您已下载 <font color=red>{yun:}$total{/yun}</font> 个人的简历</div>
+          <div class=admin_tit_right>
+            <input class=btn_02 onclick="location.href='index.php?c=hr'" type=button value=查看申请职位人才 style="width:140px;">
+            <input class=btn_02 onclick="location.href='index.php?c=invite'" type=button value=已邀请人才 style="margin-right:10px; margin-left:10px;">
+          </div>
+        </div>
+        <div class=admin_textbox_04>
+          <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+          <form action="{yun:}$now_url{/yun}"target="supportiframe" method="post" id='myform'>
+            <div class=table>
+              <table id="job_checkbokid" cellspacing=1 align=center border=0 class="com_table">
+                <tbody>
+                  <tr align=middle style="height:30px">
+                    <th scope=col style="width: 5%"><input id='checkAll'  type="checkbox" onclick='m_checkAll(this.form)'></th>
+                    <th scope=col style="width: 5%">姓名</th>
+                    <th scope=col style="width: 6%">性别</th>
+                    <th scope=col style="width: 6%">学历</th>
+                    <th scope=col style="width: 9%">下载时间</th>
+                    <th scope=col style="width: 6%">简历</th>
+                    <th scope=col style="width: 10%">操作</th>
+                  </tr>
+                {yun:}if !empty($rows){/yun}
+                {yun:}foreach  from=$rows  item=v{/yun}
+                <tr style="height:30px">
+                  <td><input type=checkbox name="delid[]" value="{yun:}$v.id{/yun}"></td>
+                  <td>{yun:}$v.name{/yun}</td>
+                  <td>{yun:}$v.sex{/yun}</td>
+                  <td>{yun:}$v.edu{/yun}</td>
+                  <td>{yun:}$v.downtime|date_format:'%Y-%m-%d'{/yun}</td>
+                  <td><a href="../{yun:}url m=resume url=id:`$v.eid`{/yun}" target=_blank>查看简历</a></td>
+                  <td><a href="javascript:void(0)" onclick="layer_del('确定要删除？','{yun:}$now_url{/yun}&del={yun:}$v.id{/yun}')">删除</a>&nbsp;|&nbsp;<a href="javascript:;" uid="{yun:}$v.uid{/yun}" eid="{yun:}$v.eid{/yun}" username="{yun:}$v.name{/yun}" id="b" class="sq_resume" style="position:relative; "> 邀请面试</a> {yun:}if $report==1{/yun}|&nbsp;<a href="javascript:;" r_uid="{yun:}$v.uid{/yun}" eid="{yun:}$v.eid{/yun}" r_name="{yun:}$v.name{/yun}" id="r"  class="status" >举报</a>{yun:}/if{/yun} </td>
+                </tr>
+                {yun:}/foreach{/yun}
+                {yun:}elseif $smarty.get.keyword!="" {/yun}
+                <tr style="height:30px">
+                  <td colspan="7">没有搜索申请记录。</td>
+                </tr>
+                {yun:}else{/yun}
+                <tr style="height:30px">
+                  <td colspan="7">您还没有申请记录。</td>
+                </tr>
+                {yun:}/if{/yun}
+                  </tbody>
+              </table>
+            </div>
+            <div>
+              <div class="job_d_cz fltL">
+              <INPUT class="c_btn_02" type="button" name="subdel" value="批量删除" onclick="return really('delid[]');">
+              </div>
+              <div class="diggg">{yun:}$pagenav{/yun}</div>
+            </div>
+            <div>
+           </div>
+          </form>
+          <div class="clear"></div>
+          <div class="infoboxp22" id="infobox" style="display:none; ">
+            <div>
+              <form action="index.php?c=report" method="post" id="formstatus" target="supportiframe">
+                <input name="r_uid" value="0" type="hidden">
+                <input name="eid" value="0" type="hidden">
+                <input name="r_name" value="0" type="hidden">
+                  <div class="jb_infobox" style="width: 100%;"><textarea id="alertcontent"style="width:310px;margin:5px" name="r_reason" cols="30" rows="9" class="hr_textarea"></textarea></div>
+                <div class="jb_infobox" style="width: 100%;">
+                  <button type="submit"   name='submit' value='1' class="submit_btn" style="margin-left:80px;">确认</button>
+                  &nbsp;&nbsp;
+                  <button type="button" id='zxxCancelBtn'  class="cancel_btn">取消</button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class=" " id='job_box' style="display:none;float:left">
+				<div class="city_1">
+					<dl class="city_3">
+					<dt><span class="city_01">标题：</span><input type="text" id="title" value="" size="50" style="width:200px;"/></dt>
+					</dl>
+				<dl class="city_3" id="resume_job">
+					<dt><span class="city_01">内容：</span><textarea id="content" cols="40" rows="5" class="resyme_text"></textarea>
+				</dl>
+			  </div>
+			  <div class="clear"></div>
+			  <div style="text-align:center;margin:auto;width:100%;margin-bottom: 5px;">
+				<input type="hidden" value="" id="eid">
+				<input type="hidden" value="" id="uid">
+				<input type="hidden" value="" id="username">
+				<button   class="submit_btn" value="1" id="click_invite" name="submit" type="button" style="margin-top:5px">确认</button>
+			  </div>
+			  <div class="clear"></div>
+		</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{yun:}include file="$comstyle/footer.htm"{/yun}

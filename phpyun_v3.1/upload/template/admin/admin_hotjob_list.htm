@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" /> 
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<!--[if IE 6]>
+<script src="js/png.js"></script>
+<script>
+  DD_belatedPNG.fix('#bg');
+</script>
+<![endif]-->
+
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>  
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script> 
+<script src="js/admin_public.js" language="javascript"></script> 
+<script src="js/show_pub.js"></script> 
+<style>
+* {margin: 0 ;padding: 0;}
+body,div{ margin: 0 ;padding: 0;}
+
+</style>
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp">
+<div class="infoboxp_top">
+<h6>名企招聘</h6>
+<div class="infoboxp_right"> <a href="index.php?m=hotjob&c=index&type=add" class="infoboxp_tj">添加名企</a></div>
+</div>
+<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe> 
+{yun:}if $type=="add"{/yun}
+<div class="company_job">
+        <div class="company_job_list_h1">
+    <form action="index.php" name="myform2" method="get">
+      <span class="company_m6" style="float:left; margin-left:10px;">
+    	<input class="input-text" type="text" name="username"  size="25"/>
+        <input  type="hidden" name="type"  value="add" />
+        <input  type="hidden" name="m"  value="hotjob"/>
+        <input class="company_job_new_sub"  type="submit" name="comsearch" value="检索企业"/>&nbsp;
+        </span>
+        </form>
+	</div>
+</div>
+<div class="table-list">
+  <div class="admin_table_border" style="padding:4px">
+  
+{yun:}if is_array($com){/yun} 
+<table width="100%">
+	<thead>
+		<tr class="admin_table_top">
+			<th>用户ID</th>
+			<th>企业名称</th>
+  			<th>会员级别</th>
+			<th>注册时间</th>
+			<th  class="admin_table_th_bg">操作</th>
+		</tr>
+	</thead>
+	<tbody>
+    {yun:}foreach item=comlist from=$com{/yun}
+    <tr align="center">
+    	<td align="left" class="td1" style="text-align:center;">{yun:}$comlist.uid{/yun}</span></td>      
+    	<td class="ud"><a href="index.php?m=user_member&c=Imitate&uid={yun:}$userrows[user].uid{/yun}" target="_blank">{yun:}$comlist.name{/yun}</a></td>
+   	 	<td class="od">{yun:}$comlist.rat_name{/yun}</td>
+		<td class="td">{yun:}$comlist.reg_date|date_format:"%Y-%m-%d"{/yun}</td>
+    	<td><span style="cursor:pointer" onClick="showdiv2('houtai_div','{yun:}$comlist.name{/yun}','{yun:}$comlist.rat_name{/yun}','{yun:}$comlist.uid{/yun}')"class="admin_cz_bj">设为名企</span></td>
+  </tr>
+  {yun:}/foreach{/yun}
+  <tr style="background:#f1f1f1;">
+   <td colspan="7" class="digg">{yun:}$pagenav{/yun}</td>
+  </tr>
+  </tbody>
+  </table> 
+{yun:}else{/yun}
+<div style="width:100%; padding-top:20px; padding-bottom:20px; text-align:center; background:#fff; font-size:15px;">
+{yun:}if $comsearch{/yun}
+<b><font color="#FF0000">很遗憾，没能搜索到您需要的公司名称！</font></b>
+{yun:}else{/yun}
+<font color="#FF0000">搜索您想设为热门招聘的企业名称！</font>
+{yun:}/if{/yun}
+</div>
+{yun:}/if{/yun}
+</div>
+{yun:}else{/yun}
+<div class="company_job">
+        <div class="company_job_list_h1">
+         <span class="company_m6" style="float:left; margin-left:10px;"> 
+               <form action="index.php" name="myform" method="get">
+                <input name="m" value="hotjob" type="hidden"/>
+                <input class="company_job_text"  type="text" name="keyword"  size="25"/>
+                 <input class="company_job_new_sub"  type="submit" name="search" value="检索企业"/>&nbsp;
+                </form>
+            </span>
+       
+	</div>
+</div>
+<div class="table-list">
+  <div class="admin_table_border">
+<form action="index.php" name="myform" method="get" target="supportiframe">
+<input type="hidden" name="pytoken"  id='pytoken' value="{yun:}$pytoken{/yun}">
+<input name="m" value="user_member" type="hidden"/>
+<input name="c" value="del" type="hidden"/>
+<table width="100%">
+	<thead>
+		<tr class="admin_table_top">
+           
+            <th align="left">
+			 {yun:}if $smarty.get.t=="uid" && $smarty.get.order=="asc"{/yun}
+			<a href="{yun:}seacrh_url order=desc t=uid m=hotjob untype=order,t{/yun}">UID<img src="images/sanj.jpg"/></a>
+            {yun:}else{/yun}
+            <a href="{yun:}seacrh_url order=asc t=uid m=hotjob untype=order,t{/yun}">UID<img src="images/sanj2.jpg"/></a>
+            {yun:}/if{/yun}
+			</th>
+			<th align="left">企业名称</th>
+			<th>企业LOGO</th>
+            
+            <th>
+			{yun:}if $smarty.get.t=="time_start" && $smarty.get.order=="asc"{/yun}
+			<a href="{yun:}seacrh_url order=desc t=time_start m=hotjob untype=order,t{/yun}">开始时间<img src="images/sanj.jpg"/></a>
+            {yun:}else{/yun}
+            <a href="{yun:}seacrh_url order=asc t=time_start m=hotjob untype=order,t{/yun}">开始时间<img src="images/sanj2.jpg"/></a>
+            {yun:}/if{/yun}
+			</th>
+            
+            <th>
+			{yun:}if $smarty.get.t=="time_end" && $smarty.get.order=="asc"{/yun}
+			<a href="{yun:}seacrh_url order=desc t=time_end m=hotjob untype=order,t{/yun}">结束时间<img src="images/sanj.jpg"/></a>
+            {yun:}else{/yun}
+            <a href="{yun:}seacrh_url order=asc t=time_end m=hotjob untype=order,t{/yun}">结束时间<img src="images/sanj2.jpg"/></a>
+            {yun:}/if{/yun}
+			</th>
+            
+            <th>
+			{yun:}if $smarty.get.t=="sort" && $smarty.get.order=="asc"{/yun}
+			<a href="{yun:}seacrh_url order=desc t=sort m=hotjob untype=order,t{/yun}">排序<img src="images/sanj.jpg"/></a>
+            {yun:}else{/yun}
+           <a href="{yun:}seacrh_url order=asc t=sort m=hotjob untype=order,t{/yun}">排序<img src="images/sanj2.jpg"/></a>
+            {yun:}/if{/yun}
+			</th>
+			<th  class="admin_table_th_bg" >操作</th>
+		</tr>
+	</thead>
+	<tbody>
+    {yun:}foreach item=joblist from=$hotjob{/yun}
+    <tr align="center">
+    	<td align="left" class="td1">{yun:}$joblist.uid{/yun}</span></td>
+        <td align="left" class="td1">{yun:}$joblist.username{/yun}</span></td>
+    	<td class="ud"><img width="250" height="50" src="{yun:}$config.sy_weburl{/yun}/{yun:}$joblist.hot_pic{/yun}"></td>
+   	 	<td class="od">{yun:}$joblist.time_start|date_format:"%Y-%m-%d"{/yun}</td>
+		<td class="td">{yun:}$joblist.time_end|date_format:"%Y-%m-%d"{/yun}</td>
+        <td class="td">{yun:}$joblist.sort{/yun}</td>
+    	<td><div class="admin_Operating_c" id="list_{yun:}$joblist.id{/yun}" aid="{yun:}$joblist.id{/yun}">
+				<div class="admin_Operating">操作</div>
+				<div class="admin_Operating_list admin_Operating_down" id="list{yun:}$joblist.id{/yun}" style="display:none;"><span style="cursor:pointer" onClick="showdiv3('houtai_div','{yun:}$joblist.username{/yun}','{yun:}$joblist.rating{/yun}','{yun:}$comlist.uid{/yun}','{yun:}$config.sy_weburl{/yun}/{yun:}$joblist.hot_pic{/yun}','{yun:}$joblist.service_price{/yun}','{yun:}$joblist.time_start|date_format:'%Y-%m-%d'{/yun}','{yun:}$joblist.time_end|date_format:'%Y-%m-%d'{/yun}','{yun:}$joblist.beizhu{/yun}','{yun:}$joblist.sort{/yun}','{yun:}$joblist.id{/yun}')" class="admin_cz_bj">编辑</span> <a href="javascript:void(0)" onClick="layer_del('确定要删除？', 'index.php?m=hotjob&c=del&id={yun:}$joblist.id{/yun}');" class="admin_cz_sc">删除</a></div></div></td>
+  </tr>
+  {yun:}/foreach{/yun}
+  <tr style="background:#f1f1f1;">
+   <td colspan="7" class="digg">{yun:}$pagenav{/yun}</td>
+  </tr>
+  </tbody>
+  </table>
+</form>
+</div>
+{yun:}/if{/yun}  
+</div> 
+</body>
+</html>

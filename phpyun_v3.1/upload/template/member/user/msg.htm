@@ -1,0 +1,48 @@
+{yun:}include file="$userstyle/header.htm"{/yun}
+<div class="w950"> 
+{yun:}include file="$userstyle/left.htm"{/yun}
+<div class="mian_right fltR mt20">
+  <div class="tabmenubox01 mt9">
+    <ul>
+      <li class="cur"><a href="javascript:void(0);">邀请信息</a></li>
+    </ul>
+  </div>
+  <div class="remindbox01 mt10">
+    <div id="gms_showclew"></div>
+    <div class="resumelistbox01 mt10">
+      <div id="" class="resume_box_list">
+        <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+        <table border="0" cellspacing="1" cellpadding="0" class="resume" style="width:690px;">
+          <tr>
+             <th>消息标题</th>
+            <th>公司名称</th>
+            <th>邀请时间</th>
+            <th>状态</th>
+            <th>操作</th>
+          </tr>
+          {yun:}foreach item=log from=$rows{/yun}
+          <tr>
+            <td><div style="width:158px;">{yun:}$log.title{/yun}</div></td>
+            <td><div style="width:240px;"><span><a href="{yun:}curl url=id:`$log.fid`{/yun}">{yun:}$log.fname{/yun}</A></span></div></td>
+            <td>{yun:}$log.datetime|date_format:'%Y-%m-%d'{/yun}</td>
+            <td>{yun:}if $log.is_browse=='1'{/yun}<font color="#FF0000">未查看</font>{yun:}else{/yun}<font color="green">已查看</font>{yun:}/if{/yun}</td>
+            <td nowrap><a href="javascript:;" class="seemsg" id="{yun:}$log.id{/yun}"><img src="{yun:}$userstyle{/yun}/images/previewico.gif"  alt="预览" title="预览"/></a> | <a href="javascript:void(0)"  onclick="layer_del('您确定要删除？', 'index.php?c=msg&del={yun:}$log.id{/yun}'); "><img src="{yun:}$userstyle{/yun}/images/com_sc.jpg"  alt="删除" title="删除"/></a> | 
+			<a href="javascript:void(0);"  onclick="layer_del('您确定要屏蔽该公司并删除该邀请？','index.php?c=msg&c_uid={yun:}$log.fid{/yun}&c_name={yun:}$log.fname{/yun}');">屏蔽</a></td>			
+			
+          </tr>
+          <tr id="msg{yun:}$log.id{/yun}" class="msgcontent" style="display:none;">
+            <td colspan="5">内容：{yun:}$log.content{/yun}</td>
+          </tr>
+          {yun:}foreachelse{/yun}
+          <tr style="height:30px">
+            <td colspan="5">您还没有邀请信息。</td>
+          </tr>
+          {yun:}/foreach{/yun}
+        </table>
+      </div>
+    </div>
+    <div class="diggg">{yun:}$pagenav{/yun}</div>
+  </div>
+</div>
+</div>
+{yun:}include file="$userstyle/footer.htm"{/yun}

@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" />
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script>
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp">
+  <div class="infoboxp_top">
+<div class="report_uaer_list">
+ <a href="index.php?m=report" {yun:}if $type!='1' && $ut!='2'{/yun} class="report_uaer_list_on"{yun:}/if{/yun}>被举报职位</a>
+ <a href="index.php?m=report&ut=2" {yun:}if $ut=='2'{/yun} class="report_uaer_list_on"{yun:}/if{/yun}>被举报简历</a>
+ <a href="index.php?m=report&type=1" {yun:}if $type=='1'{/yun} class="report_uaer_list_on"{yun:}/if{/yun}>被举报问答</a>
+  </div>
+
+  </div>
+   <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+{yun:}if $type!='1'{/yun}
+  <div class="company_job">
+    <div class="company_job_list_h1">
+      <form action="index.php" name="myform" method="get">
+        <span class="company_m6" style="float:left; margin-left:10px;">
+        <input name="m" value="report" type="hidden"/>
+        <input name="ut" value="{yun:}$ut{/yun}" type="hidden"/>
+		<span class="company_s_l"> 检索类型：</span> <span class="company_fl">
+        <select name="f_type">
+        {yun:}if $ut=='2'{/yun}
+        	<option value="1" {yun:} if $get_type.f_type=="1"{/yun} selected="selected" {yun:}/if{/yun}>姓名</option>
+        {yun:}else{/yun}
+          <option value="1" {yun:} if $get_type.f_type=="1"{/yun} selected="selected" {yun:}/if{/yun}>公司名</option>
+
+        {yun:}/if{/yun}
+          <option value="2" {yun:} if $get_type.f_type=="2"{/yun} selected="selected" {yun:}/if{/yun}>举报人</option>
+		  <option value="3" {yun:} if $get_type.f_type=="3"{/yun} selected="selected" {yun:}/if{/yun}>举报理由</option>
+        </select>
+        </span>
+        <input class="company_job_text" type="text" name="qyname"  size="25"/ style="float:left">
+        <input  class="company_job_new_sub"  type="submit" name="qysearch" value="检索"/>
+        &nbsp;&nbsp; </span>
+      </form>
+    </div>
+  </div>
+  <div class="table-list">
+    <div class="admin_table_border">
+
+      <form action="index.php" name="myform" method="get" target="supportiframe" id='myform'>
+        <input name="m" value="report" type="hidden"/>
+        <input name="c" value="del" type="hidden"/>
+        <table width="100%">
+          <thead>
+            <tr class="admin_table_top">
+              <th style="width:20px;"><label for="chkall">
+                  <input type="checkbox" id='chkAll'  onclick='CheckAll(this.form)'/>
+                </label></th>
+              {yun:}if $ut==2{/yun}
+                  {yun:}if $smarty.get.t=="p_uid" && $smarty.get.order=="asc"{/yun}
+                  <th><a href="{yun:}seacrh_url order=desc ut=$ut t=p_uid m=report untype=order,t,ut{/yun}">用户ID<img src="images/sanj.jpg"/></a></th>
+                  {yun:}else{/yun}
+                  <th><a href="{yun:}seacrh_url order=asc ut=$ut t=p_uid m=report untype=order,t,ut{/yun}">用户ID<img src="images/sanj2.jpg"/></a></th>
+                  {yun:}/if{/yun}
+              {yun:}else{/yun}
+                  {yun:}if $smarty.get.t=="c_uid" && $smarty.get.order=="asc"{/yun}
+                  <th><a href="{yun:}seacrh_url order=desc ut=$ut t=c_uid m=report untype=order,t,ut{/yun}">用户ID<img src="images/sanj.jpg"/></a></th>
+                  {yun:}else{/yun}
+                  <th><a href="{yun:}seacrh_url order=asc ut=$ut t=c_uid m=report untype=order,t,ut{/yun}">用户ID<img src="images/sanj2.jpg"/></a></th>
+                  {yun:}/if{/yun}
+              {yun:}/if{/yun}</th>
+              <th align="left" width="160">{yun:}if $ut==2{/yun}姓名{yun:}else{/yun}公司名{yun:}/if{/yun}</th>
+              <th>邮箱</th>
+              <th>查看</th>
+              <th>举报人</th>
+              {yun:}if $smarty.get.t=="inputtime" && $smarty.get.order=="asc"{/yun}
+              <th><a href="{yun:}seacrh_url order=desc ut=$ut t=inputtime m=report untype=order,t,ut{/yun}">举报时间<img src="images/sanj.jpg"/></a></th>
+              {yun:}else{/yun}
+              <th><a href="{yun:}seacrh_url order=asc ut=$ut t=inputtime m=report untype=order,t,ut{/yun}">举报时间<img src="images/sanj2.jpg"/></a></th>
+              {yun:}/if{/yun}
+              <th>举报理由</th>
+              <th class="admin_table_th_bg">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+          {yun:}foreach item=user from=$userrows{/yun}
+          <tr align="center">
+            <td><input type="checkbox" value="{yun:}$user.id{/yun}"  name='del[]' onclick='unselectall()' rel="del_chk" /></td>
+            <td align="left" class="td1" style="text-align:center;">{yun:}if $user.usertype=="2"{/yun}<a href="index.php?m=user_member&r_uid={yun:}$user.c_uid{/yun}">{yun:}$user.c_uid{/yun}</a>{yun:}else{/yun}<a href="index.php?m=com_member&r_uid={yun:}$user.c_uid{/yun}">{yun:}$user.c_uid{/yun}</a>{yun:}/if{/yun}</td>
+            <td class="ud" align="left">{yun:}if $user.usertype=="2"{/yun}<a href="index.php?m=user_member&r_uid={yun:}$user.c_uid{/yun}">{yun:}$user.r_name{/yun}</a>{yun:}else{/yun}<a href="index.php?m=com_member&r_uid={yun:}$user.c_uid{/yun}">{yun:}$user.r_name{/yun}</a>{yun:}/if{/yun}</td>
+			<td class="od"><div  style="width:155px;"> {yun:}$user.email{/yun}</div></td>
+            <td class="od">
+                {yun:}if $user.usertype=="2"{/yun}
+                    <a href="../index.php?m=resume&id={yun:}$user.eid{/yun}" target="_blank">查看被举报简历</a>
+                {yun:}else{/yun}
+                    <a href="../index.php?m=com&c=comapply&id={yun:}$user.eid{/yun}" target="_blank">查看被举报职位</a>
+                {yun:}/if{/yun}
+            </td>
+            <td class="gd">{yun:}$user.username{/yun}</td>
+            <td class="td">{yun:}$user.inputtime|date_format:"%Y-%m-%d"{/yun}</td>
+            <td class="gd"><div style="width:230px; text-align:left">{yun:}$user.r_reason{/yun}</div></td>
+            <td><a href="javascript:void(0)" onClick="layer_del('确定要删除？', 'index.php?m=report&c=del&del={yun:}$user.id{/yun}');"class="admin_cz_sc">删除</a></td>
+          </tr>
+          {yun:}/foreach{/yun}
+          <tr style="background:#f1f1f1;">
+            <td colspan="2" ><input class="admin_submit4" type="button" name="delsub" value="删除所选"  onclick="return really('del[]')"/></td>
+            <td colspan="7" class="digg">{yun:}$pagenav{/yun}</td>
+          </tr>
+            </tbody>
+        </table>
+		<input type="hidden" name="pytoken"  id='pytoken' value="{yun:}$pytoken{/yun}">
+      </form>
+    </div>
+  </div>
+{yun:}else{/yun}
+  <div class="company_job">
+    <div class="company_job_list_h1">
+	  <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+      <form action="index.php" name="myform" method="get"  id='myform'>
+        <span class="company_m6" style="float:left; margin-left:10px;">
+        <input name="m" value="report" type="hidden"/>
+        <input name="type" value="1" type="hidden"/>
+		  <span class="company_s_l"> 举报类型：</span> <span class="company_fl">
+        <select name="r_type">
+		<option value="">不限</option>
+          <option value="1" {yun:} if $get_type.r_type=="1"{/yun} selected="selected" {yun:}/if{/yun}>问题</option>
+          <option value="2" {yun:} if $get_type.r_type=="2"{/yun} selected="selected" {yun:}/if{/yun}>回答</option>
+		  <option value="3" {yun:} if $get_type.r_type=="3"{/yun} selected="selected" {yun:}/if{/yun}>评价</option>
+        </select>
+        </span>
+		<span class="company_fl">
+		<select name="p_type">
+          <option value="1" {yun:} if $get_type.p_type=="1"{/yun} selected="selected" {yun:}/if{/yun}>被举报者</option>
+          <option value="2" {yun:} if $get_type.p_type=="2"{/yun} selected="selected" {yun:}/if{/yun}>举报者</option>
+        </select>
+        </span>
+        <input class="company_job_text" type="text" name="question"  size="25"/ style="float:left">
+        <input  class="company_job_new_sub"  type="submit" name="comquestion" value="检索"/>
+        &nbsp;&nbsp; </span>
+		<input type="hidden" name="pytoken" value="{yun:}$pytoken{/yun}">
+      </form>
+	  <span class="company_job_a"><a href="index.php?m=report&type=1&status=0" class="company_job_bg2"><em>未处理</em></a></span> <span class="company_job_a"><a href="index.php?m=report&type=1&status=1" class="company_job_bg1"><em>已处理</em></a></span>
+	  <span class="company_job_a"> <a href="index.php?m=report&type=1" class="company_job_all"><em>全部</em></a></span>
+    </div>
+  </div>
+  <div class="table-list">
+    <div class="admin_table_border">
+      <form action="index.php" name="myform" method="get" id='myform'  target="supportiframe" >
+        <input name="m" value="report" type="hidden"/>
+        <input name="c" value="del" type="hidden"/>
+        <table width="100%">
+          <thead>
+            <tr class="admin_table_top">
+              <th><label for="chkall"><input type="checkbox" id='chkAll'  onclick='CheckAll(this.form)'/></label></th>
+              <th>
+			  {yun:}if $smarty.get.t=="id" && $smarty.get.order=="asc"{/yun}
+			  <a href="{yun:}seacrh_url type=1 order=desc t=id m=report untype=order,t,type{/yun}">ID<img src="images/sanj.jpg"/></a>
+              {yun:}else{/yun}
+              <a href="{yun:}seacrh_url type=1 order=asc t=id m=report untype=order,t,type{/yun}">ID<img src="images/sanj2.jpg"/></a>
+              {yun:}/if{/yun}
+			  </th>
+              <th >被举报者</th>
+              <th >举报者</th>
+              <th >举报类型</th>
+              <th >举报来源</th>
+              <th >是否处理</th>
+              <th >举报原因</th>
+              <th>
+			  {yun:}if $smarty.get.t=="inputtime" && $smarty.get.order=="asc"{/yun}
+			  <a href="{yun:}seacrh_url type=1 order=desc t=inputtime m=report untype=order,t,type{/yun}">举报时间<img src="images/sanj.jpg"/></a>
+              {yun:}else{/yun}
+              <a href="{yun:}seacrh_url type=1 order=asc t=inputtime m=report untype=order,t,type{/yun}">举报时间<img src="images/sanj2.jpg"/></a>
+              {yun:}/if{/yun}
+			  </th>
+              <th class="admin_table_th_bg">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+          {yun:}foreach item=r from=$q_report{/yun}
+          <tr align="center">
+            <td><input type="checkbox" value="{yun:}$r.id{/yun}"  name='del[]' onclick='unselectall()' rel="del_chk" /></td>
+            <td align="left" class="td1" style="text-align:center;"><span>{yun:}$r.id{/yun}</span></td>
+            <td>{yun:}$r.r_name{/yun}</td>
+            <td>{yun:}$r.username{/yun}</td>
+            <td>{yun:}if $r.r_type=='1'{/yun}问题{yun:}elseif $r.r_type=='2'{/yun}回答{yun:}elseif $r.r_type=='3'{/yun}评论{yun:}/if{/yun}</td>
+            <td>{yun:}if $r.is_del{/yun}<font color="red">{yun:}$r.is_del{/yun}</font>{yun:}elseif $r.status!="1"{/yun}
+            <a href="{yun:}$r.url{/yun}" target="_blank">{yun:}$r.title|mb_substr:0:20:'gbk'{/yun}</a>
+            {yun:}else{/yun}
+            {yun:}$r.title|mb_substr:0:20:'gbk'{/yun}
+            {yun:}/if{/yun}</td>
+            <td id="status{yun:}$r.id{/yun}">{yun:}if $r.is_del{/yun}<font color="red">{yun:}$r.is_del{/yun}</font>{yun:}elseif $r.status=="1"{/yun}<a href="javascript:void(0);" onClick="rec_up('index.php?m=report&c=recommend','{yun:}$r.id{/yun}','0','status');"><img src="../data/ajax_img/doneico.gif"></a>{yun:}else{/yun}<a href="javascript:void(0);" onClick="rec_up('index.php?m=report&c=recommend','{yun:}$r.id{/yun}','1','status');"><img src="../data/ajax_img/errorico.gif"></a>{yun:}/if{/yun}</td>
+            <td>{yun:}$r.reason{/yun}</td>
+            <td class="td">{yun:}$r.inputtime|date_format:"%Y-%m-%d %H:%M"{/yun}</td>
+            <td>{yun:}if $r.is_del==''{/yun}<a href="index.php?m=admin_question&c={yun:}$r.c{/yun}&id={yun:}$r.eid{/yun}&back_url={yun:}$back_url{/yun}">
+            <img src="images/iconv/button_edit.png" alt="编辑" title="编辑"/></a>{yun:}/if{/yun}<a href="javascript:void(0)" onClick="layer_del('确定要删除？', 'index.php?m=report&c=del&del={yun:}$r.id{/yun}');"><img src="images/iconv/del_icon2.gif" alt="删除" title="删除"/></a></td>
+          </tr>
+          {yun:}/foreach{/yun}
+          <tr style="background:#f1f1f1;">
+            <td colspan="3" ><input class="admin_submit4"   type="button" name="delsub" value="删除所选" onClick="return really('del[]')" /></td>
+            <td colspan="7" class="digg">{yun:}$pagenav{/yun}</td>
+          </tr>
+            </tbody>
+        </table>
+		<input type="hidden" name="pytoken"  id='pytoken' value="{yun:}$pytoken{/yun}">
+      </form>
+    </div>
+  </div>
+{yun:}/if{/yun}
+  </div>
+</body>
+</html>

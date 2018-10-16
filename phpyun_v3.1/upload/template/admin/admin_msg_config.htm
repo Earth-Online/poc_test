@@ -1,0 +1,245 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" /> 
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script>
+
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp">
+<div id="subboxdiv" style="width:100%;height:100%;display:none;position:absolute;"></div>
+<div class="infoboxp_top"><h6>短信配置</h6></div>
+<div class="main_tag">
+<ul>
+    <li class="on">短信配置</li>
+    <li>模板配置</li>
+</ul>
+<div class="clear"></div>
+<div class="tag_box">
+<div>
+    <form action="" method="post">
+    <table width="100%" class="table_form">
+         <tr class="admin_table_trbg">
+            <th width="160">参数说明：</th>
+            <td>参数值</td>
+            <td width="160">变量</td>
+         </tr>
+        <tr>
+            <th width="160">帐户：</th>
+            <td><input class="input-text tips_class" type="text" name="sy_msguser" id="sy_msguser" value="{yun:}$config.sy_msguser{/yun}" size="30" maxlength="255" /><font color="gray" style="display:none">如：shyflc</font></td>
+            <td width="160">sy_msguser</td>
+        </tr>
+ 		<tr class="admin_table_trbg"> 
+            <th width="160">密码：</th>
+            <td><input class="input-text tips_class" type="text" name="sy_msgpw" id="sy_msgpw" value="{yun:}$config.sy_msgpw{/yun}" size="30" maxlength="255"/><font color="gray" style="display:none">如：123456</font></td>
+            <td width="160">sy_msgpw</td>
+        </tr>
+        <tr>
+            <th width="160">KEY：</th>
+            <td><input class="input-text tips_class" type="text" name="sy_msgkey" id="sy_msgkey" value="{yun:}$config.sy_msgkey{/yun}" size="50" maxlength="255"/><font color="gray" style="display:none">如：c9ed1cc682defeef35537330adc9ad85</font></td>
+             <td width="160">sy_msgkey</td>
+        </tr>
+         <tr>
+            <th width="160">购买短信：</th>
+            <td><a href="http://msg.phpyun.com/" target="_blank" style=" color:#CC3300; text-decoration:underline; "> 购买短信地址</a></td>
+            <td width="160">&nbsp;</td>
+         </tr>
+    <tr class="admin_table_trbg"> 
+            <td colspan="3" align="center"><input class="admin_submit4" id="config" type="button" name="msgconfig" value="提交" />&nbsp;&nbsp;<input class="admin_submit4" type="reset" value="重置" /></td>
+        </tr>
+    </table> 
+    </form>
+    <div class="infoboxp" style="background:#F7FBFC;border:none">
+<div class="subnav">
+    <div class="content-menu ib-a blue line-x">
+<b>提示：</b>请先注册帐户<br>
+短信内容支持长短信，最多500个字，65个字按一条短信计费。<br>
+</div>
+</div>
+</div>
+</div>
+<div class="hiddendiv">
+    <form action="" method="post">
+    <table width="100%" class="table_form">
+      <tr class="admin_table_trbg">
+          <th width="160">参数说明：</th>
+          <td>参数值</td>
+          <td width="160">变量</td>
+    </tr>
+      <tr> 
+            <th width="160">注册会员：</th>
+            <td>
+              <input type="radio" name="sy_msg_reg" value="1" id="sy_msg_reg_0" {yun:}if $config.sy_msg_reg=="1"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_msg_reg_0">通知</label>
+              <input type="radio" name="sy_msg_reg" value="2" id="sy_msg_reg_1" {yun:}if $config.sy_msg_reg=="2"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_msg_reg_1">不通知</label>&nbsp;&nbsp;
+              <a href="?m=msgconfig&c=settpl&name=msgreg" style="color:blue;">配置模板</a> 
+             </td>
+              <td width="160">sy_msg_reg</td>
+        </tr>
+        <tr class="admin_table_trbg">
+            <th width="160">找回密码：</th>
+            <td>
+              <input type="radio" name="sy_msg_getpass" value="1" id="sy_msg_getpass_0" {yun:}if $config.sy_msg_getpass=="1"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_msg_getpass_0">通知</label>
+              <input type="radio" name="sy_msg_getpass" value="2" id="sy_msg_getpass_1" {yun:}if $config.sy_msg_getpass=="2"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_msg_getpass_1">不通知</label>&nbsp;&nbsp;
+              <a href="?m=emailconfig&c=settpl&name=msggetpass" style="color:blue;">配置模板</a> 
+             </td>
+             <td width="160">sy_msg_getpass</td> 
+        </tr>
+         <tr> 
+            <th width="160">邀请面试：</th>
+            <td>
+              <input type="radio" name="sy_msg_yqms" value="1" id="sy_msg_yqms_0" {yun:}if $config.sy_msg_yqms=="1"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_msg_yqms_0">通知</label>
+              <input type="radio" name="sy_msg_yqms" value="2" id="sy_msg_yqms_1" {yun:}if $config.sy_msg_yqms=="2"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_msg_yqms_1">不通知</label>&nbsp;&nbsp;
+              <a href="?m=msgconfig&c=settpl&name=msgyqms" style="color:blue;">配置模板</a> 
+             </td>
+             <td width="160">sy_msg_yqms</td> 
+        </tr>
+        <tr class="admin_table_trbg">
+            <th width="160">付款成功：</th>
+            <td>
+              <input type="radio" name="sy_msg_fkcg" value="1" id="sy_msg_fkcg_0" {yun:}if $config.sy_msg_fkcg=="1"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_msg_fkcg_0">通知</label>
+              <input type="radio" name="sy_msg_fkcg" value="2" id="sy_msg_fkcg_1" {yun:}if $config.sy_msg_fkcg=="2"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_msg_fkcg_1">不通知</label>&nbsp;&nbsp;
+              <a href="?m=msgconfig&c=settpl&name=msgfkcg" style="color:blue;">配置模板</a> 
+             </td>
+             <td width="160">sy_msg_fkcg</td>  
+        </tr>
+ <tr> 
+            <th width="160">职位审核通过：</th>
+            <td>
+              <input type="radio" name="sy_msg_zzshtg" value="1" id="sy_msg_zzshtg_0" {yun:}if $config.sy_msg_zzshtg=="1"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_email_zzshtg_0">通知</label>
+              <input type="radio" name="sy_msg_zzshtg" value="2" id="sy_msg_zzshtg_1" {yun:}if $config.sy_msg_zzshtg=="2"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_msg_zzshtg_1">不通知</label>&nbsp;&nbsp;
+              <a href="?m=msgconfig&c=settpl&name=msgzzshtg" style="color:blue;">配置模板</a> 
+             </td>
+             <td width="160">sy_msg_zzshtg</td>  
+        </tr>
+        <tr class="admin_table_trbg">
+            <th width="160">职位审核未通过：</th>
+            <td>
+              <input type="radio" name="sy_msg_zzshwtg" value="1" id="sy_msg_zzshwtg_0" {yun:}if $config.sy_msg_zzshwtg=="1"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_email_zzshwtg_0">通知</label>
+              <input type="radio" name="sy_msg_zzshwtg" value="2" id="sy_msg_zzshwtg_1" {yun:}if $config.sy_msg_zzshwtg=="2"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_msg_zzshwtg_1">不通知</label>&nbsp;&nbsp;
+              <a href="?m=msgconfig&c=settpl&name=msgzzshwtg" style="color:blue;">配置模板</a> 
+             </td>
+             <td width="160">sy_msg_zzshwtg</td>  
+        </tr>
+       <tr> 
+            <th width="160">申请职位：</th>
+            <td>
+              <input type="radio" name="sy_msg_sqzw" value="1" id="sy_msg_sqzw_0" {yun:}if $config.sy_msg_sqzw=="1"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_msg_sqzw_0">通知</label>
+              <input type="radio" name="sy_msg_sqzw" value="2" id="sy_msg_sqzw_1" {yun:}if $config.sy_msg_sqzw=="2"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_msg_sqzw_1">不通知</label>&nbsp;&nbsp;
+              <a href="?m=msgconfig&c=settpl&name=msgsqzw" style="color:blue;">配置模板</a> 
+             </td>
+              <td width="160">sy_msg_sqzw</td>  
+        </tr>
+        <tr class="admin_table_trbg">
+            <th width="160">手机认证：</th>
+            <td>
+              <input type="radio" name="sy_msg_cert" value="1" id="sy_msg_cert_0" {yun:}if $config.sy_msg_cert=="1"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_msg_cert_0">通知</label>
+              <input type="radio" name="sy_msg_cert" value="2" id="sy_msg_cert_1" {yun:}if $config.sy_msg_cert=="2"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_msg_cert_1">不通知</label>&nbsp;&nbsp;
+              <a href="?m=msgconfig&c=settpl&name=msgcert" style="color:blue;">配置模板</a> 
+             </td>
+             <td width="160">sy_msg_cert</td>  
+        </tr>
+        <tr>
+            <th width="160">会员提醒：</th>
+            <td>
+              <input type="radio" name="sy_msg_remind" value="1" id="sy_msg_remind_0" {yun:}if $config.sy_msg_remind=="1"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_msg_remind_0">通知</label>
+              <input type="radio" name="sy_msg_remind" value="2" id="sy_msg_remind_1" {yun:}if $config.sy_msg_remind=="2"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_msg_remind_1">不通知</label>&nbsp;&nbsp;
+              <a href="?m=msgconfig&c=settpl&name=msgremind" style="color:blue;">配置模板</a> 
+             </td>
+             <td width="160">sy_msg_remind</td>  
+        </tr>
+  
+      
+    <tr class="admin_table_trbg"> 
+            <td colspan="3" align="center"><input class="admin_submit4" id="msgconfig" type="button" name="msgconfig" value="提交" />&nbsp;&nbsp;<input class="admin_submit4" type="reset" value="重置" /></td>
+        </tr>
+    </table>
+	<input type="hidden" name="pytoken" id='pytoken' value="{yun:}$pytoken{/yun}">
+    </form>
+</div>
+</div>
+</div>
+<script>
+var $switchtag = $("div.main_tag ul li");
+$switchtag.click(function(){
+	$(this).addClass("on")
+		.siblings().removeClass("on");
+	var index = $switchtag.index(this);
+	$("div.tag_box > div")
+		.eq(index).show()
+		.siblings().hide();
+});
+$(".tips_class").hover(function(){ 
+	var msg_id=$(this).attr('id'); 
+	var msg=$('#'+msg_id+' + font').html();
+	if($.trim(msg)!=''){
+		layer.tips(msg, this, {
+		guide: 1, 
+		style: ['background-color:#F26C4F; color:#fff;top:-7px', '#F26C4F']
+		}); 
+	} 
+},function(){
+	var msg_id=$(this).attr('id');
+	var msg=$('#'+msg_id+' + font').html();
+	if($.trim(msg)!=''){
+		layer.closeTips();
+	} 
+});
+$(function(){ 
+	$("#config").click(function(){
+		$.post("index.php?m=msgconfig&c=save",{
+			config : $("#config").val(),
+			sy_msguser : $("#sy_msguser").val(),
+			sy_msgkey :$("#sy_msgkey").val(),
+			pytoken : $("#pytoken").val(),
+			sy_msgpw : $("#sy_msgpw").val()
+		},function(data,textStatus){ 
+			config_msg(data); 
+		});
+	});
+	$("#msgconfig").click(function(){
+		$.post("index.php?m=msgconfig&c=save",{
+			config : $("#msgconfig").val(),
+			sy_msg_getpass : $("input[name=sy_msg_getpass]:checked").val(),
+			sy_msg_yqms : $("input[name=sy_msg_yqms]:checked").val(),
+			sy_msg_reg : $("input[name=sy_msg_reg]:checked").val(),
+			sy_msg_fkcg : $("input[name=sy_msg_fkcg]:checked").val(),
+			sy_msg_zzshtg : $("input[name=sy_msg_zzshtg]:checked").val(),
+			sy_msg_zzshwtg : $("input[name=sy_msg_zzshwtg]:checked").val(),
+			sy_msg_cert : $("input[name=sy_msg_cert]:checked").val(),
+			sy_msg_sqzw : $("input[name=sy_msg_sqzw]:checked").val(),
+			sy_msg_remind : $("input[name=sy_msg_remind]:checked").val(), 
+			pytoken : $("#pytoken").val(),
+			sy_msg_userdy : $("input[name=sy_msg_userdy]:checked").val()
+		},function(data,textStatus){ 
+			config_msg(data); 
+		});
+	});
+})
+</script>
+</div>
+</body>
+</html>

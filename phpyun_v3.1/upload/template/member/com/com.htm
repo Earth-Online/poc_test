@@ -1,0 +1,57 @@
+{yun:}include file="$comstyle/header.htm"{/yun}
+<div class="w950">
+  <div class="admin_mainbody"> {yun:}include file="$comstyle/left.htm"{/yun}
+    <DIV class=right_box>
+      <DIV class=admincont_box>
+        <div class=admin_tit><SPAN class="admin_tit_bg">账户中心</span></div>
+        <div class="clear"></div>
+        <div class="admin_pay_top">
+          <div class="admin_note_p2">
+            <div class="admin_note_p2_t mt10">可用余额：<span>{yun:}$statis.pay{/yun}</span> 元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {yun:}$config.integral_pricename{/yun}：<span>{yun:}if $statis.integral{/yun}{yun:}$statis.integral{/yun}{yun:}else{/yun}0{yun:}/if{/yun}</span> {yun:}$config.integral_priceunit{/yun}</div>
+            <div class="admin_note_p2_t mt5"> 消费金额: <span>{yun:}if $price>0{/yun}{yun:}$price{/yun}{yun:}else{/yun}0{yun:}/if{/yun}</span> 元 　　 
+            消费{yun:}$config.integral_pricename{/yun}: <span>{yun:}if $integral>0{/yun}{yun:}$integral{/yun}{yun:}else{/yun}0{yun:}/if{/yun}</span> {yun:}$config.integral_priceunit{/yun} 　　 
+            总计充值总额: <span>{yun:}$statis.all_pay{/yun}</span>元 </div>
+          </div>
+          <div class="clear"></div>
+          
+          <div class=admin_tit_right> <a  class="Com_xz_pay"  href="index.php?c=pay" title="账户充值">账户充值</a> <a href="index.php?c=right" title="查看特权" class="Com_xz_pay" >查看特权</a> </div>
+        </div>
+        <div class="clear"></div>
+        <table width="100%" border="0" cellpadding="0" cellspacing="1" class="pay_table_ys">
+          <caption style=" text-align:left;margin-top:10px; margin-bottom:16px; font-family:微软雅黑;font-size:16px; color:#FF7300; ">
+          最新订单记录
+          </caption>
+          <tr>
+            <th width="10%"  height="35" align="center" bgcolor="#E8E8E8">类型</th>
+            <th width="12%" align="center" bgcolor="#E8E8E8">金额</th>
+            <th width="14%" align="center" bgcolor="#E8E8E8">状态</th>
+            <th width="35%" align="center" bgcolor="#E8E8E8">备注</th>
+            <th width="15%" align="center" bgcolor="#E8E8E8">时间</th>
+          </tr>
+          {yun:}if !empty($rows){/yun}
+          {yun:}foreach item=log from=$rows{/yun}
+          <tr>
+            <td  height="26"align="center" bgcolor="#FFFFFF"><font color="red">充值</font></td>
+            <td align="center" bgcolor="#FFFFFF">{yun:}$log.order_price{/yun}</td>
+            <td align="center" bgcolor="#FFFFFF">{yun:}if $log.order_state=="1"{/yun}<font color="red">等待付款</font>{yun:}else{/yun}<font color="green">支付成功</font>{yun:}/if{/yun}</td>
+            <td align="center" bgcolor="#FFFFFF">{yun:}$log.order_remark{/yun}</td>
+            <td align="center" bgcolor="#FFFFFF">{yun:}$log.order_time|date_format:'%Y-%m-%d %H:%M:%S'{/yun}</td>
+          </tr>
+          {yun:}/foreach{/yun}
+          {yun:}else{/yun}
+          <TR style="height:30px; background:#fff; text-indent:10px">
+            <TD colspan="5" align="center">您还没有订单记录。</TD>
+          </TR>
+          {yun:}/if{/yun}
+        </table>
+      </DIV>
+      <H3 style="margin-top:10px">
+        <div>
+          <div class="diggg">{yun:}$pagenav{/yun}</div>
+        </div>
+      </H3>
+    </DIV>
+  </DIV>
+</DIV>
+</DIV>
+{yun:}include file="$comstyle/footer.htm"{/yun}

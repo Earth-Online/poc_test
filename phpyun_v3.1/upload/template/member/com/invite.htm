@@ -1,0 +1,77 @@
+{yun:}include file="$comstyle/header.htm"{/yun}
+<div class="w950">
+  <div class="admin_mainbody"> {yun:}include file="$comstyle/left.htm"{/yun}
+    <div class=right_box>
+      <div class=admincont_box>
+        <div class=admin_tit><span class="admin_tit_bg">已邀请面试的人才</span> </div>
+        <div class=admin_note>
+          <form action="index.php" method="get" />
+          <input name="c" type="hidden" value="down">
+          <ul>
+            <li><span class="span_name">输入姓名：</span>
+              <input name="keyword" type="text"class="com_text_news">
+              <input name="" type="submit" class=com_tj value="搜索已有人才" style="margin-top:0px;">
+            </li>
+          </ul>
+          </form>
+        </div>
+        <div class=admin_note>
+          <h2>特别提示</h2>
+          <div class="admin_note_p" style="width:280px;">您已邀请 <span>{yun:}$total{/yun}</span>个人面试 <br>
+            完善公司的信息，提高招聘成功率!</div>
+          <div class=admin_tit_right>
+            <input class=btn_02 onclick="location.href='index.php?c=hr'" type=button value=查看申请职位人才 style="width:160px; float:left;">
+            <input class=btn_02 onclick="location.href='index.php?c=down'" type=button value=查看已下载简历 style="width:140px;margin-right:5px; margin-left:10px;_margin-left:5px;">
+          </div>
+        </div>
+        <div class=admin_textbox_04>
+          <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+          <form action="{yun:}$now_url{/yun}" method="post" target="supportiframe" id='myform'>
+            <div class=table>
+              <table id="job_checkbokid" cellspacing=1 align=center border=0 class="com_table">
+                <tbody>
+                  <tr align=middle style="height:30px">
+                    <th scope=col style="width: 5%"><input id='checkAll'  type="checkbox" onclick='m_checkAll(this.form)'></th>
+                    <th scope=col style="width: 10%">姓名</th>
+                    <th scope=col style="width: 6%">性别</th>
+                    <th scope=col style="width: 6%">学历</th>
+                    <th scope=col style="width: 9%">邀请时间</th>
+                    <th scope=col style="width: 6%">简历</th>
+                    <th scope=col style="width: 8%">操作</th>
+                  </tr>
+                {yun:}if !empty($rows){/yun}
+                {yun:}foreach from=$rows item=job{/yun}
+                {yun:}assign var="uid" value=$job.uid{/yun}
+                <tr style="height:30px">
+                  <td><input type=checkbox name="delid[]" value="{yun:}$job.id{/yun}"></td>
+                  <td>{yun:}$user[$uid].name{/yun}</td>
+                  <td>{yun:}$user[$uid].sex{/yun}</td>
+                  <td>{yun:}$user[$uid].edu{/yun}</td>
+                  <td>{yun:}$job.datetime|date_format:'%Y-%m-%d'{/yun}</td>
+                  <td><a href="../{yun:}url m=resume url=uid:`$uid`{/yun}" target="_blank">查看简历</a></td>
+                  <td><a href="javascript:void(0)" onclick="layer_del('确定要删除？', '{yun:}$now_url{/yun}&del={yun:}$job.id{/yun}')">删除</a></td>
+                </tr>
+                {yun:}/foreach{/yun}
+                {yun:}elseif $smarty.get.keyword!="" {/yun}
+                <tr style="height:30px">
+                  <td colspan="7">没有搜索邀请记录。</td>
+                </tr>
+                {yun:}else{/yun}
+                <tr style="height:30px">
+                  <td colspan="7">您还没有邀请记录。</td>
+                </tr>
+                {yun:}/if{/yun}
+                  </tbody>
+              </table>
+            </div>
+            <div> 
+			  <div class="job_d_cz fltL"><INPUT class="c_btn_02" type="button" name="subdel" value="批量删除" onclick="return really('delid[]');"></div> 
+				<div class="diggg">{yun:}$pagenav{/yun}</div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{yun:}include file="$comstyle/footer.htm"{/yun} 

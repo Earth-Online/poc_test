@@ -1,0 +1,105 @@
+{yun:}include file="$userstyle/header.htm"{/yun}
+<div class="w950">
+ {yun:}include file="$userstyle/left.htm"{/yun}
+<script>
+function Close_yd(){
+	$("#yingdao").hide();
+	$("#bg").hide();
+}
+</script>
+  <div class="mian_right fltR mt20">
+    <div class="index_Resume">
+      <div class="index_Resume_left">
+   <div style="position:relative; z-index:1020">
+   <div class="index_no_resume_box" id="yingdao" {yun:}if $resume.name!=""{/yun}style="display:none;"{yun:}/if{/yun}>
+   <div class="index_no_resume">
+   <img src="{yun:}$userstyle{/yun}/images/yun_m_tck1.png" class="png">
+   </div>
+   <div class="index_no_resume_jt png"></div>
+   <div class="index_no_resume_cont">
+   <div class="index_no_resume_h1">请先填写个人基本信息</div>
+   <div class="index_no_resume_p"> 为了更快的找到工作，需填写个人基本信息才能创建简历！</div>
+    <div class="index_no_resume_p2"><a href="javascript:Close_yd();">知道了</a></div>
+   </div>
+   </div>
+      </div>
+   {yun:}if $statis.resume_num==0{/yun}
+   <div class="index_way_box">
+   <div>
+   <div class="index_way_box_h1_icon"></div>
+   <div class="index_way_box_h1"><span>新手上路</span></div>
+   </div>
+     <ul class="index_way_box_list"> 
+      <li><span>完善基本信息</span><a href="index.php?c=info" title="完善个人基本信息">完善</a></li>
+      <li><span>上传形象照片</span><a href="index.php?c=uppic" title="形象照片">上传</a></li>
+      <li><span>填写简历信息</span></li>
+      <li><span>搜索职位</span></li>
+      <li><span>应聘意向职位</span></li>
+      </ul>
+    </div>
+    {yun:}else{/yun}
+      <div class="index_Resume_box">
+        <div class="index_Resume_left_top">您的简历完整度为</div>
+        <div class="index_Resume_left_bl">{yun:}$numresume{/yun}%</div>
+        <div class="index_Resume_left_yl"><a href="{yun:}$config.sy_weburl{/yun}/{yun:}url m=resume url=uid:`$uid`{/yun}"><img src="{yun:}$userstyle{/yun}/images/yun_m_yl.gif" alt="预览简历"title="预览简历"></a></div>
+        <div class="index_Resume_left_zt">我的简历状态：<a href="index.php?c=privacy">{yun:}if $resume.status==2{/yun}隐藏{yun:}else{/yun}公开{yun:}/if{/yun}</a></div>
+       </div>
+   {yun:}/if{/yun}
+      </div>
+      <div class="index_Resume_right">
+        <div class="index_Resume_Optimization"> {yun:}if $resume.def_job!=0{/yun} <a href="index.php?c=resume" title="您的简历">完善您的简历</a> {yun:}else{/yun} <a href="index.php?c=expect&add={yun:}$uid{/yun}">创建个人简历</a> {yun:}/if{/yun}<span>优化简历让心仪企业和hr快速找到您！</span></div>
+        <div class="index_Resume_sm">
+          <dl>
+            <dt><a href="index.php?c=job"><img src="{yun:}$userstyle{/yun}/images/in1.jpg"width="67" height="67"></a></dt>
+            <dd>已申请职位</dd>
+            <dd class="index_Resume_sm_bg">{yun:}if $statis.sq_jobnum==""{/yun}0{yun:}else{/yun}{yun:}$statis.sq_jobnum{/yun}{yun:}/if{/yun}</dd>
+          </dl>
+          <dl>
+            <dt><a href="index.php?c=msg"><img src="{yun:}$userstyle{/yun}/images/in2.jpg" width="66" height="66"></a></dt>
+            <dd>面试邀请</dd>
+            <dd class="index_Resume_sm_bg">{yun:}if $msgnum==""{/yun}0{yun:}else{/yun}{yun:}$msgnum{/yun}{yun:}/if{/yun}</dd>
+          </dl>
+          <dl>
+            <dt><a href="index.php?c=favorite" title="职位收藏"><img src="{yun:}$userstyle{/yun}/images/in3.jpg"width="66" height="66"></a></dt>
+            <dd>收藏的职位</dd>
+           <dd class="index_Resume_sm_bg">{yun:}if $statis.fav_jobnum==""{/yun}0{yun:}else{/yun}{yun:}$statis.fav_jobnum{/yun}{yun:}/if{/yun}</dd>
+          </dl>
+          <dl>
+            <dt> <a href="index.php?c=seemessage"><img src="{yun:}$userstyle{/yun}/images/in4.jpg"width="66" height="66"></a></dt>
+            <dd>收到的消息</dd>
+            <dd class="index_Resume_sm_bg">{yun:}if $msg_count==""{/yun}0{yun:}else{/yun}{yun:}$msg_count{/yun}{yun:}/if{/yun}</dd>
+          </dl>
+        </div>
+        <div class="index_Resume_look"><span>亲爱的 {yun:}$username{/yun}：您的简历已被查看 <a href="index.php?c=look"><em>{yun:}$lookNum{/yun}</em></a> 次 | 已被下载 <em>{yun:}$downNum{/yun}</em> 次</span></div>
+      </div>
+    </div>
+    <div class="clear"></div>
+    <div class="commendbox02 mt10">
+      <div class="tabmenubox-index mt9">
+        <ul class="fltL">
+          <li {yun:}if $smarty.get.type=='job'{/yun}class="cur"{yun:}/if{/yun}> <a href="index.php?type=job" title="期望职位" >期望职位</a> </li>
+          <li {yun:}if $smarty.get.type==''||$smarty.get.type=='new'{/yun}class="cur"{yun:}/if{/yun}> <a href="index.php?type=new" title="最新职位" >最新职位</a> </li>
+          <li {yun:}if $smarty.get.type=='city'{/yun}class="cur"{yun:}/if{/yun}> <a href="index.php?type=city" title="期望地区" >期望地区</a></a> </li>
+        </ul>
+        <a href="../{yun:}url m=com{/yun}"  target="_blank" class="index_more">查看更多职位&gt;&gt;</a> </div>
+      <div class="commendcont02 mt10" >
+       {yun:}foreach from=$rows item=val{/yun}
+        <div class="index_job_list">
+          <div class=jobtit><a href="../{yun:}url m=com url=c:comapply,id:`$val.id`{/yun}" target="_blank" title="{yun:}$val.name{/yun}">{yun:}$val.name|mb_substr:0:9:'gbk'{/yun}</a><em class=endtime>{yun:}$val.edate|date_format:'%Y-%m-%d'{/yun}</em></div>
+          <div class=award>
+          <span>薪资：{yun:}$comclass_name[$val.salary]{/yun}</span>
+          <em> 学历：{yun:}$comclass_name[$val.edu]{/yun}</em>
+          </div>
+          <div class=go><a href="../{yun:}url m=com url=c:comapply,id:`$val.id`{/yun}"  target="_blank" >查看职位>></a></div>
+        </div>
+        {yun:}foreachelse{/yun}
+        <div class="seach_job_list" style="float:none; margin:20px auto">
+          <div style="width:100%;text-align:center">暂无信息</div>
+        </div>
+        {yun:}/foreach{/yun}
+      </div>
+    </div>
+  </div>
+</div>
+<div id="bg" {yun:}if $resume.name==""{/yun}style="display:block"{yun:}/if{/yun}></div>
+{yun:}include file="$userstyle/footer.htm"{/yun}

@@ -1,0 +1,69 @@
+{yun:}include file="$userstyle/header.htm"{/yun}
+<div class="w950"> 
+ {yun:}include file="$userstyle/left.htm"{/yun}
+  <script>
+function Showsub(){
+	 if($("#content").val()==""){
+		parent.layer.msg('ÇëÌîĞ´ÁôÑÔÄÚÈİ£¡', 2, 2);return false; 
+	 }			
+}
+</script>
+<div class="mian_right fltR mt20">
+  <div class="w740 fl ml10">
+    <div class="tabmenubox01 mt9" style="margin-bottom:10px;">
+      <ul>
+        <li class="cur"><a href="index.php?c=seemessage">ÁôÑÔÁĞ±í</a></li>
+      </ul>
+    </div>
+    <div id="">
+      <div id="gms_showclew"></div>
+      <div class="resumelistbox01 mt10">
+        <div >
+          <div id="">
+            <iframe id="supportiframe" name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+            <FORM name=MyForm onsubmit="return Showsub();" target='supportiframe' action='' method="post" >
+              <div class="remindbox_reply mt10">
+                <ul>
+                  <input type="hidden" name="keyid" value="{yun:}$id{/yun}" />
+                  <li style="margin-top:10px; margin-left:20px;"><span style="float:left; font-size:14px;">»Ø¸´ÄÚÈİ£º</span>
+                    <textarea id="content" name="content" cols="60" rows="6" ></textarea>
+                  </li>
+                  
+                  <li style="margin-top:10px;"> <span style="float:left;width:90px;">&nbsp;</span>
+                    <input type="submit" name="replys_message" class="inputbtn01" value="»Ø¸´">
+                  </li>
+                </ul>
+              </div>
+            </form>
+          </div>
+          <div class="clear"></div>
+          <div class="reply_list" style="width:620px;background: none repeat scroll 0 0 #FAFDFF; margin-left:14px;_margin-left:7px;
+    border: 1px solid #C9DBEE;
+    float: left;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    text-align: left;"> {yun:}foreach from=$rows item=item{/yun}
+            <div class="reply_list_c" style="width:640px; padding-left:20px; background:#FAFDFF;border-bottom: 1px solid #DCE5EF;
+    float: left;
+    margin-top: 10px;
+    padding: 12px 0;
+    width: 100%;">
+              <div class="reply_list_name" style="line-height:28px;"> <span style="color:#19588D; float:left;">{yun:}$item.username{/yun}</span><em style="color: #666666;
+    float: right;
+    font-style: normal;">{yun:}$item.ctime|date_format:"%Y-%m-%d %H:%M"{/yun}</em></div>
+              <div class="reply_list_p" style="color: #333333;float: left;font-size: 14px;line-height: 23px;width: 100%;"> <div style="width:600px;white-space: normal; word-break: break-all;">{yun:}$item.content{/yun}</div></div>
+            </div>
+            {yun:}/foreach{/yun} </div>
+          <div class="clear"></div>
+          <div class="diggg">{yun:}$pagenav{/yun}</div>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+{yun:}include file="$userstyle/footer.htm"{/yun}

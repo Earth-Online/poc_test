@@ -1,0 +1,266 @@
+@charset "gb2312";
+.cont_Projector{width:495px; float:left;margin:0 0 0 8px;}
+.Projector {width: 495px;float:left;margin:10px 0 0 0;background:url(../images/acdv_bg.png) repeat-y;}
+.Projector_img {width: 487px;height: 210px;margin:1px 0 0 3px;}
+.yun_Announcement{width:460px;height:30px; line-height:30px;padding: 0 0 0 25px;color:#333; background:url(../images/job-gg.png) no-repeat 8px 9px;overflow:hidden;}
+.yun_Announcement a{color:#333;}
+.yun_Announcement_bot{width:495px;height:6px; background:url(../images/yun_gg.png) no-repeat; overflow:hidden}
+.index_logoin {width: 239px;height: 242px;background:#fff;border:1px solid #cac7c7;float:left;margin:10px 0 0 0;}
+.index_logoin_h1 {width: 100%;}
+.index_logoin_h1 li {width: 119px;float: left;height: 33px;line-height: 33px;text-align: center;font-size: 16px;color: #999;font-family: Î¢ÈíÑÅºÚ;cursor: pointer}
+.index_logoin_h1 .index_logoin_current1 {background: url(../images/job-logoin.png) repeat-x;border-left:1px solid #ccc;color: #000;}
+.index_logoin_h1 .index_logoin_current2 {background: url(../images/job-logoin.png) repeat-x;border-right:1px solid #ccc;color: #000;}
+.index_logoin_cont {width: 100%;float: left;color: #999;margin:10px 0 0 0;}
+.index_logoin_cont li {width: 100%;float: left;margin:10px 0 0 0;}
+.index_logoin_cont li span {display: block;width: 55px;font-size: 14px;float: left;line-height: 26px;text-align: center}
+.index_logoin_inp {width: 163px;height: 26px;border: 1px solid #d6d6d6;background: #fff;color: #ababab;line-height: 26px;}
+.index_logoin_check {width: 13px;height: 13px;overflow: hidden;display: block;float: left;margin:2px 5px 0 0;vertical-align:middle}
+.index_logoin_cont li em {float: left;line-height:18px;}
+.index_logoin_cont li a {float: left; margin:0 0 0 10px;color: #999;line-height:18px;}
+.index_logoin_submit {width:82px;height: 26px;margin:0 10px 0 25px;display: block;float: left;background: url(../images/yun_icon_hj.png) 0 0;border: none;cursor: pointer;_margin:0 10px 0 15px;}
+.index_logoin_submit2 {width: 82px;height: 26px;margin:0 10px 0 0;display: block;float: left;background: url(../images/yun_icon_hj.png) 0 -26px;;border: none;cursor: pointer}
+.index_logoin_cont .index_logoin_Coop {width: 223px;margin:10px 0 0 5px; _margin-left:2px;border-top: 1px dashed #fff;}
+.index_logoin_cont .index_logoin_Coop em {margin-right: 0px;}
+.index_logoin_cont .index_logoin_Coop img {display: block;float: left}
+.index_logoin_cont .index_logoin_Coop a {color:#0085C4;margin:0 0 0 5px;_margin:0 0 0 2px;}
+.index_logoin_after {width: 239px;height: 242px;background:#fff;border:1px solid #cac7c7;float:left;margin:10px 0 0 0;overflow:hidden}
+.hunter_logoin_bg {float: left;padding: 10px;width: 213px;}
+.logoin_after_tx {background: url(../images/lt_line.png) repeat-x center bottom;float: left;width: 100%;}
+.logoin_after_tx dt {float: left;height: 68px;width: 68px;}
+.logoin_after_tx dt img {display: block; margin:7px 0 0 6px;border-radius: 2px 2px 2px 2px;}
+.logoin_after_tx dd {float: left;margin:5px 0 0 0;padding:0 0 0 10px;width: 130px;font-size: 12px;color: #000;}
+.logoin_after_cj {float: left;font-family: Î¢ÈíÑÅºÚ;font-size: 12px;width: 100%;margin:0 0 10px 0;}
+.logoin_after_cj u {color: #FF3300;}
+.hunter_logoin_list {width: 100%;float: left;margin:0 0 10px 0;}
+.logoin_after {border-bottom: 1px dashed #fff;float: left;height: 32px;line-height: 32px;width: 100%;}
+.logoin_after a {color: #999}
+.logoin_after_su1 {background: url(../images/yun_logoin_icon.png) no-repeat  -75px -4px ;color: #FFFFFF;display: block;float: left;font-family: Î¢ÈíÑÅºÚ;font-size: 14px;height: 27px;line-height: 27px;text-align: center;width: 73px;}
+.logoin_after_su1:hover {color: #FFFFFF;text-decoration: none;}
+.logoin_after_su2 {background: url(../images/yun_logoin_icon.png) no-repeat  -75px -4px ;color: #fff;display: block;float: left;font-family: Î¢ÈíÑÅºÚ;font-size: 14px;height: 27px;line-height: 27px;margin-left: 25px;text-align: center;width: 73px;}
+.logoin_after_su2:hover {color: #fff;text-decoration: none;}
+.logoin_after_cz {float: left;width: 100%;}
+.logoin_after em {background: url(../images/yun_logoin_icon.png) no-repeat -68px -37px;border-radius: 0 5px 5px 0;border-right: 1px solid #5393d5;color: #fff;display: inline-block;font-family: Tahoma, sans-serif;font-weight: 700;height: 22px;line-height: 22px;padding: 0 8px 0 15px;text-decoration: underline;width: auto;margin-top: 3px;}
+.logoin_after_cz a {background:#E5E5E5;border-radius: 3px 3px 3px 3px;color: #999999;float: left;line-height: 12px;margin-right: 10px;padding: 6px 10px}
+.logoin_after_cz a:hover {background:#79C6E7;color: #FFFFFF;text-decoration: none;}
+.index_logoin_re{ position:relative; z-index:5}
+.index_logoin_msg{width:165px;height:28px; position:absolute;left:55px;top:-35px;}
+.index_logoin_msg_tx{width:138px;height:26px; line-height:26px; padding-left:25px;border:1px solid #ffc7c7; background:#ffecec url(../images/ico_warn2.png) no-repeat 5px center;color:#d54801; position:relative}
+.index_logoin_re_m{ position:relative; z-index:10}
+.index_logoin_msg_icon{width:10px;height:6px; background:url(../images/yun_icon_sj.png) no-repeat; position:absolute;left:10px;bottom:-5px;_bottom:-13px;}
+.yuin_index_r{width:229px;height:240px; float:right; margin-top:10px;}
+.yuin_index_r_b{width:223px;border:1px solid #ccc; background:#fff; padding:2px; margin-top:5px; float:left; }
+.yuin_index_r_f{width:227px;height:176px;border:1px solid #ccc; background:#fff; float:left;overflow:hidden}
+.yuin_index_r_h1{width:100%;height:33px; line-height:33px; font-size:16px; font-family:Î¢ÈíÑÅºÚ; background:url(../images/job-logoin.png) repeat-x ; text-indent:10px; }
+.yun_in_list{width:75px;height:64px; float:left; margin-top:8px; position:relative}
+.yun_in_list a{ display:block;width:100%;text-align:center}
+.index_yun_span{ display:block;height:33px;}
+.yun_in_list span{ display:block;}
+.yun_in_list .yun_i_td{ width:100%; text-align:center;font-size:12px; font-weight:normal;line-height:25px; position:relative; z-index:2}
+.yun_in_list a:hover{ text-decoration:none;}
+.plate {width: 100%;float: left;margin-top:10px;}
+.leftNav {display: inline;float: left;width: 241px;}
+.menuLst {background:#ebebeb;border: 1px solid #fff;height: 540px;}
+.menuLst ul li {height: 35px;line-height: 35px;position: relative;vertical-align: bottom;z-index: 5;}
+.menuLst ul li b {background: url(../images/icos.gif) no-repeat;cursor: pointer;font-size: 0;height: 17px;left: 12px;line-height: 0;position: absolute;top: 9px;width: 18px;z-index: 3;}
+.menuLst ul li:hover b {animation: 1s ease 0s normal none 1 menuAnimat;transform-origin: center top 0;}
+.menuLst ul li a.link {border-bottom: 1px solid #fff;display: block;height: 33px;line-height: 33px;overflow: hidden;padding-left: 35px;width: 205px;}
+.menuLst ul li a.link em {color: #DC5800;font-weight: bold;}
+.menuLst ul li a.link:hover {color: #444444;text-decoration: none}
+.menuLst ul li.lst0 b {background-position: 0 1px;}
+.menuLst ul li.lst1 b {background-position: -2px -702px;}
+.menuLst ul li.lst2 b {background-position: 0 -46px;}
+.menuLst ul li.lst3 b {background-position: 0 -816px;}
+.menuLst ul li.lst4 b {background-position: 0 -183px;}
+.menuLst ul li.lst5 b {background-position: 0 -91px;}
+.menuLst ul li.lst6 b {background-position: 0 -137px;}
+.menuLst ul li.lst7 b {background-position: 0 -230px;}
+.menuLst ul li.lst8 b {background-position: 0 -276px;}
+.menuLst ul li.lst9 b {background-position: 0 -862px;}
+.menuLst ul li.lst10 b {background-position: 0 -912px;}
+.menuLst ul li.lst11 b {background-position: 0 -762px;}
+.menuLst ul li.lst12 b {background-position: 0 -413px;}
+.menuLst ul li.lst13 b {background-position: 0 -321px}
+.menuLst ul li.lst14 b {background-position: 0 -957px;}
+.menuLst ul li.lst15 b {background-position: 0 -1007px;}
+.menuLst ul li.hov {z-index: 6;}
+.menuLst ul li i {background: url(../images/icos.gif) no-repeat scroll -7px -508px transparent;height: 12px;position: absolute;
+right: 15px;top: 11px;width: 7px;z-index: 3;}
+.menuLst ul li.hov i {background-position: -7px -553px;}
+.menuLst ul li.hov a.link {background-color: #FFFFFF;border-bottom: 1px solid #6e9fc7;border-left: 1px solid #6e9fc7;border-top: 1px solid #6e9fc7;height: 33px;left: -1px;line-height: 33px;overflow: hidden;position: absolute;top: 0;width: 209px;z-index: 2;}
+.menuLst ul li .lstCon {background: none repeat scroll 0 0 #FFFFFF;border: 1px solid #6e9fc7;display: none;left: 243px;padding: 0;position: absolute;top: 0;width: 650px;z-index: 1;}
+.menuLst ul li.hov .lstCon {display: block;}
+.menuLst .lstCon {box-shadow: 2px 5px 5px #666666;line-height: 22px;}
+.menuLst .lstConClass dl {padding: 10px 5px;border-bottom: 1px dotted #CCCCCC;float: left}
+.menuLst .lstConClass dl.hov {background:#F9F9F9;}
+.menuLst .lstConClass dl dt {display: inline;float: left;text-align: right;width: 150px;}
+.menuLst .lstConClass dl dd {display: inline;float: left;margin: 0 0 0 7px;width: 468px;}
+.menuLst .lstConClass dl dt a:link, .menuLst .lstConClass dl dt a:visited {color: #444444;font-weight: bold;}
+.menuLst .lstConClass dl dt a:hover {color: #333333;}
+.menuLst .lstConClass dl dd a {display: inline-block;height: 23px;line-height:23px;padding: 0 10px 0 11px;white-space: nowrap;}
+.menuLst .lstConClass dl dd a:link, .menuLst .lstConClass dl dd a:visited {color: #7A7A7A;}
+.menuLst .lstConClass dl.hov dd a:link, .menuLst .lstConClass dl.hov dd a:visited {color: #444444;}
+.menuLst .lstConClass dl.hov dd a:hover {color: #000000;}
+.menuLst .lstConClass dl dd a.hot:link, .menuLst .lstConClass dl dd a.hot:visited {color: #C92F00;}
+.menuLst .lstConClass dl dd a.hot:hover {color: #FA3B00;}
+.leftNav_bot {width: 241px;height: 12px;background-position: 0 -319px;}
+.right_Search_Jobs {width: 730px;float: right}
+.Search_Jobs {width: 361px;border: 1px solid #e0e0e0;background: #faf8f9;float: left;height: 271px;}
+.Search_Jobs_top {width: 100%;float: left;height: 26px;line-height: 26px;}
+.Search_Jobs_top ul {float: left;border-bottom: 1px solid #e1dfe0;border-right: 1px solid #e1dfe0;}
+.Search_Jobs_top ul li {float: left;width: 72px;text-align: center;cursor: pointer;font-weight: bold}
+.Search_Jobs_top ul .Search_Jobs_top_act {background-position: 0 -132px;color: #fff;}
+.Search_Jobs_n {float: right; margin:0 5px0 0 0;color: #8eb4de}
+.Search_Jobs_n strong {color: #f97300}
+.Search_Condition {width: 100%;float: left;text-align: center;}
+.Search_Condition_relative1 {position: relative;z-index: 3}
+.Search_Condition_relative2 {position: relative;z-index: 2}
+.Search_Condition_relative3 {position: relative;z-index: 1}
+.Search_Condition_relative4 {position: relative;z-index: 4}
+.Search_Condition span {display: block;float: left;width: 77px;text-align: right;height: 30px;line-height: 30px;color: #3c3c3c;}
+.SpFormLBut {width: 260px;height: 22px;background: url(../images/yun_icobg1.png) 0 -140px no-repeat;line-height: 22px;border: none;margin-left: 8px;margin-top: 5px;display: block;float: left;cursor: pointer;color: #a9a9a9;text-align: left;text-indent: 5px;padding-right:10px;}
+.SpFormLBut2 {width: 101px;height: 22px;line-height: 22px;background: url(../images/yun_icobg1.png) -270px -140px no-repeat;line-height: 22px;border: none;margin-left: 8px;margin-top: 5px;display: block;float: left;cursor: pointer;color: #a9a9a9;text-align: left;text-indent: 5px;}
+.Search_Condition .Search_Condition_span {width: 51px;}
+.SpFormLBut_check {width: 13px;height: 13px;overflow: hidden;display: block;float: left;margin-top: 8px;margin-left: 8px;margin-right: 4px}
+.Search_Condition em {float: left;line-height: 30px;color: #3c3c3c;}
+.SpFormLBut_text {height: 20px;border: 1px solid #b6b6b6;line-height: 20px;display: block;float: left; margin:5px 0 0 8px;color: #a9a9a9;}
+.SpFormLBut_submit {width: 49px;height: 20px;background: url(../images/yun_icobg1.png) -171px -110px no-repeat;border: none;cursor: pointer; margin:5px 0 0 10px;}
+.SpFormLBut_submit2 {background: url(../images/yun_icobg1.png) -225px -110px no-repeat; margin:0 0 0 10px;}
+.Search_Condition_box {width: 98px;background: #fff;border: 1px solid #bbb7b0;position: absolute;left: 85px;top: 26px;padding: 5px 0 5px 0;text-align: left;text-indent: 10px;color: #7a7a7a;}
+.Search_Condition_box3 {width: 98px;background: #fff;border: 1px solid #bbb7b0;position: absolute;left: 245px;top: 26px;padding: 5px 0 5px 0;text-align: left;text-indent: 10px;color: #7a7a7a;}
+.Search_Condition_box2 {width: 98px;background: #fff;border: 1px solid #bbb7b0;position: absolute;left: 244px;top: 26px;padding: 5px 0 5px 0;text-align: left;text-indent: 10px;color: #7a7a7a;}
+.Search_Condition_w260 {width: 258px;}
+.Search_Condition_box_list a {display: block;width: 100%;height: 22px;line-height: 22px;overflow: hidden}
+.Search_Condition_box_list a:hover {background: #e0f0ff;color: #666}
+.Search_Condition_box_list .Search_Condition_box_list_act {background: #1076d1;color: #fff;}
+.Latest_talent {width: 352px;float: right;height:271px;border:1px solid #E0DEDF;}
+.Auction_h1{width:100%;height:34px; line-height:34px;background:url(../images/new_h1.png) repeat-x }
+.Auction_tit{ height: 18px; margin:7px 0 0 10px;width: 74px; float:left;display: block; background:url(../images/yun_icon_hj.png) no-repeat 0 -145px ;}
+.Auction_h1 a{ float:right; margin-right:10px;color:#0A8DEB; font-size:14px; font-family:Î¢ÈíÑÅºÚ;}
+.Auction_list{width:100%;}
+.Auction_list li{width:100%; float:left;height:23px; line-height:23px; overflow:hidden}
+.Auction_list .Auction_list_bg{ background:#fff;}
+.Auction_list li a{ display:inline-block;;height:23px; line-height:23px; overflow:hidden;float:left}
+.Auction_name{width:150px; padding-left:10px; background:url(../images/job-Auction.png) no-repeat left 10px; margin:0 0 0 10px;color:#0688c5;}
+.Auction_name_gs{width:170px;color:#505050}
+.Recommended_tit{ height: 18px; margin:7px 0 0 10px;width: 74px; float:left;display: block; background:url(../images/yun_icon_hj.png) no-repeat 0 -88px }
+.Recommended_jobs {width: 728px;float: left; margin:10px 0 0 0;border:1px solid #E1DFDF}
+.w980 {width: 980px;_overflow: hidden;}
+.Famous_recruitment {width: 980px;float: left;}
+.Latest_talent_cont {width:686px;float: left; margin:5px 0 0 0;border: 1px solid #e0dedf;background: #faf8f9;padding: 5px 0px 10px 10px;}
+.Latest_talent_list {width:333px;float:left;height: 22px;line-height: 22px;float: left;background: #ececec;margin-right:10px;_margin-right:5px;}
+.Latest_talent_list li {float: left;text-align: center;font-weight: bold;color: #970f19}
+.Latest_talent_list_a {width: 70px;}
+.Latest_talent_list_b {width: 45px;}
+.Latest_talent_list_c {width: 55px;}
+.Latest_talent_list_d {width: 160px;}
+.Latest_talent_list2 {border-bottom: 1px dashed #b8b6b7;background: none;height: 28px;line-height: 28px;width:333px;float:left}
+.Latest_talent_list2 li {font-weight: normal;color: #514f50}
+.Latest_talent_list_a img {display: block;float: left; margin:8px 0 0 0;}
+.Latest_talent_list_a a {float: left;margin:0 0 0 5px;display:inline-block;width:50px;text-align:left; overflow:hidden;height:25px;}
+.Recommended_jobs_cont {width: 728px;float: left;margin:5px 0 0 0;padding: 5px 0px 5px 0px}
+.Recommended_jobs_cont ul li {height: 29px;width: 330px;float: left;line-height: 29px;border-bottom: 1px dashed #b7b6b6;margin-left: 15px;_margin-left: 8px;background-position: 0 -69px;padding-left: 10px;}
+.Recommended_jobs_cont ul li a {float: left}
+.Recommended_jobs_cont ul li em {float: right}
+.Recommended_jobs_cont ul li em a {color: #0085c4}
+.Famous_recruitment_cont {width: 990px;float: left;}
+.Famous_recruitment_cont li {border: 1px solid #ccc;padding: 1px;width: 320px;background: #fff;float: left;margin: 5px 4px 0px 0px}
+.Famous_recruitment_cont img {display: block;float: left}
+.Famous_recruitment_act {position: relative}
+.index_Famous_show {width: 320px;border: 1px solid #00C;padding: 1px;position: absolute;top: -1px;left: -1px;padding-top: 51px;}
+.Emergency_index_cont{width:990px;;}
+.Emergency_index_cont li{	border: 1px solid #e4e2df;width:229px;background: #FAF9F9;float: left;margin: 5px 5px 0px 0px;padding:8px 5px  8px 5px;}
+.Emergency_list {width: 100%;float: left;line-height: 20px;color: #666666;}
+.Emergency_list p {color: #3C76F9}
+.Emergency_list p a {color: #3C76F9}
+.Emergency_list a {color: #FF8D36}
+.Featured_Jobs {width: 100%;float: left;border: 1px solid #e1dfe0;margin: 10px 0 0 0;position: relative;background: #faf9f9;padding-bottom: 12px}
+.angle_l_t {width: 14px;height: 14px;background-position: -386px -167px;left: -1px;top: -1px;position: absolute;}
+.angle_l_b {width: 14px;height: 14px;background-position: -386px -206px;left: -1px;bottom: -1px;position: absolute;}
+.angle_r_t {width: 14px;height: 14px;background-position: -386px -187px;right: -1px;top: -1px;position: absolute;}
+.angle_r_b {width: 14px;height: 14px;background-position: -386px -224px;right: -1px;bottom: -1px;position: absolute;}
+.Featured_Jobs_list {width: 650px;padding: 15px 0 15px 0;float: left; padding-left:10px;}
+.Featured_Jobs_list dl {width:204px;float: left;margin-right:8px;background: url(../images/yun_icodd.jpg) repeat-x bottom;height:57px;overflow:hidden}
+.Featured_Jobs_list dl dt {float: left;width: 18px;margin: 10px 5px 0 0}
+.Featured_Jobs_list dl dd {width:194px;padding: 10px 0 5px 5px;float: left;line-height: 18px;}
+.Featured_Jobs_list dl dd a {color: #838383;}
+.Featured_Jobs_list dl dd span {display: block;}
+.Featured_Jobs_list dl dd span a {color: #2997f6;	}
+.Featured_Jobs_list dl dd a:hover {color: #cd0200}
+.Featured_Jobs_list dl dd:hover {background: #fffed0}
+.Featured_Jobs_right {width: 280px;overflow:hidden;padding: 20px 10px 0 20px;float: left;background: url(../images/yun_tag.png) no-repeat left top;}
+.index_Keyword {width: 280px;float:left;color:#7c7c7c}
+.index_Keyword a {display: inline-block;white-space: nowrap;font-size: 14px;line-height: 30px;color: #7c7c7c;margin: 0 5px 0 5px;}
+.index_Keyword a:hover {color: #cd0200}
+.Featured_Jobs_ban {width: 100%;float: left;padding: 10px 0 0 0}
+.Featured_Jobs_ban li {display: block;border: 1px solid #e5e5e5;padding: 1px;width: 313px;background: #fff;height: 51px;margin: 5px 0px 0px 0px}
+.Featured_Jobs_ban img {display: block;}
+.right_banner{width:275px;float:right;}
+.right_banner a{width:269px; display:block;	border: 1px solid #e5e5e5; padding:2px; margin-top:5px;}
+.right_banner img{ display:block}
+.right_banner a:hover{border:1px solid #ccc}
+.index_news {float: left;margin:10px 0 10px 0;width: 978px;position: relative;border:1px solid #e0dedf;background:#f8f8f8;}
+.index_news_content {width: 299px;padding: 10px 15px 10px 10px;margin:5px 0 0 0;float: left;}
+.bgnone{ background:none}
+.index_news_fr {margin-right: 0px;float: right}
+.index_news_top {float: left;width: 100%;border-bottom: 1px dashed #ccc;padding-bottom: 10px;margin-bottom: 10px;}
+.index_news_top dt {background: none repeat scroll 0 0 #FFFFFF;border: 1px solid #CCCCCC;float: left;padding: 2px;width:100px;}
+.index_news_top dt img {display: block;}
+.index_news_top dd {color: #575757;float: left;line-height: 20px;padding-left: 10px;width: 180px;}
+.index_news_top dd strong {color: #000000;display: block;}
+.index_news_top dd a {color: #FF0000;}
+.index_news_top dd strong a {color:#09F;}
+.index_news .index_news_right {width: 100%;float: left}
+.index_news .index_news_right ul li {height: 23px;line-height: 23px;background: url(../images/left_list02.gif) no-repeat 0 12px;padding-left: 10px;}
+.index_link {width: 100%;padding-top: 30px;float: left;background: url(../images/yun_linkbg.png) no-repeat  center -20px}
+.index_link_cont {width: 980px;margin: 0 auto}
+.index_link_cont_h1 {width: 100%;height: 35px;line-height: 35px;}
+.index_link_cont_h1 span {display: block;float: left;font-family: Î¢ÈíÑÅºÚ;font-size: 18px;background-position: 85px -143px;padding-right: 15px;}
+.index_link_cont_h1 a {float: left; margin:0 0 0 10px;color: #285691;}
+.index_link_list {width: 980px;float: left;}
+.index_link_list_name {width: 980px; margin:10px 0 0 0;float:left;}
+.index_link_list a {margin-right: 8px;_margin-right:7px;line-height: 30px;display: inline-block}
+.index_link_l {width: 8px;height: 269px;float: left;background: url(../images/yun_link_l.png) no-repeat left center}
+.index_link_list_img { margin:10px 0 0 0;width: 100%;float: left;}
+.index_link_list_img a {display: block;float: left; margin:0 8px 10px 0;}
+.index_link_list_img img {width: 130px;border: 1px solid #ccc;display: block;float: left;_margin-right: 0px; text-align:center}
+.index_left15560 {float: left;padding-bottom: 5px;text-align: right;width: 990px;}
+#mainids .tlogo ul li.current1 {list-style-type: none;position: relative;width: 320px;z-index:1000}
+#mainids .tlogo ul li.current1 .on {position: relative;z-index: 1003;}
+#mainids .tlogo ul li .show {background: #EAE8E8;border: 1px solid #65A9E6;display: none;left: -1px;padding: 1px;position: absolute;
+text-align: left;top: -1px;width: 320px;}
+#mainids .tlogo .show .area {background: #FFFFFF;overflow: hidden;padding: 55px 0 0;float: left}
+#mainids .tlogo ul li.current1 .show {display: block;}
+#mainids .area_left {width: 140px;height: 110px;float: left;border-right: 1px dotted #ccc}
+#mainids .area_left a {width: 140px;display: block;height: 22px;line-height: 22px;color: #315aaa;text-indent: 15px;background: url(../images/bgb.png) no-repeat 5px;overflow: hidden}
+#mainids .area_left a:hover {color: #F60;text-decoration: underline}
+#mainids .area_right {float: left;width: 170px;height: 110px;overflow: hidden;padding-left: 5px;line-height: 22px;color: #555;white-space: normal; word-break: break-all; }
+#mainids .area_right a {width: 100%;height: 22px;line-height: 22px;overflow: hidden;text-align: center;display: block;color: #F30;font-weight: bold}
+#mainids .area_right a:hover {color: #03F;text-decoration: underline}
+#mainids .area_left_bot {width: 140px;background-color: #EEEEEE;float: left;height: 22px;line-height: 22px;margin-top: 5px;text-align: center;}
+#mainids .area_left_bot a {color: #315aaa;}
+#mainids .area_right_bot{width: 180px;background-color: #EEEEEE;float: left;height: 22px;line-height: 22px;margin-top: 5px;text-align: center;}
+#mainids .area_right_bot a {color: #315aaa;}
+#mainids .w160 {width: 160px;}
+#mainids .w170 {width: 173px;}
+#mainids .tlogo ul li .show_ban {background: #EAE8E8;border: 1px solid #65A9E6;display: none;left: -1px;padding: 1px;position: absolute;text-align: left;top: -1px;width: 313px;}
+#mainids .tlogo ul li.current1 .show_ban {display: block;}
+#mainids .tlogo .show_ban .area {background: #FFFFFF;overflow: hidden;padding: 55px 0 0;float: left}
+#mainids .tlogo ul li.current2 {list-style-type: none;position: relative;width: 313px;}
+#mainids .tlogo ul li.current2 .on {position: relative;z-index: 1003;}
+#slides {position: relative;width:487px;height:210px;float:left;}
+.slides_container {overflow:hidden;position:relative;display:none;width: 487px;height: 210px;}
+.slides_container div.slide {width: 487px;height: 210px;display:block;}
+.slides_container img {width: 487px;height: 210px;display: block;}
+#slides .prev {margin-right: 5px;float:left;}
+#slides .next {margin-right: 5px;float:left;}
+.pagination {margin:6px 0 0;list-style: none;z-index:9999;position: absolute;bottom: 15px;right:15px;}
+.pagination li {float: left;margin: 0 1px;}
+.pagination li a {display: block;width: 13px;height: 0;padding-top: 13px;background-position: 0 0;float: left;overflow: hidden;background-image: url(../images/circle.png);}
+.pagination li.current a, .pagination li.current a:hover { background-position: -16px -0px }
+.pagination li a:hover { background-position: 0px -0px }
+#slides a:link, #slides a:visited { color: #333 }
+#slides a:hover, #slides a:active { color: #9e2020 } 
+.index_banner_cont{width:990px;}
+.index_banner_cont a{ display:inline-block;float:left; margin-top:5px; margin-right:5px;_margin-right:2px;}
+.index_banner_cont img{ display:block}
+.index_logoin_box{width:239px; float:left;}

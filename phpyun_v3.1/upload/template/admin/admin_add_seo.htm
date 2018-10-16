@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" />
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script>
+<script src="js/jquery.insert.js"></script>
+<script language="javascript">
+<!--
+function checkform(myform){
+	if (myform.seoname.value=="") {
+	   parent.layer.msg('请填写名称！', 2, 2);
+      myform.seoname.focus();
+      return (false);
+  }
+   if (myform.ident.value=="") {
+	  parent.layer.msg('请填写SEO标识符！', 2, 2);
+      myform.ident.focus();
+      return (false);
+  }
+  if (myform.title.value=="") {
+	  parent.layer.msg('请填写title！', 2, 2);
+      myform.title.focus();
+      return (false);
+  }
+  if (myform.keywords.value=="") {
+	  parent.layer.msg('请填写keywords！', 2, 2);
+      myform.keyword.focus();
+      return (false);
+  }
+  if (myform.description.value=="") {
+  	parent.layer.msg('请填写description！', 2, 2);
+      myform.description.focus();
+      return (false);
+  }
+}
+//-->
+	$(function(){
+		$(".status").click(function(){
+			$("input[name=pid]").val($(this).attr("pid"));
+			$.layer({
+				type : 1,
+				title :'选择标签',
+				offset: [($(window).height() - 340)/2 + 'px', ''],
+				closeBtn : [0 , true],
+				border : [10 , 0.3 , '#000', true],
+				area : ['550px','340px'],
+				page : {dom :"#infobox"}
+			});
+		});
+	});
+	function clickseoSureBtn(){
+		var codewebarr="";
+		$("input[name=seocheckbox]:checked").each(function(){ //由于复选框一般选中的是多个,所以可以循环输出
+			if(codewebarr==""){codewebarr="{"+$(this).val()+"}";}else{codewebarr=codewebarr+" - {"+$(this).val()+"}";}
+		});
+		$("input[name='seocheckbox']").attr('checked',false);
+		var pid=$("input[name=pid]").val();
+		$('#'+pid).setCaret();
+		$('#'+pid).insertAtCaret(codewebarr);
+		layer.closeAll();
+	}
+</script>
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div id="infobox" style="display:none;padding:0px 20px;">
+    <div class="subnav" style="width:500px;">
+        <div class="content-menu ib-a blue line-x">
+            <b>提示：下面的标识符请根据页面对应添加，否则无法正常显示！</b><br>
+        </div>
+    </div>
+
+    <form action="index.php" target="supportiframe" method="get" id="formstatus">
+        <input name="pid" value="0" type="hidden">
+        <input type="hidden" name="pytoken" value="{yun:}$pytoken{/yun}">
+        {yun:}foreach item=rows key=key from=$seoconfig{/yun}
+            <span style="font-weight:bold;">{yun:}$key{/yun}：</span><br>
+                {yun:}foreach item=row key=k from=$rows{/yun}
+                <div style="width:100px; float:left;">
+                <input type="checkbox" name="seocheckbox" value="{yun:}$k{/yun}" id="{yun:}$k{/yun}" ><label for="{yun:}$k{/yun}">{yun:}$row{/yun}</label></div>
+               {yun:}/foreach{/yun}
+            <br><br>
+        {yun:}/foreach{/yun}
+        <p style="text-align:center;">
+		<input class="submit_btn" type="button" value="确认"  onClick="clickseoSureBtn();" >&nbsp;&nbsp;
+		<input class="cancel_btn" type="button" value="取消" onclick="layer.closeAll();">
+		</p>
+    </form>
+</div>
+<div class="infoboxp">
+<div class="infoboxp_top">
+<h6>SEO信息管理</h6>
+  <div class="infoboxp_right">
+	<a href=" javascript:history.back(-1);" class="infoboxp_tj">SEO列表</a>
+	</div>
+</div>
+
+<div class="admin_table_border">
+<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+<form name="myform" target="supportiframe" action="index.php?m=seo&c=Save" method="post"   onSubmit="return checkform(this);">
+	<table width="100%" class="table_form" style="background:#fff;">
+    	<tr >
+			<th>页面名称：</th>
+			<td>
+            <input class="input-text" type="text" name="seoname" size="40" value="{yun:}$seo.seoname{/yun}"/></td>
+		</tr>
+         	<tr class="admin_table_trbg" >
+			<th>SEO标识符：</th>
+			<td><input class="input-text" type="text" name="ident" size="40" value="{yun:}$seo.ident{/yun}" id='ident'/></td>
+		</tr>
+        <tr >
+			<th>所属站点：</th>
+			<td>
+            <div style="width:130px; float:left;"><input class="input-text" type="checkbox" name="affiliation[]" value="0" {yun:}if @in_array("0",$affiliation){/yun}checked{yun:}/if{/yun} style="border:0px;"/>整站</div>
+            {yun:}foreach from=$list item=list{/yun}
+            <div style="width:130px;float:left;"><input class="input-text" type="checkbox" name="affiliation[]" value="{yun:}$list.id{/yun}" {yun:}if @in_array($list.id,$affiliation){/yun}checked{yun:}/if{/yun} style="border:0px;"/>{yun:}$list.title{/yun}</div>
+            {yun:}/foreach{/yun}
+            </td>
+		</tr>
+	   	<tr class="admin_table_trbg" >
+			<th>title：</th>
+			<td>
+              <div style="height:5px;"></div>
+            <input class="input-text" type="text" id="title" name="title" size="60" value="{yun:}$seo.title{/yun}"/>
+            <input class="input-text status" type="button" name="select" pid="title" style="width:50px" value="选择"/>
+            </td>
+		</tr>
+		<tr >
+			<th>keywords：</th>
+			<td>
+              <div style="height:5px;"></div>
+			 <input class="input-text" type="text" id="keywords" name="keywords" size="60" value="{yun:}$seo.keywords{/yun}"/>
+            <input class="input-text status" type="button" name="select" pid="keywords" style="width:50px" value="选择"/>
+			</td>
+		</tr>
+    	<tr class="admin_table_trbg" >
+			<th>description：</th>
+			<td>
+              <div style="height:5px;"></div>
+			 <textarea name="description" id="description" cols="60" rows="5">{yun:}$seo.description{/yun}</textarea>
+              <input class="input-text status" type="button" name="select" pid="description" style="width:50px" value="选择"/>
+			</td>
+		</tr>
+		<tr>
+			<td align="center" colspan="2">
+            <input type="hidden" name="pytoken" value="{yun:}$pytoken{/yun}">
+			{yun:}if is_array($seo){/yun}
+        	<input type="hidden" name="id" size="40" value="{yun:}$seo.id{/yun}"/>
+        	<input class="admin_submit4" type="submit" name="update" value="&nbsp;更 新&nbsp;"  />
+        	{yun:}else{/yun}
+    		<input class="admin_submit4" type="submit" name="add" value="&nbsp;添 加&nbsp;"  />
+     		{yun:}/if{/yun}
+     		<input class="admin_submit4" type="reset" name="reset" value="&nbsp;重 置 &nbsp;" />
+			</td>
+		</tr>
+	</table>
+</form>
+</div>
+<div class="subnav" style="background:#F7FBFC;border:1px solid #d8dce5; margin-top:10px;">
+    <div class="content-menu ib-a blue">
+   		<b>提示：如果您不是程序员或不清楚用法，请不要随意修改SEO标识符！</b><br>
+	</div>
+</div>
+</div>
+</body>
+</html>

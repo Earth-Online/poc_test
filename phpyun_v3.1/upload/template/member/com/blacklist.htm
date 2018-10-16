@@ -1,0 +1,69 @@
+{yun:}include file="$comstyle/header.htm"{/yun}
+<div class="w950">
+<div class="admin_mainbody">
+{yun:}include file="$comstyle/left.htm"{/yun}
+<div class=right_box>
+  <div class=admincont_box>
+    <div class=admin_tit ><span class="admin_tit_bg">黑名单管理</span> </div>
+		<div class=admin_note>
+          <form action="index.php" method="get" />
+          <input name="c" type="hidden" value="blacklist">
+          <ul>
+            <li><span class="span_name">输入姓名：</span>
+              <input name="keyword" type="text"class="com_text_news">
+              <input name="" type="submit" class=com_tj value="搜索已有人才" style="margin-top:0px;">
+            </li>
+          </ul>
+          </form>
+       </div>
+    <div class=admin_note>
+      <h2>特别提示</h2>
+      <div class="admin_note_p" style="width:300px;">有 <span>{yun:}$total{/yun}</span> 个人被贵公司拉入黑名单</div>
+      <div class=admin_tit_right>
+        <input class=btn_02 onclick="location.href='index.php?c=down'" type=button value=查看已下载简历 style="width:150px;">
+        <input class=btn_02 onclick="location.href='index.php?c=invite'" type=button value=已邀请人才 style="margin-right:10px; margin-left:10px;">
+      </div>
+    </div>
+    <div class=admin_textbox_04>
+	<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+      <form action="{yun:}$now_url{/yun}" target="supportiframe" method="post" id='myform'>
+        <div class=table>
+          <table id="job_checkbokid" cellspacing="1" align="center" border=0 class="com_table">
+            <tbody>
+              <tr align=middle style="height:30px">
+                <th scope=col style="width: 5%"><input id='checkAll'  type="checkbox" onclick='m_checkAll(this.form)'></th>
+                <th scope=col style="width: 10%">姓名</th>
+                <th scope=col style="width: 6%">性别</th>
+                <th scope=col style="width: 6%">学历</th>
+                <th scope=col style="width: 9%">屏蔽时间</th>
+                <th scope=col style="width: 8%">操作</th>
+              </tr>
+            {yun:}foreach item=v from=$rows{/yun}
+            <tr style="height:30px">
+              <td><input type=checkbox name="delid[]" value="{yun:}$v.id{/yun}"></td>
+              <td>{yun:}$v.name{/yun}</td>
+              <td>{yun:}$v.sex{/yun}</td>
+              <td>{yun:}$v.edu{/yun}</td>
+              <td>{yun:}$v.inputtime|date_format:'%Y-%m-%d'{/yun}</td>
+              <td><a href="javascript:void(0)" onclick="layer_del('确定将该用户移除黑名单？', '{yun:}$config[sy_weburl]{/yun}index.php?c=blacklist&del_id={yun:}$v.id{/yun}'); ">取消屏蔽</a></td>
+            </tr>
+            {yun:}foreachelse{/yun}
+            <tr style="height:30px">
+              <td colspan="6">没有被您屏蔽记录。</td>
+            </tr>
+            {yun:}/foreach{/yun}
+              </tbody>
+          </table>
+        </div>
+        <div>  <div class="job_d_cz fltL">
+          <INPUT class='c_btn_02' type="button" name="subdel" value="批量删除" onclick="return really('delid[]');">
+          </div>
+          <div class="diggg">{yun:}$pagenav{/yun}</div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div> 
+</div> 
+{yun:}include file="$comstyle/footer.htm"{/yun}
