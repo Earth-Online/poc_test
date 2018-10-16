@@ -1,0 +1,28 @@
+ {yun:}newspage limit=5{/yun}
+{yun:}include file="$comstyle/header.htm"{/yun} 
+{yun:}include file="$comstyle/left.htm"{/yun} 
+  <div class="brief">
+    <div class="clear"></div>
+    <div class="environment">
+      <h1><span>公司新闻</span></h1>
+      {yun:}if !empty($newspage){/yun}
+           <ul class="news_ul">
+          
+      		{yun:}section name=i loop=$newspage{/yun}
+            <li>
+            <em class="fr">{yun:}totime time=$newspage[i].ctime{/yun}</em>
+            <a class="fl" href="{yun:}curl url=id:$id,tp:newsshow,nid:`$newspage[i].id`{/yun}" title="{yun:}$newspage[i].title{/yun}">{yun:}$newspage[i].title{/yun}</a>
+            </li>
+            {yun:}/section{/yun}
+        </ul>
+    <div class="page">
+        {yun:}$pagenav{/yun}
+    </div>
+    {yun:}else{/yun}
+    <div class="comapply_no_msg">
+      <div class="comapply_no_msg_cont"><span></span><em>该公司还没有发布新闻!</em></div>
+    </div>
+    {yun:}/if{/yun}
+    </div>
+  </div>
+{yun:}include file="$comstyle/footer.htm"{/yun}

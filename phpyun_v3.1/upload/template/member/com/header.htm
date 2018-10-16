@@ -1,0 +1,76 @@
+<!DOCTYPE span PUBLIC "-//W3C//DTD span 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>企业用户后台管理系统 - {yun:}$config.sy_webname{/yun} - Powered by PHPYun.</title>
+<meta http-equiv=Content-Type content="text/span; charset=gb2312">
+<link href="{yun:}$comstyle{/yun}/images/m_style.css" type=text/css rel=stylesheet>
+<!--[if IE 6]>
+<script src="{yun:}$config.sy_weburl{/yun}/js/png.js"></script>
+<script>
+DD_belatedPNG.fix('.png,.flow_step_no1 .step_1 span, .flow_step_no2 .step_2 span, .flow_step_no2 .step_v2 span, .flow_step_no3 .step_3 span, .flow_step_no4 .step_4 span,.flow_step li,.flow_step_no1 .step_v2 span,.Tip_Information_k,.Tip_Information_jt,.Tip_Information_close,.Tip_Information_gl,.Tip_Information_jt2,.Recruitment_fb');
+</script>
+<![endif]-->
+<script type="text/javascript" src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script type="text/javascript" src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js"></script>
+<script type="text/javascript" src="{yun:}$config.sy_weburl{/yun}/js/member_public.js"></script>
+<script type="text/javascript" src="{yun:}$config.sy_weburl{/yun}/js/public.js"></script>
+<meta content="MSHTML 6.00.6000.16939" name=GENERATOR>
+<script>
+var integral_pricename='{yun:}$config.integral_pricename{/yun}';
+var weburl="{yun:}$config.sy_weburl{/yun}";
+</script>
+</head>
+<body>
+
+<div class="_top_main">
+<div class="w950">
+<div class="_top_main_left" style="float:left; line-height:30px;">欢迎来到{yun:}$config.sy_webname{/yun}！</div>
+
+<div class="_top_main_right" style="float:right; line-height:30px">您好：<font color="#FF0000">{yun:}$username{/yun}</font><a  href="javascript:void(0)" onclick="logout('index.php?c=logout')">[安全退出]</a>&nbsp;&nbsp;
+ <span class="header_Remind header_Remind_hover" onMouseMove="Remind_show();"> <em class="header_Remind_em">提醒（<b>{yun:}$cookie.remind_num{/yun}</b>）</em>
+      <div class="header_Remind_list" style="display:none;">
+		<div class="header_Remind_close"><a href="javascript:Remind_hide();" title="关闭"></a></div>
+      <p class="header_Remind_icon1"><a href="{yun:}$config.sy_weburl{/yun}/member/index.php?c=hr">职位申请(<font color="#FF0000">{yun:}$cookie.userid_job{/yun}</font>)</a></p>
+      <p class="header_Remind_icon2"><a href="{yun:}$config.sy_weburl{/yun}/friend/index.php?c=applyfriend">好友邀请(<font color="#FF0000">{yun:}$cookie.friend2{/yun}</font>)</a></p>
+      <p class="header_Remind_icon3"><a href="{yun:}$config.sy_weburl{/yun}/member/index.php?c=xin"> 私信(<font color="#FF0000">{yun:}$cookie.friend_message2{/yun}</font>)</a></p>
+      <p class="header_Remind_icon4"><a href="{yun:}$config.sy_weburl{/yun}/member/index.php?c=seemessage"> 站内信(<font color="#FF0000">{yun:}$cookie.message2{/yun}</font>)</a></p>
+      <p class="header_Remind_icon5"><a href="{yun:}$config.sy_weburl{/yun}/member/index.php?c=msg">求职咨询(<font color="#FF0000">{yun:}$cookie.commsg{/yun}</font>)</a></p>
+   </div>
+      </span>
+      |
+<a onClick="setHomepage('{yun:}$config.sy_weburl{/yun}');" href="javascript:;">设为首页</a>丨<a href="javascript:addwebfav('{yun:}$config.sy_weburl{/yun}','{yun:}$config.sy_webname{/yun}')">加入收藏</a>
+</div>
+</div></div>
+<div class="header">
+  <div class="w950">
+    <div class="header-logo mt10 fltL"><a href="{yun:}$config.sy_weburl{/yun}" target="_blank"><img src="{yun:}$config.sy_weburl{/yun}/{yun:}$config.sy_unit_logo{/yun}" class="png" ></a></div>
+    <div class="header_seach fltR">
+      <form method="get" action="../index.php" onSubmit="return search_keyword(this);">
+        <input name="m" type="hidden" value="user">
+        <input name="c" type="hidden" value="search">
+        <input type="text" id="keyword" name="keyword" value="请输入关键字" placeholder="请输入关键字" onclick="if(this.value=='请输入关键字'){this.value=''}" onblur="if(this.value==''){this.value='请输入关键字'}" class="he_input placeholder">
+        <input type="submit" value=" " class="he_submit">
+      </form>
+    </div>
+  </div>
+  <div class="header_nav w950">
+    <div class="header_nav_cont">
+      <ul>
+        <li	{yun:}if $js_def==1{/yun} class=cur{yun:}/if{/yun}><a href="index.php?c=index">管理首页</a> </li>
+        <li	{yun:}if $js_def==2{/yun} class=cur{yun:}/if{/yun}><a href="index.php?c=info">企业资料</a> </li>
+        <li	{yun:}if $js_def==3{/yun} class=cur{yun:}/if{/yun}><a href="index.php?c=job&w=1">招聘管理</a> </li>
+        <li	{yun:}if $js_def==4{/yun} class=cur{yun:}/if{/yun}><a href="index.php?c=com">账户管理</a> </li>
+        <li	{yun:}if $js_def==5{/yun} class=cur{yun:}/if{/yun}><a href="index.php?c=hr">人才管理</a> </li>
+        <li	{yun:}if $js_def==6{/yun} class=cur{yun:}/if{/yun}><a href="index.php?c=vs">系统设置</a> </li>
+        <li	{yun:}if $js_def==7{/yun} class=cur{yun:}/if{/yun}><a href="index.php?c=seemessage">交流中心</a> </li>
+      </ul>
+      <div class="header_nav_r">
+      <a href="index.php?c=jobadd" title="发布职位"  class="header_nav_fb">发布职位</a>
+      <i class="fltL">&nbsp;| &nbsp; </i>
+      <a href="{yun:}$config.sy_weburl{/yun}" class="fltL">网站首页</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="clear"></div>

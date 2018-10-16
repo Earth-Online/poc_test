@@ -1,0 +1,75 @@
+{yun:}include file="$comstyle/header.htm"{/yun}
+<div class="w950">
+  <div class="admin_mainbody"> {yun:}include file="$comstyle/left.htm"{/yun}
+    <div class=right_box>
+      <div class=admincont_box>
+        <div class=admin_tit><span class="admin_tit_bg">企业产品管理</span> </div>
+        <div class=admin_note style="padding-top:15px; padding-bottom:15px">
+          <form action="index.php" method="get">
+            <ul style="float:left;">
+              <input name="c" type="hidden" value="product">
+              <li>
+                <input name="keyword" type="text"class="com_text_news">
+                <input name="" type="submit" class="com_tj" value="搜索已有产品">
+              </li>
+            </ul>
+          </form>
+           <div class=admin_tit_right style="float:left; margin-left:10px;_margin-left:5px;">
+          <input class="btn_02" onclick="location.href='index.php?c=product&action=add'" type="button" value="添加产品" style="margin-right:10px; margin-top:0px;">
+        </div>
+        </div>
+        <div class=admin_textbox_04>
+          <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+          <form action="index.php" method="get" target="supportiframe" id='myform'>
+            <input type="hidden" name="c" value="product" />
+            <div class=table>
+              <table id="job_checkbokid" cellspacing=1 align=center border=0 class="com_table">
+                <tbody>
+                  <tr align=middle style="height:30px">
+                    <th><input id='checkAll'  type="checkbox" onclick='m_checkAll(this.form)'></th>
+                    <th>产品名称</th>
+                    <th>添加时间</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                  </tr>
+                {yun:}foreach item=job from=$rows{/yun}
+                <tr style="height:30px">
+                  <td><input type='checkbox' name="delid[]" value="{yun:}$job.id{/yun}" style="border:0px;"></td>
+                  <td style="width:300px; text-align:left"><div style="padding-left:5px; padding-right:5px;"><a href="{yun:}curl url=id:`$cookie.uid`,tp:productshow,pid:`$job.id`{/yun}" target="_blank">{yun:}$job.title{/yun}</a></div></td>
+                  <td>{yun:}$job.ctime|date_format:'%Y-%m-%d'{/yun}</td>
+                  <td> {yun:}if $job.status=="0"{/yun} <font color=blue>等待审核</font>{yun:}/if{/yun}
+                    {yun:}if $job.status=="1"{/yun} <font color=green>已审核</font>{yun:}/if{/yun}
+                    {yun:}if $job.status=="2"{/yun} <font color=red>未通过</font> | <a href="javascript:;" class="looklist" statusbody="{yun:}$job.statusbody{/yun}">查看原因</a>{yun:}/if{/yun} </td>
+                  <td><a href="{yun:}curl url=id:`$cookie.uid`,tp:productshow,pid:`$job.id`{/yun}" target="_blank">预览</a> | <a href="{yun:}$now_url{/yun}&editid={yun:}$job.id{/yun}">修改</a> | <a href="javascript:void(0)" onclick="layer_del('确定要删除？', '{yun:}$now_url{/yun}&delid={yun:}$job.id{/yun}')">删除</a></td>
+                </tr>
+                  </tr>
+                {yun:}foreachelse{/yun}
+                {yun:}if $smarty.get.keyword!="" {/yun}
+                <tr style="height:30px">
+                  <td colspan="5">没有搜索相关产品。</td>
+                </tr>
+                {yun:}else{/yun}
+                <tr style="height:30px">
+                  <td colspan="5">您还没有添加产品。</td>
+                </tr>
+                {yun:}/if{/yun}
+                {yun:}/foreach{/yun}
+                  </tbody>
+
+              </table>
+            </div>
+            <h3 style="margin-top:10px">
+              <div>
+                <div><span class="fltL">
+                  <INPUT class=btn_02 type="button" name="subdel" value="批量删除" onclick="return really('delid[]');">
+                  </span><div class="diggg">{yun:}$pagenav{/yun}</div></div>
+
+              </div>
+            </h3>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{yun:}include file="$comstyle/footer.htm"{/yun}

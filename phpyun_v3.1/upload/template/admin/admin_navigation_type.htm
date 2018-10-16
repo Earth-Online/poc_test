@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" />
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script>
+</script>
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<span id="temp"></span>
+<div id="question" style="display: none;">
+  <p id="alert_msg"></p>
+  <input type="button" id="yes" class="btn" value="确认" />
+  <input type="button" id="no" class="btn" value="取消" />
+</div>
+<div class="infoboxp">
+  <div class="infoboxp_top">
+    <h6>导航分类</h6>
+		  <div class="infoboxp_right">
+	<a href=" javascript:history.back(-1);" class="infoboxp_tj">导航列表</a>
+	</div>
+  </div>
+  <div class="company_job">
+    <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+     <form name="myform" target="supportiframe" action="index.php?m=navigation&c=addtype" method="post">
+      <span style="margin-left:10px; margin-top:5px; float:left"> 添加类别：</span>
+      <input class="input-text" name="typename" type="text" style="margin-top:5px; float:left"/>
+	  <input type="hidden" name="pytoken" value="{yun:}$pytoken{/yun}" >
+      <input class="admin_submit4" name="sub" type="submit" value="添加" style="margin-top:5px; float:left">
+    </form>
+  </div>
+  <div class="table-list">
+    <div class="admin_table_border">
+      <table width="100%">
+        <thead>
+          <tr class="admin_table_top">
+            <th>编号</th>
+            <th>类别名称</th>
+            <th class="admin_table_th_bg">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+        {yun:}foreach item=v from=$type{/yun}
+        <form action="index.php?m=navigation&c=addtype" target="supportiframe" name="myform" method="post">
+          <tr align="center">
+            <td><span>{yun:}$v.id{/yun}</span></td>
+            <td class="ud"><input class="input-text" name="typename" type="text" value="{yun:}$v.typename{/yun}" />
+              <input type="hidden" name="id" value="{yun:}$v.id{/yun}" /></td>
+            <td class="ud"><input class="admin_submit4" type="submit" name="update" value="更新" />
+              | <a href="javascript:void(0)" onClick="layer_del('确定要删除？', 'index.php?m=navigation&c=deltype&id={yun:}$v.id{/yun}');"class="admin_cz_sc">删除</a></td>
+          </tr>
+		  <input type="hidden" name="pytoken" id='pytoken' value="{yun:}$pytoken{/yun}">
+        </form>
+        {yun:}/foreach{/yun}
+          </tbody>
+
+      </table>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{yun:}$title{/yun}</title>
+<META name="keywords" content="{yun:}$keywords{/yun}">
+<META name="description" content="{yun:}$description{/yun}">
+<link rel="stylesheet" href="{yun:}$style{/yun}/style/css.css" type="text/css">
+<!--[if IE 6]>
+<script src="{yun:}$config.sy_weburl{/yun}/js/png.js"></script>
+<script>
+DD_belatedPNG.fix('.png,.index_logoin,.index_logoin_current,.nav_list,.fairs_Status,.fairs_Status,.logoin_qybj,.logoin_grbj,.logoin_Shadow_right,.logoin_Shadow_left,.whitebg,.micro_resume_fast,.nav_list_hover a,#bg,.left_comapply_cont li,.icon2,.nav_list .nav_list_hover em,.Fast_right_icon_l,.Fast_right_icon_r,.index_logoin_after,.logoin_after em,.logoin_after_su2,.logoin_after_su1,.hbg,.pagination li a,.firm_post_list,.Auction_tit,.yun_title,.Recommended_tit,.Com_Search_Results_r ul .All_post_h1_act,.sButtonBlock a.closeButton,.Comment_list_top,.icon,.yun_wap_m_bg,.micro_box,.fast_issuance');
+</script>
+<![endif]-->
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/lazyload.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/public.js" language="javascript"></script>
+<script>var integral_pricename='{yun:}$config.integral_pricename{/yun}';var weburl="{yun:}$config.sy_weburl{/yun}"; </script>
+</head>
+<body>
+{yun:}include file="$tplstyle/header.htm"{/yun}
+
+    <div class="clear"></div>
+<div class="pwdmain">
+<div class="pwdmain_cont">
+<div class="pwdmain_title_r">
+
+找回密码
+</div>
+    <div class="getpwd">
+
+        <div class="pwdcon">
+            <div class="pwdalert"> 请输入您登录时所使用的账号。 </div>
+            <div class="pwdemail" >
+               <ul>
+				<li>
+					<span>用户名：</span>
+					<input id="username" type="text" name="username"   class="fedcon_text">
+				  </li>
+				  <li>
+					<span>绑定邮箱：</span>
+					<input id="email" type="text" name="email"   class="fedcon_text">
+				  </li>
+					<li> <span>&nbsp;</span> <input class="pwdsub" type="button" onclick="send_str();" value="取回密码" name="pwd_add">    </li>
+					</ul>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+<script>
+function send_str(){
+	var myreg = /^([a-zA-Z0-9\-]+[_|\_|\.]?)*[a-zA-Z0-9\-]+@([a-zA-Z0-9\-]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+	 var username = $.trim($("#username").val());
+	 var email = $.trim($("#email").val());
+	 if($.trim(username)=="") {
+		layer.msg('请填写您注册时的用户名！', 2, 8);return false;
+	 }else if(email==''){
+		layer.msg('请填写您绑定的邮箱！', 2, 8);return false;
+	 }else if(!myreg.test(email)){
+		layer.msg('邮箱格式错误！', 2, 8);return false;
+	 }else{
+		$.post('index.php?m=forgetpw&c=sendstr',{username:username,email:email},function(data){
+			var data=eval('('+data+')');
+			layer.msg(data.msg, 2,Number(data.type),function(){location.reload();});return false;
+		});
+	 }
+}
+</script>
+{yun:}include file="$tplstyle/footer.htm"{/yun}

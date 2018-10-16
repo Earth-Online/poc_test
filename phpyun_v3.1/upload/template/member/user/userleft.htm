@@ -1,0 +1,78 @@
+<script> 
+$(document).ready(function(){  
+	$(window).scroll(function(){
+		var scroll_Top = $(window).scrollTop();
+		if(scroll_Top>85){ 
+ 			if(window.XMLHttpRequest){
+				var top=0;
+			}else{
+				var top=scroll_Top;
+			}
+			$("#resumenume").attr("style","position: fixed;top:"+top+"px;_position:absolute;"); 
+		}else{
+			$("#resumenume").attr("style","");
+		} 
+	});
+});
+</script>
+
+<div class="widemainbody">
+<div class="w920">
+<div class="w190 fl">
+  <div class="resumestatebox01" id="resumenume" style="">
+    <h2><span>简历完整度</span></h2>
+    {yun:}if $numresume>20{/yun}
+    <div class="resume_look"><a href="{yun:}$config.sy_weburl{/yun}/{yun:}url m=resume url=id:`$row.id`{/yun}" target='_blank'  class="resume_look_sub">预览简历</a></div>
+    {yun:}/if{/yun} 
+    <div class="resumestatebox02 mt8">
+      <div class="cont">
+        <div id="_ctl0_UserManage_LeftTree1_progressDiv" class="bar" style="width:100px">
+          <div class="play" style="width:{yun:}$numresume{/yun}px"></div>
+        </div>
+        <div class="value"><b id="numresume">{yun:}$numresume{/yun}%</b></div>
+        <div id="_ctl0_UserManage_LeftTree1_msnInfo" class="intro"> {yun:}if $numresume>60{/yun} 您的简历已符合要求！{yun:}/if{/yun}
+          {yun:}if  $numresume lt 55{/yun}  您现在的简历完整度太低，还不能够使用此简历应聘!{yun:}/if{/yun} </div>
+      </div>
+    </div>
+    
+    <ul>
+    <li style="border-top:none;">
+        <div class="tit"><a onclick="checkmore('info');" href="javascript:void(0);">基本信息</a></div>
+        <div class="resume_expect state"{yun:}if $resume.name!=""{/yun}style="display:block;"{yun:}/if{/yun}><img src="{yun:}$userstyle{/yun}/images/doneico.gif"/></div>
+      </li>
+      <li style="border-top:none;">
+        <div class="tit"><a onclick="checkmore('expect');" href="javascript:void(0);">求职意向</a></div>
+        <div class="resume_expect state"{yun:}if $resume_row.expect eq 1{/yun}style="display:block;"{yun:}/if{/yun}><img src="{yun:}$userstyle{/yun}/images/doneico.gif"/></div>
+      </li>
+      <li>
+        <div class="tit"><a onclick="checkmore('skill');" href="javascript:void(0);">专业技能</a></div>
+        <div class="resume_skill state"{yun:}if $resume_row.skill >= 1{/yun}style="display:block;"{yun:}/if{/yun}><img src="{yun:}$userstyle{/yun}/images/doneico.gif"/></div>
+      </li>
+      <li>
+        <div class="tit"><a onclick="checkmore('work');" href="javascript:void(0);">工作经历</a></div>
+        <div class="resume_work state"{yun:}if $resume_row.work >= 1{/yun}style="display:block;"{yun:}/if{/yun}><img src="{yun:}$userstyle{/yun}/images/doneico.gif"/></div>
+      </li>
+      <li>
+        <div class="tit"><a onclick="checkmore('project');" href="javascript:void(0);">项目经验</a></div>
+        <div class="resume_project state"{yun:}if $resume_row.project >= 1{/yun}style="display:block;"{yun:}/if{/yun}><img src="{yun:}$userstyle{/yun}/images/doneico.gif"/></div>
+      </li>
+      <li>
+        <div class="tit"><a onclick="checkmore('edu');" href="javascript:void(0);">教育经历</a></div>
+        <div class="resume_edu state"{yun:}if $resume_row.edu >= 1{/yun}style="display:block;"{yun:}/if{/yun}><img src="{yun:}$userstyle{/yun}/images/doneico.gif"/></div>
+      </li>
+      <li>
+        <div class="tit"><a onclick="checkmore('training');" href="javascript:void(0);">培训经历</a></div>
+        <div class="resume_training state"{yun:}if $resume_row.training >= 1{/yun}style="display:block;"{yun:}/if{/yun}><img src="{yun:}$userstyle{/yun}/images/doneico.gif"/></div>
+      </li>
+      <li>
+        <div class="tit"><a onclick="checkmore('cert');" href="javascript:void(0);">证书</a></div>
+        <div class="resume_cert state"{yun:}if $resume_row.cert >= 1{/yun}style="display:block;"{yun:}/if{/yun}><img src="{yun:}$userstyle{/yun}/images/doneico.gif"/></div>
+      </li>
+      <li>
+        <div class="tit"><a onclick="checkmore('other');" href="javascript:void(0);">其他</a></div>
+        <div class="resume_other state"{yun:}if $resume_row.other >= 1{/yun}style="display:block;"{yun:}/if{/yun}><img src="{yun:}$userstyle{/yun}/images/doneico.gif"/></div>
+      </li>
+    </ul>
+   
+  </div>
+</div>

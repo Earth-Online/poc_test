@@ -1,0 +1,44 @@
+{yun:}include file="$comstyle/header.htm"{/yun} 
+  <div class="content">
+  <div class="sidebar-left">
+    <div class="position">
+      <div class="position-title"><span>招聘职位</span></div>
+      <div class="post_content">
+         <img src="{yun:}$com_style{/yun}images/mm.jpg" width="293"height="60">
+      <ul class="post">
+       {yun:}job limit=5{/yun}
+        {yun:}section name=i loop=$job{/yun}
+     <li><a href="{yun:}$config.sy_weburl{/yun}/{yun:}url m=com  url=c:comapply,id:`$job[i].id`{/yun}" style="overflow:hidden; width:162px;" title="{yun:}$job[i].name{/yun}">{yun:}$job[i].name{/yun}</a></li>
+        {yun:}/section{/yun}
+      </ul>
+      </div>
+    </div>
+  </div>
+
+    <div class="sidebar-left">
+    <div class="position">
+      <div class="position-title"><span>公司简介</span></div>
+      <div class="post_content">
+         <img src="{yun:}$com_style{/yun}images/img2.jpg" width="293"height="60">
+        <div class="jieshao">
+            {yun:}$com.content|strip_tags|mb_substr:0:200:"gbk"{/yun}...<a href="{yun:}curl url=id:$id,tp:intro{/yun}">查看更多</a>
+        </div>   
+    </div>
+  </div>
+  </div>
+    <div class="sidebar-left">
+    <div class="position">
+      <div class="position-title"><span>腾讯微博</span></div>
+      <div class="post_content">
+         <img src="{yun:}$com_style{/yun}images/img3.jpg" width="293"height="60">
+      <div class="weibo">
+        某某人才咨询有限公司是历史悠久的世界猎头组织旗下正式成员。公司拥有众多训练有素的全职顾问，
+        强大的服务支持与专业能力遍及中国最主要商业城市。以具有专业禀赋的灵活性和高效率，
+        为客户提供招聘解决方案...
+        </div>  
+      </div>
+    </div>
+  </div>
+
+  <div class="clear"></div>
+{yun:}include file="$comstyle/footer.htm"{/yun} 

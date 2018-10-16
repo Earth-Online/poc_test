@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" />
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script>
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp">
+  <div class="infoboxp_top">
+    <h6>问答列表</h6>
+  </div>
+  <div class="company_job">
+    <div class="company_job_list_h1"> <span class="company_m6" style="float:left; margin-left:10px;">
+      <form action="index.php" name="myform" method="get">
+        <input name="m" value="admin_question" type="hidden"/>
+		<span class="company_s_l"> <font color="#666;">检索类型：</font></span> 
+		<span class="company_fl">
+        <select name="type">
+          <option value="1" {yun:} if $get_type.type=="1"{/yun} selected="selected" {yun:}/if{/yun}>标题</option>
+          <option value="2" {yun:} if $get_type.type=="2"{/yun} selected="selected" {yun:}/if{/yun}>提问者</option>
+        </select>
+        </span>
+        <input  class="company_job_text" type="text" name="name"  size="25"/ style="float:left">
+        <input class="company_job_new_sub"  type="submit" name="news_search" value="检索问答"/>
+        &nbsp;
+      </form>
+      </span>
+	  	<span class="company_job_a"> <a href="{yun:}seacrh_url is_recom=1 m=admin_question untype=is_recom{/yun}" class="company_job_bg1">已推荐</a></span>
+        <span class="company_job_a">  <a href="{yun:}seacrh_url is_recom=0 m=admin_question untype=is_recom{/yun}" class="company_job_bg2">未推荐</a></span>
+		<span class="company_job_a"> <a href="index.php?m={yun:}$smarty.get.m{/yun}" class="company_job_all"><em>全部</em></a></span>
+	   </div>
+  </div>
+  <div class="table-list">
+    <div class="admin_table_border">
+      <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+      <form action="index.php" name="myform" method="get" target="supportiframe" id='myform'>
+        <input name="m" value="admin_question" type="hidden"/>
+        <input name="c" value="del" type="hidden"/>
+        <table width="100%">
+          <thead>
+            <tr class="admin_table_top">
+              <th style="width:20px;"><label for="chkall">
+                  <input type="checkbox" id='chkAll'  onclick='CheckAll(this.form)'/>
+                </label></th>
+              
+              <th style="width:60px;">
+			  {yun:}if $smarty.get.t=="id" && $smarty.get.order=="asc"{/yun}
+			  <a href="{yun:}seacrh_url order=desc t=id m=admin_question untype=order,t{/yun}">ID<img src="images/sanj.jpg"/></a>
+              {yun:}else{/yun}
+              <a href="{yun:}seacrh_url order=asc t=id m=admin_question untype=order,t{/yun}">ID<img src="images/sanj2.jpg"/></a>
+              {yun:}/if{/yun}
+			  </th>
+              <th align="left" style="width:250px;">标题</th>
+              <th>问题类别</th>
+              <th >提问者昵称</th>
+              
+              <th>
+			  {yun:}if $smarty.get.t=="answer_num" && $smarty.get.order=="asc"{/yun}
+			  <a href="{yun:}seacrh_url order=desc t=answer_num m=admin_question untype=order,t{/yun}">回答数<img src="images/sanj.jpg"/></a>
+              {yun:}else{/yun}
+              <a href="{yun:}seacrh_url order=asc t=answer_num m=admin_question untype=order,t{/yun}">回答数<img src="images/sanj2.jpg"/></a>
+              {yun:}/if{/yun}
+			  </th>
+              <th >是否推荐</th>
+              
+              <th>
+			  {yun:}if $smarty.get.t=="add_time" && $smarty.get.order=="asc"{/yun}
+			  <a href="{yun:}seacrh_url order=desc t=add_time m=admin_question untype=order,t{/yun}">提问时间<img src="images/sanj.jpg"/></a>
+              {yun:}else{/yun}
+              <a href="{yun:}seacrh_url order=asc t=add_time m=admin_question untype=order,t{/yun}">提问时间<img src="images/sanj2.jpg"/></a>
+              {yun:}/if{/yun}
+			  </th>
+              <th class="admin_table_th_bg">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+          
+          {yun:}foreach item=v key=key from=$question{/yun}
+          <tr align="center">
+            <td><input type="checkbox" value="{yun:}$v.id{/yun}"  name='del[]' onclick='unselectall()' rel="del_chk" /></td>
+            <td align="left" class="td1" style="text-align:center;"><span>{yun:}$v.id{/yun}</span></td>
+            <td class="od" align="left" style="width:300px;">{yun:}$v.title{/yun}</td>
+            <td>{yun:}if $v.classname{/yun}{yun:}$v.classname{/yun}{yun:}else{/yun}<font color="red">类别已被删除</font>{yun:}/if{/yun}</td>
+            <td>{yun:}$v.username{/yun}</td>
+            <td><a href="index.php?m=admin_question&c=get_answer&id={yun:}$v.id{/yun}">{yun:}$v.answer_num{/yun}</a></td>
+            <td>{yun:}if $v.is_recom=='0'{/yun}<img src="../data/ajax_img/errorico.gif">{yun:}else{/yun}<img src="../data/ajax_img/doneico.gif">{yun:}/if{/yun}</td>
+            <td class="td">{yun:}$v.add_time|date_format:"%Y-%m-%d"{/yun}</td>
+            <td><div class="admin_Operating_c" id="list_{yun:}$v.id{/yun}" aid="{yun:}$v.id{/yun}">
+                <div class="admin_Operating">操作</div>
+                <div class="admin_Operating_list admin_Operating_down" id="list{yun:}$v.id{/yun}" style="display:none;"> <a href="index.php?m=admin_question&c=get_answer&id={yun:}$v.id{/yun}" class="user_status admin_cz_sh">回答</a> <a href="index.php?m=admin_question&c=add&id={yun:}$v.id{/yun}" class="admin_cz_bj">编辑</a> <a href="javascript:void(0)" onClick="layer_del('确定要删除？', 'index.php?m=admin_question&c=del&id={yun:}$v.id{/yun}');" class="admin_cz_sc">删除</a></div>
+              </div></td>
+          </tr>
+          {yun:}/foreach{/yun}
+          <tr style="background:#f1f1f1;">
+            <td colspan="3" ><input class="admin_submit4"   type="button" name="delsub" value="删除所选" onClick="return really('del[]')" /></td>
+            <td colspan="6" class="digg">{yun:}$pagenav{/yun}</td>
+          </tr>
+            </tbody>
+          
+        </table>
+		<input type="hidden" name="pytoken"  id='pytoken' value="{yun:}$pytoken{/yun}">
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

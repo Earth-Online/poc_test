@@ -1,0 +1,94 @@
+{yun:}include file="$comstyle/header.htm"{/yun}
+<div class="w950">
+  <div class="admin_mainbody"> {yun:}include file="$comstyle/left.htm"{/yun}
+    <DIV class=right_box>
+      <DIV class=admincont_box>
+        <DIV class=admin_tit><SPAN class="admin_tit_bg">搜索职位</SPAN> </DIV>
+        <DIV class=admin_note>
+          <form action="" method="get" /> 
+          <UL>
+            <input name="c" type="hidden" value="search">
+            <LI><span class="span_name">输入职位名称：</span>
+              <input name="keyword" type="text"class="com_text_news">
+              <input  type="submit" class="com_tj" value="搜索已有职位">
+            </LI>
+          </UL>
+          </form>
+        </DIV>
+        <DIV class=admin_tit_right style="float:left">
+          <INPUT class=btn_02 onclick="location.href='index.php?c=jobadd'" type=button value="新增职位" name=input style="margin-right:10px;">
+        </DIV>
+        <DIV class=admin_textbox_04>
+			<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+		   <form action="index.php?c=job" method="post" id='myform' target="supportiframe">
+		 
+          <DIV class=table>
+            <DIV>
+              <DIV>
+                <TABLE id="job_checkbokid" cellSpacing=1 align=center border=0 class="com_table">
+                     <TBODY>
+                      <TR align=middle style="height:30px">
+                        <TH scope=col style="WIDTH: 5%"><input id='checkAll'  type="checkbox" onclick='m_checkAll(this.form)'></TH>
+                        <TH scope=col style="WIDTH: 10%">状态</TH>
+                        <TH scope=col>职位名称</TH>
+                        <TH scope=col style="WIDTH: 10%">发布日期</TH>
+                        <TH scope=col style="WIDTH: 10%">截止日期</TH>
+                        <TH scope=col style="WIDTH: 10%">更新日期</TH>
+                        <TH scope=col style="WIDTH: 8%">浏览量</TH>
+                        <TH scope=col style="WIDTH: 7%">简历量</TH>
+                        <TH scope=col style="WIDTH: 15%">操作</TH>
+                      </TR>
+                    {yun:}foreach item=v from=$rows{/yun}
+                    <TR style="height:30px">
+                      <TD><input type="checkbox" name="checkboxid[]" value="{yun:}$v.id{/yun}"></TD>
+                      <TD> {yun:}if $v.state=="0"{/yun} <font color=blue>等待审核</font>{yun:}/if{/yun}
+                        {yun:}if $v.state=="1"{/yun} <font color=green>已审核</font>{yun:}/if{/yun}
+                        {yun:}if $v.state=="2"{/yun} <font color=red>已结束</font>{yun:}/if{/yun} </TD>
+                      <TD>{yun:}$v.name{/yun}</TD>
+                      <TD>{yun:}$v.sdate|date_format:'%Y-%m-%d'{/yun}</TD>
+                      <TD>{yun:}$v.edate|date_format:'%Y-%m-%d'{/yun}</TD>
+                      <TD>{yun:}$v.lastupdate|date_format:'%Y-%m-%d'{/yun}</TD>
+                      <TD>{yun:}$v.jobhits{/yun}</TD>
+                      <TD> {yun:}if $jobnum[$v.id]{/yun} <A HREF="index.php?c=hr&job_id={yun:}$v.id{/yun}">查看</A> {yun:}else{/yun}
+                        0
+                        {yun:}/if{/yun} </TD>
+                      <TD><A href="index.php?c=jobadd&edit={yun:}$v.id{/yun}" >修改</A>&nbsp;<A  onclick="layer_del('确定要删除？', 'index.php?c=job&del={yun:}$v.id{/yun}');"href="javascript:void(0)">删除</A>&nbsp;
+					  
+					  {yun:}if $config.com_integral_online=='1'{/yun}
+                    <a {yun:}if $statis.vip_etime<time(){/yun}href="javascript:void(0)" onclick="layer_del('{yun:}if $statis.breakjob_num>0{/yun}刷新职位数还剩余{yun:}$statis.breakjob_num{/yun}个！确认刷新？{yun:}else{/yun}刷新职位要扣除{yun:}$config.integral_jobefresh{/yun}{yun:}$config.integral_pricename{/yun}！{yun:}/if{/yun}', 'index.php?c=job&up={yun:}$v.id{/yun}');"{yun:}else{/yun} href="javascript:void(0)"onclick="layer_del('', 'index.php?c=job&up={yun:}$v.id{/yun}'); "{yun:}/if{/yun} title="刷新">刷新</a>
+					{yun:}else{/yun}
+						{yun:}if $statis.vip_etime<time(){/yun}
+							{yun:}if $statis.breakjob_num>0{/yun}
+							<a href="javascript:void(0)" onclick="layer_del('刷新职位数还剩余{yun:}$statis.breakjob_num{/yun}个！确认刷新？', 'index.php?c=job&up={yun:}$v.id{/yun}');"  title="刷新">刷新</a>
+							{yun:}else{/yun}
+							<a  href="javascript:void(0)" onclick="job_refresh();"  title="刷新">刷新</a>	
+							{yun:}/if{/yun}
+						{yun:}else{/yun}
+							<a  href="javascript:void(0)" onclick="layer_del('', 'index.php?c=job&up={yun:}$v.id{/yun}');"  title="刷新">刷新</a>
+						{yun:}/if{/yun} 
+					{yun:}/if{/yun} 
+					</TD>
+                    </TR>
+                    {yun:}foreachelse{/yun}
+                    <tr>
+                      <td colspan="9">暂无相关信息！</td>
+                    </tr>
+                    {yun:}/foreach{/yun}
+                      </TBODY>
+                    
+                  
+                </TABLE>
+              </DIV>
+            </DIV>
+          </DIV>
+          <DIV>  
+		  <div class="clear"></div>
+            <span class="fltL"><INPUT class="btn_02" type="button" value="批量删除" onclick="return really('checkboxid[]');"></span>
+             <div class="diggg">{yun:}$pagenav{/yun}</div></DIV>
+		  </form>
+        </DIV>
+      </DIV>
+    </DIV>
+  </DIV>
+</DIV>
+{yun:}include file="$comstyle/footer.htm"{/yun}

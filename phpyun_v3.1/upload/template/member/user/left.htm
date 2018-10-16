@@ -1,0 +1,71 @@
+<div class="mian_left mt20 fltL">
+  <div class="mian_left_top">
+    <div class="userinfobox mt10">
+      <dl class="per_Data">
+        <dt> <a href="index.php?c=uppic"> <img src=".{yun:}$user_photo{/yun}" border="0" height="100" width="80" onerror="showImgDelay(this,'{yun:}$config.sy_weburl{/yun}/{yun:}$config.sy_member_icon{/yun}',2);"/></a> </dt>
+        <dd>
+          <div class="text-name"><span>{yun:}$username{/yun}</span></div>
+          <div class="text"><span>认证：</span>{yun:}if $idcard_pic&&$idcard_status=='1'{/yun}<img src="{yun:}$userstyle{/yun}/images/yun_m_rz.gif">{yun:}else{/yun}<img src="{yun:}$userstyle{/yun}/images/yun_m_wrz.gif">{yun:}/if{/yun}</div>
+          <div class="text mt5"><span>{yun:}$useremail{/yun}</span></div>
+          <div class="text_xx"><a href="index.php?c=uppic" title="更换形象照">更换形象照</a></div>
+          
+      <span class="header_Remind header_Remind_hover" onMouseMove="Remind_show();"> <em class="header_Remind_em">提醒（<b>{yun:}$cookie.remind_num{/yun}</b>）</em>
+      <div class="header_Remind_list" style="display:none;">
+      <div class="header_Remind_close"><a href="javascript:Remind_hide();" title="关闭"></a></div>
+      <p class="header_Remind_icon1"><a href="{yun:}$config.sy_weburl{/yun}/member/index.php?c=msg">邀请面试(<font color="#FF0000">{yun:}$cookie.userid_msg{/yun}</font>)</a></p>
+      <p class="header_Remind_icon2"><a href="{yun:}$config.sy_weburl{/yun}/friend/index.php?c=applyfriend">邀请好友(<font color="#FF0000">{yun:}$cookie.friend1{/yun}</font>)</a></p>
+      <p class="header_Remind_icon3"><a href="{yun:}$config.sy_weburl{/yun}/member/index.php?c=xin">私信(<font color="#FF0000">{yun:}$cookie.friend_message1{/yun}</font>)</a></p>
+      <p class="header_Remind_icon4"><a href="{yun:}$config.sy_weburl{/yun}/member/index.php?c=seemessage">站内信(<font color="#FF0000">{yun:}$cookie.message1{/yun}</font>)</a></p>
+      <p class="header_Remind_icon5"><a href="{yun:}$config.sy_weburl{/yun}/member/index.php?c=commsg">企业回复咨询(<font color="#FF0000">{yun:}$cookie.usermsg{/yun}</font>)</a></p>
+ 
+   </div>
+      </span> 
+        </dd>
+      </dl>
+    </div> 
+    <div class="clear"></div>
+    <div class="per_Data_msg"><a href="index.php?c=info" title="个人基本信息">个人基本信息</a></div>
+    <div class="clear"></div>
+    <div class="left_nav">
+      <ul>
+        <li><a href="index.php?c=info">修改资料</a></li>
+        <li class="left_nav_end"> <a href="index.php?c=passwd">修改密码</a></li>
+        <li><a href="index.php?c=verifica">身份验证</a></li>
+        <li class="left_nav_end"> <a href="index.php?c=message">留言反馈</a> </li>
+      
+      </ul>
+      <div class="clear"></div>
+      <div class="per_Data_msg perleft_nav_logout"><a href="javascript:void(0)" onclick="logout('index.php?c=logout')" title="安全退出">安全退出</a></div>
+    </div>
+  </div>
+ 
+  <div class="mian_left_top mt10">
+    <div class="mian_left_h1">快捷方式</div>
+    <div class="subnav_left">
+      <dl class="subnav_left_list">
+        <dt><img src="{yun:}$userstyle{/yun}/images/icon3.jpg"></dt>
+        <dd> <a href="index.php?c=seemessage">消息管理</a>
+          <p>设置账号的相关信息</p>
+        </dd>
+      </dl>
+      <dl class="subnav_left_list">
+        <dt><img src="{yun:}$userstyle{/yun}/images/icon5.jpg"></dt>
+        <dd><a href="index.php?c=my_question&type=0">问答管理</a>
+          <p>向网友咨询心中疑问</p>
+        </dd>
+      </dl>
+      <dl class="subnav_left_list">
+        <dt><img src="{yun:}$userstyle{/yun}/images/icon6.jpg"></dt>
+        <dd><a href="{yun:}$config.sy_weburl{/yun}/friend/">好友管理</a>
+          <p>了解职场上的相关问题</p>
+        </dd>
+      </dl>
+      <dl class="subnav_left_list">
+        <dt><img src="{yun:}$userstyle{/yun}/images/icon1.jpg"></dt>
+        <dd><a href="{yun:}$config.sy_weburl{/yun}">返回首页</a>
+          <p>返回{yun:}$config.sy_webname{/yun}首页</p>
+        </dd>
+      </dl>
+    </div>
+  </div>
+</div>

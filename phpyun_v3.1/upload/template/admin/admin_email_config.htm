@@ -1,0 +1,350 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" />
+
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script>
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp">
+<div id="subboxdiv" style="width:100%;height:100%;display:none;position:absolute;"></div>
+<div class="infoboxp_top"><h6>邮件配置</h6></div>
+<div class="main_tag">
+<ul>
+	<li class="on">邮件配置</li>
+    <li>模板配置</li>
+</ul>
+<div class="clear"></div>
+<div class="tag_box">
+<div>
+<style>
+#xubox_prompt{height:20px; line-height:20px;}
+</style>
+<input type="hidden" name="pytoken" id='pytoken' value="{yun:}$pytoken{/yun}">
+
+<table width="100%" class="table_form">
+    <tr class="admin_table_trbg">
+          <th width="160">参数说明：</th>
+          <td>参数值</td>
+          <td width="160">变量</td>
+    </tr>
+	<tr>
+		<th width="160" style="width:160px;">邮件发送方式：</th>
+		<td>
+              <input type="radio" name="sy_email_online" value="1" id="sy_email_online_0" {yun:}if $config.sy_email_online=="1"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_email_online_0">SMTP服务器发送邮件</label>
+              <input type="radio" name="sy_email_online" value="2" id="sy_email_online_1" {yun:}if $config.sy_email_online=="2"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_email_online_1">PHP函数SMTP发送邮件</label>
+            </td>
+            <td width="160">sy_email_online</td>
+	</tr>
+	<tr class="email admin_table_trbg">
+		<th width="160">SMTP服务器：</th>
+		<td><input class="input-text tips_class" type="text" name="sy_smtpserver" id="sy_smtpserver" value="{yun:}$config.sy_smtpserver{/yun}" size="30" maxlength="255"/><font color="gray" style="display:none">如：smtp.163.com</font></td>
+        <td width="160">sy_smtpserver</td>
+	</tr>
+	<tr class="email">
+		<th width="160">SMTP服务器的用户邮箱：</th>
+		<td><input class="input-text tips_class" type="text" name="sy_smtpemail" id="sy_smtpemail" value="{yun:}$config.sy_smtpemail{/yun}" size="30" maxlength="255"/><font color="gray" style="display:none">如：phpyun@163.com</font></td>
+        <td width="160">sy_smtpemail</td>
+	</tr>
+	<tr class="email admin_table_trbg">
+		<th width="160">用户帐号：</th>
+		<td><input class="input-text tips_class" type="text" name="sy_smtpuser" id="sy_smtpuser" value="{yun:}$config.sy_smtpuser{/yun}" size="30" maxlength="255"/><font color="gray" style="display:none">如：phpyun</font></td>
+        <td width="160">sy_smtpuser</td>
+	</tr>
+	<tr class="email">
+		<th width="160">用户密码：</th>
+		<td><input class="input-text tips_class" type="password" name="sy_smtppass" id="sy_smtppass" value="{yun:}$config.sy_smtppass{/yun}" size="30" maxlength="255"/></td>
+        <td width="160">sy_smtppass</td>
+	</tr>
+	<tr class="email admin_table_trbg">
+		<th width="160">SMTP服务器端口: </th>
+		<td><input class="input-text tips_class" type="text" name="sy_smtpserverport" id="sy_smtpserverport" value="{yun:}$config.sy_smtpserverport{/yun}" size="30" maxlength="255"/><font color="gray" style="display:none">如：25</font></td>
+        <td width="160">sy_smtpserverport</td>
+	</tr>
+	<tr>
+		<td colspan="2" align="center"><input class="admin_submit4"   type="button" onclick="prompt()"  value="测试" />&nbsp;&nbsp;<input class="admin_submit4" id="mconfig" type="button" name="config" value="提交" />&nbsp;&nbsp;<input class="admin_submit4" type="reset" value="重置" /></td>
+	</tr>
+</table>
+</div>
+<div class="hiddendiv">
+    <table width="100%" class="table_form">
+    <tr class="admin_table_trbg">
+          <th width="160">参数说明：</th>
+          <td>参数值</td>
+          <td width="160">变量</td>
+    </tr>
+        <tr>
+            <th width="160">注册会员：</th>
+            <td>
+              <input type="radio" name="sy_email_reg" value="1" id="sy_email_reg_0" {yun:}if $config.sy_email_reg=="1"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_email_reg_0">通知</label>
+              <input type="radio" name="sy_email_reg" value="2" id="sy_email_reg_1" {yun:}if $config.sy_email_reg=="2"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_email_reg_1">不通知</label>&nbsp;&nbsp;
+              <a href="?m=emailconfig&c=settpl&name=emailreg" style="color:blue;">配置模板</a>
+             </td>
+              <td width="160">sy_email_reg</td>
+        </tr>
+         <tr class="admin_table_trbg">
+            <th width="160">找回密码：</th>
+            <td>
+              <input type="radio" name="sy_email_getpass" value="1" id="sy_email_getpass_0" {yun:}if $config.sy_email_getpass=="1"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_email_getpass_0">通知</label>
+              <input type="radio" name="sy_email_getpass" value="2" id="sy_email_getpass_1" {yun:}if $config.sy_email_getpass=="2"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_email_getpass_1">不通知</label>&nbsp;&nbsp;
+              <a href="?m=emailconfig&c=settpl&name=emailgetpass" style="color:blue;">配置模板</a>
+             </td>
+             <td width="160">sy_email_getpass</td>
+        </tr>
+        <tr>
+            <th width="160">邀请面试：</th>
+            <td>
+              <input type="radio" name="sy_email_yqms" value="1" id="sy_email_yqms_0" {yun:}if $config.sy_email_yqms=="1"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_email_yqms_0">通知</label>
+              <input type="radio" name="sy_email_yqms" value="2" id="sy_email_yqms_1" {yun:}if $config.sy_email_yqms=="2"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_email_yqms_1">不通知</label>&nbsp;&nbsp;
+              <a href="?m=emailconfig&c=settpl&name=emailyqms" style="color:blue;">配置模板</a>
+             </td>
+             <td width="160">sy_email_yqms</td>
+        </tr>
+      <tr class="admin_table_trbg">
+            <th width="160">付款成功：</th>
+            <td>
+              <input type="radio" name="sy_email_fkcg" value="1" id="sy_email_fkcg_0" {yun:}if $config.sy_email_fkcg=="1"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_email_fkcg_0">通知</label>
+              <input type="radio" name="sy_email_fkcg" value="2" id="sy_email_fkcg_1" {yun:}if $config.sy_email_fkcg=="2"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_email_fkcg_1">不通知</label>&nbsp;&nbsp;
+              <a href="?m=emailconfig&c=settpl&name=emailfkcg" style="color:blue;">配置模板</a>
+             </td>
+             <td width="160">sy_email_fkcg</td>
+        </tr>
+        <tr>
+            <th width="160">职位审核通过：</th>
+            <td>
+              <input type="radio" name="sy_email_zzshtg" value="1" id="sy_email_zzshtg_0" {yun:}if $config.sy_email_zzshtg=="1"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_email_zzshtg_0">通知</label>
+              <input type="radio" name="sy_email_zzshtg" value="2" id="sy_email_zzshtg_1" {yun:}if $config.sy_email_zzshtg=="2"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_email_zzshtg_1">不通知</label>&nbsp;&nbsp;
+              <a href="?m=emailconfig&c=settpl&name=emailzzshtg" style="color:blue;">配置模板</a>
+             </td>
+             <td width="160">sy_email_zzshtg</td>
+        </tr>
+       <tr class="admin_table_trbg">
+            <th width="160">职位审核未通过：</th>
+            <td>
+              <input type="radio" name="sy_email_zzshwtg" value="1" id="sy_email_zzshwtg_0" {yun:}if $config.sy_email_zzshwtg=="1"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_email_zzshwtg_0">通知</label>
+              <input type="radio" name="sy_email_zzshwtg" value="2" id="sy_email_zzshwtg_1" {yun:}if $config.sy_email_zzshwtg=="2"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_email_zzshwtg_1">不通知</label>&nbsp;&nbsp;
+              <a href="?m=emailconfig&c=settpl&name=emailzzshwtg" style="color:blue;">配置模板</a>
+             </td>
+             <td width="160">sy_email_zzshwtg</td>
+        </tr>
+        <tr>
+            <th width="160">申请职位：</th>
+            <td>
+              <input type="radio" name="sy_email_sqzw" value="1" id="sy_email_sqzw_0" {yun:}if $config.sy_email_sqzw=="1"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_email_sqzw_0">通知</label>
+              <input type="radio" name="sy_email_sqzw" value="2" id="sy_email_sqzw_1" {yun:}if $config.sy_email_sqzw=="2"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_email_sqzw_1">不通知</label>&nbsp;&nbsp;
+              <a href="?m=emailconfig&c=settpl&name=emailsqzw" style="color:blue;">配置模板</a>
+             </td>
+             <td width="160">sy_email_sqzw</td>
+        </tr>
+     <tr class="admin_table_trbg">
+            <th width="160">职位过期提醒：</th>
+            <td>
+              <input type="radio" name="sy_email_jobed" value="1" id="sy_email_jobed_0" {yun:}if $config.sy_email_jobed=="1"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_email_jobed_0">通知</label>
+              <input type="radio" name="sy_email_jobed" value="2" id="sy_email_jobed_1" {yun:}if $config.sy_email_jobed=="2"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_email_jobed_1">不通知</label>&nbsp;&nbsp;
+              <a href="?m=emailconfig&c=settpl&name=emailjobed" style="color:blue;">配置模板</a>
+             </td>
+             <td width="160">sy_email_jobed</td>
+        </tr>
+        <tr>
+            <th width="160">邮箱认证：</th>
+            <td>
+              <input type="radio" name="sy_email_cert" value="1" id="sy_email_cert_0" {yun:}if $config.sy_email_cert=="1"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_email_cert_0">通知</label>
+              <input type="radio" name="sy_email_cert" value="2" id="sy_email_cert_1" {yun:}if $config.sy_email_cert=="2"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_email_cert_1">不通知</label>&nbsp;&nbsp;
+              <a href="?m=emailconfig&c=settpl&name=emailcert" style="color:blue;">配置模板</a>
+             </td>
+             <td width="160">sy_email_cert</td>
+        </tr>
+    <tr class="admin_table_trbg">
+            <th width="160">会员锁定：</th>
+            <td>
+              <input type="radio" name="sy_email_lock" value="1" id="sy_email_lock_0" {yun:}if $config.sy_email_lock=="1"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_email_lock_0">通知</label>
+              <input type="radio" name="sy_email_lock" value="2" id="sy_email_lock_1" {yun:}if $config.sy_email_lock=="2"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_email_lock_1">不通知</label>&nbsp;&nbsp;
+              <a href="?m=emailconfig&c=settpl&name=emaillock" style="color:blue;">配置模板</a>
+             </td>
+             <td width="160">sy_email_lock</td>
+        </tr>
+    <tr>
+            <th width="160">会员审核：</th>
+            <td>
+              <input type="radio" name="sy_email_userstatus" value="1" id="sy_email_userstatus_0" {yun:}if $config.sy_email_userstatus=="1"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_email_userstatus_0">通知</label>
+              <input type="radio" name="sy_email_userstatus" value="2" id="sy_email_userstatus_1" {yun:}if $config.sy_email_userstatus=="2"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_email_userstatus_1">不通知</label>&nbsp;&nbsp;
+              <a href="?m=emailconfig&c=settpl&name=emailuserstatus" style="color:blue;">配置模板</a>
+             </td>
+             <td width="160">sy_email_userstatus</td>
+        </tr>
+        <tr class="admin_table_trbg">
+            <th width="160">企业营业执照审核：</th>
+            <td>
+              <input type="radio" name="sy_email_comcert" value="1" id="sy_email_comcert_0" {yun:}if $config.sy_email_comcert=="1"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_email_comcert_0">通知</label>
+              <input type="radio" name="sy_email_comcert" value="2" id="sy_email_comcert_1" {yun:}if $config.sy_email_comcert=="2"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_email_comcert_1">不通知</label>&nbsp;&nbsp;
+              <a href="?m=emailconfig&c=settpl&name=emailcomcert" style="color:blue;">配置模板</a>
+             </td>
+             <td width="160">sy_email_comcert</td>
+        </tr>
+     	<tr >
+            <th width="160">个人身份认证审核：</th>
+            <td>
+              <input type="radio" name="sy_email_usercert" value="1" id="sy_email_usercert_0" {yun:}if $config.sy_email_usercert=="1"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_email_usercert_0">通知</label>
+              <input type="radio" name="sy_email_usercert" value="2" id="sy_email_usercert_1" {yun:}if $config.sy_email_usercert=="2"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_email_usercert_1">不通知</label>&nbsp;&nbsp;
+              <a href="?m=emailconfig&c=settpl&name=emailusercert" style="color:blue;">配置模板</a>
+             </td>
+             <td width="160">sy_email_usercert</td>
+        </tr>
+     	<tr class="admin_table_trbg">
+            <th width="160">会员提醒：</th>
+            <td>
+              <input type="radio" name="sy_email_remind" value="1" id="sy_email_remind_0" {yun:}if $config.sy_email_remind=="1"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_email_remind_0">通知</label>
+              <input type="radio" name="sy_email_remind" value="2" id="sy_email_remind_1" {yun:}if $config.sy_email_remind=="2"{/yun}checked{yun:}/if{/yun}>
+              <label for="sy_email_remind_1">不通知</label>&nbsp;&nbsp;
+              <a href="?m=emailconfig&c=settpl&name=emailremind" style="color:blue;">配置模板</a>
+             </td>
+             <td width="160">sy_email_remind</td>
+        </tr>
+
+        <tr>
+            <td colspan="2" align="center"><input class="admin_submit4" id="msgconfig" type="button" name="msgconfig" value="提交" />&nbsp;&nbsp;<input class="admin_submit4" type="reset" value="重置" /></td>
+        </tr>
+    </table>
+</div>
+</div>
+</div>
+<input type="hidden" id="emailconfig" value="{yun:}$emailconfig{/yun}">
+<script>
+layer.use('extend/layer.ext.js')
+function prompt(){
+	var emailconfig=$("#emailconfig").val();
+	if(emailconfig==1){
+		parent.layer.msg('请先保存邮箱配置！', 2, 8);return false;
+	}
+	layer.prompt({height:'20px',title: '测试发送',top:'50px'}, function(val){
+		if(val){
+			var myreg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((.[a-zA-Z0-9_-]{2,3}){1,2})$/;
+			var pytoken=$("#pytoken").val();
+			if(!myreg.test(val)){
+				parent.layer.msg('邮箱格式不正确，请重新输入！', 2, 8);return false;
+			}else{
+				parent.layer.load('发送中…',0);
+				$.post("index.php?m=emailconfig&c=ceshi",{ceshi_email:val,pytoken:pytoken},function(data){
+					var data=eval('('+data+')');
+					parent.layer.msg(data.msg, 2, Number(data.type),function(){location.reload();});return false;
+				});
+			}
+		}else{
+			parent.layer.msg('请输入邮箱！',2,8);return false;
+		}
+	})
+}
+var $switchtag = $("div.main_tag ul li");
+$switchtag.click(function(){
+	$(this).addClass("on")
+		.siblings().removeClass("on");
+	var index = $switchtag.index(this);
+	$("div.tag_box > div")
+		.eq(index).show()
+		.siblings().hide();
+});
+$(".tips_class").hover(function(){
+	var msg_id=$(this).attr('id');
+	var msg=$('#'+msg_id+' + font').html();
+	if($.trim(msg)!=''){
+		layer.tips(msg, this, {
+		guide: 1,
+		style: ['background-color:#F26C4F; color:#fff;top:-7px', '#F26C4F']
+		});
+	}
+},function(){
+	var msg_id=$(this).attr('id');
+	var msg=$('#'+msg_id+' + font').html();
+	if($.trim(msg)!=''){
+		layer.closeTips();
+	}
+});
+$(function(){
+	if("{yun:}$config.sy_email_online{/yun}"=="2"){
+		$(".email").hide();
+	}
+	$("input[name=sy_email_online]").click(function(){
+		var value=$(this).val();
+		if(value==2){
+			$(".email").hide();
+		}else{
+			$(".email").show();
+		}
+	})
+	$("#mconfig").click(function(){
+		$.post("index.php?m=emailconfig&c=save",{
+			config : $("#mconfig").val(),
+			sy_email_online : $("input[name=sy_email_online]:checked").val(),
+			sy_smtpemail : $("#sy_smtpemail").val(),
+			sy_smtpuser : $("#sy_smtpuser").val(),
+			sy_smtpserver : $("#sy_smtpserver").val(),
+			sy_smtppass : $("#sy_smtppass").val(),
+			pytoken : $("#pytoken").val(),
+			sy_smtpserverport : $("#sy_smtpserverport").val()
+		},function(data,textStatus){
+			config_msg(data);
+		});
+	});
+	$("#msgconfig").click(function(){
+		$.post("index.php?m=emailconfig&c=save",{
+			config : $("#msgconfig").val(),
+			sy_email_yqms : $("input[name=sy_email_yqms]:checked").val(),
+			sy_email_getpass : $("input[name=sy_email_getpass]:checked").val(),
+			sy_email_reg : $("input[name=sy_email_reg]:checked").val(),
+			sy_email_fkcg : $("input[name=sy_email_fkcg]:checked").val(),
+			sy_email_zzshtg : $("input[name=sy_email_zzshtg]:checked").val(),
+			sy_email_zzshwtg : $("input[name=sy_email_zzshwtg]:checked").val(),
+			sy_email_cert : $("input[name=sy_email_cert]:checked").val(),
+			sy_email_lock : $("input[name=sy_email_lock]:checked").val(),
+			sy_email_userstatus : $("input[name=sy_email_userstatus]:checked").val(),
+			sy_email_sqzw : $("input[name=sy_email_sqzw]:checked").val(),
+			sy_email_jobed : $("input[name=sy_email_jobed]:checked").val(),
+			sy_email_comcert : $("input[name=sy_email_comcert]:checked").val(),
+			sy_email_remind : $("input[name=sy_email_remind]:checked").val(),
+			pytoken : $("#pytoken").val(),
+			sy_email_usercert : $("input[name=sy_email_usercert]:checked").val()
+		},function(data,textStatus){
+			config_msg(data);
+		});
+	});
+})
+
+</script>
+</div>
+</body>
+</html>

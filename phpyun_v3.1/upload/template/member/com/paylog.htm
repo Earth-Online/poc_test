@@ -1,0 +1,132 @@
+{yun:}include file="$comstyle/header.htm"{/yun}
+<div class="w950">
+  <div class="admin_mainbody"> {yun:}include file="$comstyle/left.htm"{/yun}
+    <script>
+
+$(document).ready(function(){
+	$('.cancel_btn').click(function(){
+		layer.closeAll();
+	});
+	$(".status").click(function(){
+		$("#paylog_id").val($(this).attr("id"));
+		$("#alertcontent").val($(this).attr("remark"));
+		$.layer({
+			type : 1,
+			title :'备注',
+			offset: [($(window).height() - 200)/2 + 'px', ''],
+			closeBtn : [0 , true],
+			border : [10 , 0.3 , '#000', true],
+			area : ['320px','200px'],
+			page : {dom :"#infobox"}
+		});
+	});
+
+});
+
+</script>
+    <div class=right_box>
+    <div class=admincont_box>
+    <div class=admin_tit><span class="admin_tit_bg">{yun:}if $ordertype{/yun}消费记录{yun:}else{/yun}充值记录{yun:}/if{/yun}</span> </div>
+    <div class=admin_tit_right style="float:left">
+      <input class=btn_02 onclick="location.href='index.php?c=pay'" type=button value=现在充值 name=input  style="margin-right:10px;">
+    </div>
+    <div class=admin_textbox_04>
+    <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+    <form action="{yun:}$now_url{/yun}" target="supportiframe" method="post" id='myform'>
+      <div class=table> 
+	  {yun:}if $ordertype{/yun}
+        <table id="job_checkbokid" cellSpacing=1 align=center border=0  class="com_table">
+          <tbody>
+            <tr align=middle >
+              <th scope=col >消费单号</th>
+              <th scope=col >金额</th>
+              <th scope=col >{yun:}$config.integral_pricename{/yun}</th>
+              <th scope=col>状态</th>
+              <th scope=col >备注</th>
+              <th scope=col >时间</th>
+            </tr>
+          {yun:}foreach from=$rows item=log{/yun}
+          {yun:}assign var="state" value=$log.pay_state{/yun}
+          <tr style="height:30px">
+            <td>{yun:}$log.order_id{/yun}</td>
+            <td>{yun:}if $log.type==2{/yun}{yun:}$log.order_price{/yun}{yun:}else{/yun}0{yun:}/if{/yun}</td>
+            <td>{yun:}if $log.type!=2{/yun}{yun:}$log.order_price{/yun}{yun:}else{/yun}0{yun:}/if{/yun}</td>
+            <td>{yun:}$arr_data.paystate.$state{/yun}</td>
+            <td>{yun:}$log.pay_remark{/yun}&nbsp;</td>
+            <td>{yun:}$log.pay_time{/yun}</td>
+          </tr>
+          {yun:}foreachelse{/yun}
+          <tr style="height:30px">
+            <td colspan="6">您还没有充值记录。</td>
+          </tr>
+          {yun:}/foreach{/yun}
+            </tbody>
+
+        </table>
+        {yun:}else{/yun}
+        <table id="job_checkbokid" cellSpacing=1 align=center border=0 class="com_table">
+          <tbody>
+            <tr align=middle style="height:30px">
+              <th scope=col >充值单号</th>
+              <th scope=col>支付类型</th>
+              <th scope=col >金额</th>
+              <th scope=col >状态</th>
+              <th scope=col >备注</th>
+              <th scope=col >时间</th>
+              <th scope=col >操作</th>
+            </tr>
+          {yun:}foreach from=$rows item=log{/yun}
+          {yun:}assign var="state" value=$log.order_state{/yun}
+          {yun:}assign var="type" value=$log.order_type{/yun}
+          <tr>
+            <td>{yun:}$log.order_id{/yun}</td>
+            <td>{yun:}if $type{/yun}{yun:}$arr_data.pay.$type{/yun}{yun:}else{/yun}手动{yun:}/if{/yun}</td>
+            <td>{yun:}$log.order_price{/yun}</td>
+            <td>{yun:}$arr_data.paystate.$state{/yun}</td>
+            <td><div style="width:150px;">{yun:}$log.order_remark{/yun}</div></td>
+            <td>{yun:}$log.order_time|date_format:'%Y-%m-%d %H:%M:%S'{/yun}</td>
+            <td>
+			{yun:}if $log.order_type=='bank'&&$log.order_state!='2'{/yun} <a href="javascript:;" id="{yun:}$log.id{/yun}" class="status" remark="{yun:}$log.order_remark{/yun}">备注修改</a>| {yun:}/if{/yun}
+              {yun:}if $log.order_state=='1' && $log.order_type!='bank'{/yun} <a href="index.php?c=payment&id={yun:}$log.id{/yun}" >去付款</a><br/>
+              <a href="javascript:void(0)" onclick="del_pay({yun:}$log.id{/yun})">取消充值</a> {yun:}else{/yun}
+              {yun:}$arr_data.paystate.$state{/yun}
+              {yun:}/if{/yun}
+			  </td>
+          </tr>
+          {yun:}foreachelse{/yun}
+          <tr style="height:30px">
+            <td colspan="7">您还没有充值记录。</td>
+          </tr>
+          {yun:}/foreach{/yun}
+            </tbody>
+
+        </table>
+        {yun:}/if{/yun}   
+      <div>
+        <div style="clear:both"></div>
+        <div class="diggg">{yun:}$pagenav{/yun}</div>
+      </div> 
+      </div> 
+    </form>
+    <div class="clear"></div>
+	<div class="infoboxp22" id="infobox" style="display:none; ">
+      <div>
+        <form action="index.php?c=paylog" method="post" id="formstatus" target="supportiframe" onsubmit="return paylog_remark();">
+          <div class="jb_infobox" style="width: 100%;">
+            <input name="id" id='paylog_id' type="hidden">
+			 <textarea id="alertcontent" style="width:310px;margin:5px;height:100px" name="order_remark" cols="30" rows="9" class="hr_textarea"></textarea>
+          </div>
+          <div class="jb_infobox" style="width: 100%;">
+            <button type="submit" name='submit' value='1' class="submit_btn" style="margin-left:80px;">确认</button>
+            &nbsp;&nbsp;
+            <button type="button"  id='zxxCancelBtn'  class="cancel_btn">取消</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</div> 
+{yun:}include file="$comstyle/footer.htm"{/yun}

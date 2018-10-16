@@ -1,0 +1,32 @@
+{yun:}include file="$wapstyle/header_cont.htm"{/yun}
+<div class="fm">
+  <form action="index.php" method="get">
+    <input type="hidden" name="m" value="firm" />
+    <div class="seach_post">
+      <input type="text" name="keyword" value="{yun:}$smarty.get.keyword{/yun}"  class="seach_post_text placeholder" placeholder="请输入关键字/职位/地点搜索" />
+     
+    </div>
+    <div class="seach_post_sel">
+      <select name="hy" class="seach_post_select">
+        <option value="">选择行业</option>
+        
+{yun:}foreach from=$industry_index item=v{/yun}
+<option value="{yun:}$v{/yun}" {yun:}if $smarty.get.hy==$v{/yun}selected{yun:}/if{/yun}>{yun:}$industry_name[$v]{/yun}</option>
+        
+{yun:}/foreach{/yun}
+
+      </select>
+    </div>
+<div class="seach_post_sel">
+<input type="submit" value="搜索"class="seach_post_sub" />
+</div>
+  </form>
+</div>
+<section>
+  <div class="main"> {yun:}comlist ispage=1 firm=1 firmpic=1 ismsg=1 hy=auto.hy pr=auto.pr mun=auto.mun provinceid=auto.provinceid cityid=auto.cityid three_cityid=auto.three_cityid keyword=auto.keyword limit=20 islt=4 item=list{/yun} <a href="{yun:}wapurl url=m:firm,c:show,id:`$list.uid`{/yun}"class="index_post_list_b index_post_list_b_com">
+    <h3>{yun:}$list.name|mb_substr:0:12:'gbk'{/yun} </h3>
+    <i>{yun:}$list.job_city_one{/yun}-{yun:}$list.job_city_two{/yun}</i> </a> {yun:}/comlist{/yun} </div>
+</section>
+<div class="pages"> {yun:}$pagenav{/yun}</div>
+<div>
+{yun:}include file="$wapstyle/footer.htm"{/yun} 

@@ -1,0 +1,334 @@
+<!DOCtYPE html PUBLIC "-//W3C//DtD XHtML 1.0 transitional//EN" "http://www.w3.org/tR/xhtml1/DtD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{yun:}$title{/yun}</title>
+<META name=keywords content="{yun:}$keywords{/yun}">
+<META name=description content="{yun:}$description{/yun}">
+<link rel="stylesheet"  type="text/css" href="{yun:}$style{/yun}/style/Resume2.css">
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/public.js" language="javascript"></script>
+<script src="{yun:}$style{/yun}/js/resume.js" language="javascript"></script>
+<!--[if IE 6]>
+<script src="{yun:}$config.sy_weburl{/yun}/js/png.js"></script>
+<script>
+DD_belatedPNG.fix('.png');
+</script>
+<![endif]-->
+
+</head>
+<body>
+<div class="container">
+  <div class="head">
+    <div class="resume_gj"><img src="{yun:}$style{/yun}/images/yun_gj.png" class="png"></div>
+    <div class="header_right"> <span>&middot;<a onClick="window.print();" target="_blank" href="javascript:;">打印简历</a></span> <span>&middot;<a href="javascript:;" class="lt_down_resume" id="down_resume">下载简历</a></span> </div >
+    <div class="logo_1"><a href="{yun:}$config.sy_weburl{/yun}"><img src="{yun:}$config.sy_weburl{/yun}/{yun:}$config.sy_logo{/yun}" class="png"></a></div>
+    <div class="clear"></div>
+    <div class="menu1_top">
+      <div> <span style="color:#f60; font-size:28px;">{yun:}$Info.username_n{/yun}</span> 个人简历 <span>(简历编号：NO.{yun:}$Info.id{/yun})</span> </div>
+      <p>目前供职情况：我目前处于离职状态（或还未就业状态）。 </p>
+    </div>
+  </div>
+  <div class="clear"></div>
+  <div class="menu1Content ">
+    <div class="resume_cont">
+      <div class="note "> <span>简历名称：<font color="#0033FF">{yun:}$Info.r_name{/yun}</font></span> <span>[浏览次数]：<font color="#FF0000">{yun:}$Info.hits{/yun}</font></span> <span>更新时间：<font color="#FF0000">{yun:}$Info.lastupdate{/yun}</font></span> </div>
+      <div class=""> </div>
+      <div class="yun_content">
+        <div class="title bor_top">
+          <div class="photo">
+            <div><img src="{yun:}$Info.resume_photo{/yun}" width="120" height="150" onerror="showImgDelay(this,'{yun:}$config.sy_weburl{/yun}/{yun:}$config.sy_member_icon{/yun}',2);"></div>
+          </div>
+          <h1>个人基本信息</h1>
+          <div class="list clear">
+            <div class="list_n"><span>姓名</span></div>
+            <div class="list_2" >{yun:}$Info.username_n{/yun}</div>
+            <div class="list_n"><span>性别</span></div>
+            <div class="list_2">{yun:}$Info.user_sex{/yun}</div>
+            <div class="list_n"><span>出生日期</span></div>
+            <div class="list_2 w144">{yun:}$Info.birthday|date_format:"%Y年%m月%d日"{/yun}</div>
+          </div>
+          {yun:}if $Info.basic_info=='1'||$Info.basic_info=='1'{/yun}
+          <div class="list clear"> {yun:}if $config.user_idcard=="0"||$Info.basic_info=='0'{/yun}
+            <div class="list_n"><span>身份证号</span></div>
+            <div class="list_2 list_3" style="color:red">{yun:}image uid=$Info.uid action=idcard width=180{/yun}{yun:}if $Info.idcard_status==1{/yun}已认证{yun:}/if{/yun}</div>
+            {yun:}/if{/yun} 
+            {yun:}if $Info.basic_info=='1'{/yun}
+            <div class="list_n"><span>籍贯</span></div>
+            <div class="list_2 w144">{yun:}$Info.domicile{/yun}</div>
+            {yun:}/if{/yun} </div>
+          {yun:}/if{/yun} 
+          {yun:}if $Info.basic_info=='1'{/yun}
+          <div class="list clear">
+            <div class="list_n"><span>身高</span></div>
+            <div class="list_2">{yun:}$Info.height{/yun}cm</div>
+            <div class="list_n"><span>体重</span></div>
+            <div class="list_2">{yun:}$Info.weight{/yun}kg</div>
+            <div class="list_n"><span> 民族</span></div>
+            <div class="list_2 w144">{yun:}$Info.nationality{/yun}</div>
+          </div>
+          {yun:}/if{/yun}
+          <div class="list clear"> 
+         
+            <div class="list_n"><span>学历</span></div>
+            <div class="list_2">{yun:}$Info.useredu{/yun}</div>
+            <div class="list_n"><span>工作经验</span></div>
+            <div class="list_2">{yun:}$Info.user_exp{/yun}</div>
+             {yun:}if $Info.basic_info=='1'{/yun}
+            <div class="list_n"><span>婚姻状况</span></div>
+            <div class="list_2 w144">{yun:}$Info.user_marriage{/yun}</div>
+            {yun:}/if{/yun}
+          </div>
+          <div class="list clear">
+            <div class="list_n"><span>现所在地</span></div>
+            <div class="list_ti5">{yun:}$Info.living{/yun}</div>
+          </div>
+          {yun:}if $Info.basic_info=='1'{/yun}
+          <div class="list clear">
+            <div class="list_n"><span>详细地址</span></div>
+            <div class="list_ti5">{yun:}$Info.address{/yun}</div>
+          </div>
+          <div class="list clear">
+            <div class="list_n" id="right"><span>个人主页</span></div>
+            <div class="list_4" id="left">
+              <div>{yun:}$Info.homepage{/yun}</div>
+            </div>
+          </div>
+          {yun:}/if{/yun}
+          <div class="list clear list_bg1">
+            <div class="list_t1 list_bnone" id="right"><span class="list_bnone">自我评价</span></div>
+            <div class="list_4 list_bg2" id="left" style="width:495px;">
+              <div  class="list_tim">{yun:}$Info.description{/yun}</div>
+            </div>
+          </div>
+          <div class="title" >
+            <h1>求职意向</h1>
+            <div class="list clear">
+              <div class="list_n"><span>期望行业</span></div>
+              <div class="list_2 list_3">{yun:}$Info.hy{/yun}</div>
+              <div class="list_n"><span>工作地区</span></div>
+              <div class="list_2 list_8 w270" style="border-right:none;">{yun:}$Info.city_one{/yun} {yun:}$Info.city_two{/yun} {yun:}$Info.city_three{/yun} </div>
+            </div>
+            <div class="list clear">
+              <div class="list_n"><span>职位性质</span></div>
+              <div class="list_2 list_150">{yun:}$Info.type{/yun}</div>
+              <div class="list_n"><span>待遇要求</span></div>
+              <div class="list_2 list_150" >{yun:}$Info.salary{/yun}
+                {yun:}if $Info.salary!="面议"{/yun} <font color="#888888">RMB</font>{yun:}/if{/yun}</div>
+              <div class="list_n"><span>到职时间</span></div>
+              <div class="list_2 list_150" style="border-right:none;" >{yun:}$Info.report{/yun}</div>
+            </div>
+            <div class="list clear list_bg1">
+              <div id="right" class="list_t1 list_bnone"> <span class="list_bnone">期望职位</span> </div>
+              <div id="left" class="list_4 list_bg2 agleft"> {yun:}$Info.jobname{/yun} </div>
+            </div>
+          </div>
+          {yun:}if is_array($Info.user_work) && !empty($Info.user_work){/yun}
+          <div class="title">
+            <h1><b>工作经历</b></h1>
+            {yun:}section name=all loop=$Info.user_work{/yun}
+            <div class="list clear">
+              <div class="list_n"><span>工作时间：</span></div>
+              <div class="list_2 list_3">{yun:}$Info.user_work[all].sdate|date_format:"%Y年%m月"{/yun} - {yun:}$Info.user_work[all].edate|date_format:"%Y年%m月"{/yun}</div>
+              <div class="list_n"><span>所在部门</span></div>
+              <div class="list_2 list_8 w270" >{yun:}$Info.user_work[all].department{/yun}</div>
+            </div>
+            <div class="list clear">
+              <div class="list_n"><span>单位名称</span></div>
+              <div class="list_2 list_3">{yun:}$Info.user_work[all].name{/yun}</div>
+              <div class="list_n"><span>担任职位</span></div>
+              <div class="list_2 list_8 w270" >{yun:}$Info.user_work[all].title{/yun}</div>
+            </div>
+            <div class="list clear list_bg1"  >
+              <div class="list_t1 list_bnone" id="right1" ><span>工作内容</span></div>
+              <div class="list_4 list_bg2" id="left1">
+                <div class="list_tim">{yun:}$Info.user_work[all].content{/yun}</div>
+              </div>
+            </div>
+            {yun:}/section{/yun} </div>
+          {yun:}/if{/yun}
+          {yun:}if is_array($Info.user_edu) && !empty($Info.user_edu){/yun}
+          <div class="title">
+            <h1><b>教育经历</b></h1>
+            {yun:}section name=all loop=$Info.user_edu{/yun}
+            <div class="list clear">
+              <div class="list_n"><span>毕业时间：</span></div>
+              <div class="list_2 list_3">{yun:}$Info.user_edu[all].sdate|date_format:"%Y年%m月"{/yun} - {yun:}$Info.user_edu[all].edate|date_format:"%Y年%m月"{/yun}</div>
+              <div class="list_n"><span>专业</span></div>
+              <div class="list_2 list_8 w270" >{yun:}$Info.user_edu[all].specialty{/yun}</div>
+            </div>
+            <div class="list clear">
+              <div class="list_n"><span>学校名称</span></div>
+              <div class="list_2 list_3">{yun:}$Info.user_edu[all].name{/yun}</div>
+              <div class="list_n"><span>担任职位</span></div>
+              <div class="list_2 list_8 w270" >{yun:}$Info.user_edu[all].title{/yun}</div>
+            </div>
+            <div class="list clear list_bg1"  >
+              <div class="list_t1 list_bnone" id="right1" ><span>专业描述</span></div>
+              <div class="list_4 list_bg2" id="left1">
+                <div class="list_tim">{yun:}$Info.user_edu[all].content{/yun}</div>
+              </div>
+            </div>
+            {yun:}/section{/yun} </div>
+          {yun:}/if{/yun}
+          {yun:}if is_array($Info.user_skill) && !empty($Info.user_skill){/yun}
+          <div class="title">
+            <h1>专业技能</h1>
+            <div class="list clear">
+              <div class="list_n"><span>掌握时间</span></div>
+              <div class="list_n list_t2"><span>技能类别</span></div>
+              <div class="list_n list_t3"><span>熟练程度</span></div>
+              <div class="list_n list_t4 w276"><span>技能名称</span></div>
+            </div>
+            {yun:}section name=all loop=$Info.user_skill{/yun}
+            <div class="list clear">
+              <div class="list_2 list_5">{yun:}$Info.user_skill[all].longtime{/yun}个月</div>
+              <div class="list_2 list_6">{yun:}$Info.user_skill[all].skill_n{/yun}</div>
+              <div class="list_2 list_7">{yun:}$Info.user_skill[all].ing_n{/yun}</div>
+              <div class="list_2 list_8 w270">{yun:}$Info.user_skill[all].name{/yun}</div>
+            </div>
+            {yun:}/section{/yun} </div>
+          {yun:}/if{/yun}
+          {yun:}if is_array($Info.user_xm) && !empty($Info.user_xm){/yun}
+          <div class="title">
+            <h1>项目经验</h1>
+            {yun:}section name=all loop=$Info.user_xm{/yun}
+            <div class="list clear">
+              <div class="list_n"><span>项目时间：</span></div>
+              <div class="list_2 list_3">{yun:}$Info.user_xm[all].sdate|date_format:"%Y年%m月"{/yun} - {yun:}$Info.user_xm[all].edate|date_format:"%Y年%m月"{/yun}</div>
+              <div class="list_n"><span>项目环境</span></div>
+              <div class="list_2 list_8 w270">{yun:}$Info.user_xm[all].name{/yun}</div>
+            </div>
+            <div class="list clear">
+              <div class="list_n"><span>担任职位：</span></div>
+              <div class="list_2 list_3">{yun:}$Info.user_xm[all].title{/yun}</div>
+              <div class="list_n"><span>项目名称</span></div>
+              <div class="list_2 list_8 w270">{yun:}$Info.user_xm[all].name{/yun}</div>
+            </div>
+            <div class="list clear list_bg1">
+              <div class="list_t1 list_bnone" id="right1"><span>项目内容：</span></div>
+              <div class="list_4 list_bg2" id="left1" >
+                <div class="list_tim">{yun:}$Info.user_xm[all].content{/yun}</div>
+              </div>
+            </div>
+            {yun:}/section{/yun} </div>
+          {yun:}/if{/yun}  
+          {yun:}if is_array($Info.user_cert) && !empty($Info.user_cert){/yun}
+          <div class="title">
+            <h1><b>证书</b></h1>
+            {yun:}section name=all loop=$Info.user_cert{/yun}
+            <div class="list clear">
+              <div class="list_n w185"><span>有效时间：</span></div>
+              <div class="list_n list_t2 w185"><span>颁发单位：</span></div>
+              <div class="list_n list_t4 w325"><span>证书全称：</span></div>
+            </div>
+            <div class="list clear">
+              <div class="list_2 list_5 w180">{yun:}$Info.user_cert[all].sdate|date_format:"%Y年%m月%d日"{/yun} - {yun:}$Info.user_cert[all].edate|date_format:"%Y年%m月%d日"{/yun}</div>
+              <div class="list_2 list_6 w180">{yun:}$Info.user_cert[all].title{/yun}</div>
+              <div class="list_2 list_8 w320">{yun:}$Info.user_cert[all].name{/yun}</div>
+            </div>
+            <div class="list clear list_bg1">
+              <div class="list_t1 list_bnone" id="right1" ><span>证书描述</span></div>
+              <div class="list_4 list_bg2" id="left1">
+                <div class="list_tim">{yun:}$Info.user_cert[all].content{/yun}</div>
+              </div>
+            </div>
+            {yun:}/section{/yun} </div>
+          {yun:}/if{/yun}
+          
+          {yun:}if is_array($Info.user_tra) && !empty($Info.user_tra){/yun}
+          <div class="title">
+            <h1>培训经历</h1>
+            {yun:}section name=all loop=$Info.user_tra{/yun}
+            <div class="list clear">
+              <div class="list_n w185"><span>培训时间：</span></div>
+              <div class="list_n list_t2 w185"><span>培训方向：</span></div>
+              <div class="list_n list_t4 w333" ><span>培训中心：</span></div>
+            </div>
+            <div class="list clear">
+              <div class="list_2 list_5 w180">{yun:}$Info.user_tra[all].sdate|date_format:"%Y年%m月"{/yun} - {yun:}$Info.user_tra[all].edate|date_format:"%Y年%m月"{/yun} </div>
+              <div class="list_2 list_6 w180">{yun:}$Info.user_tra[all].title{/yun}</div>
+              <div class="list_2 list_8 w320">{yun:}$Info.user_tra[all].name{/yun}</div>
+            </div>
+            <div class="list clear" style="background:#EAF3FC;">
+              <div class="list_t1 list_bnone" id="right"><span>培训描述:</span> </div>
+              <div class="list_4 list_bg2" id="left" >
+                <div class="list_tim">{yun:}$Info.user_tra[all].content{/yun}</div>
+              </div>
+            </div>
+            {yun:}/section{/yun} </div>
+          {yun:}/if{/yun}
+          {yun:}if is_array($Info.user_other) && !empty($Info.user_other){/yun}
+          <div class="title">
+            <h1>其他信息</h1>
+            {yun:}section name=all loop=$Info.user_other{/yun}
+            <div class="list clear">
+              <div class="list_t1" id="right1"><span>其他标题：</span></div>
+              <div class="list_4" id="left1">
+                <div>{yun:}$Info.user_other[all].title{/yun}</div>
+              </div>
+            </div>
+            <div class="list clear list_bg1">
+              <div class="list_t1 list_bnone" id="right1 " ><span class=" list_bnone">其他描述：</span></div>
+              <div class="list_4 list_bg2" id="left1">
+                <div class="list_tim">{yun:}$Info.user_other[all].content{/yun}</div>
+              </div>
+            </div>
+            {yun:}/section{/yun} </div>
+          {yun:}/if{/yun}
+          
+          
+          {yun:}if $Info.doc{/yun}
+          <div class="list clear list_bg1"  >
+            <div class="list_4 " id="left1" style="border:none;width:100%; background:#fff;">
+              <div class="list_tim">{yun:}$Info.user_doc.doc{/yun}</div>
+            </div>
+          </div>
+          {yun:}/if{/yun}
+          <div class="title">
+            <h1>联系方式</h1>
+            {yun:}if $Info.m_status=="1"{/yun}
+            <div class="list clear">
+              <div class="list_t1" id="right1"><span>手机：</span></div>
+              <div class="list_4" id="left1">
+                <div>{yun:}image uid=$Info.uid action=telphone width=200{/yun}</div>
+              </div>
+            </div>
+            {yun:}if $Info.basic_info=='1'{/yun}
+            <div class="list clear">
+              <div class="list_t1" id="right1"><span>座机：</span></div>
+              <div class="list_4" id="left1">
+                <div>{yun:}image uid=$Info.uid action=telhome width=200{/yun}</div>
+              </div>
+            </div>
+            {yun:}/if{/yun}
+            <div class="list clear">
+              <div class="list_t1" id="right1"><span>电子邮件：</span></div>
+              <div class="list_4" id="left1">
+                <div>{yun:}$Info.email{/yun}</div>
+              </div>
+            </div>
+            {yun:}else{/yun}
+            <div class="re_touch">{yun:}$Info.link_msg{/yun}</div>
+            {yun:}/if{/yun} </div>
+          <div class="btn">
+            <input type="hidden" id="eid" value="{yun:}$Info.id{/yun}">
+            <input type="hidden" id="uid" value="{yun:}$Info.uid{/yun}">
+            <input type="hidden" id="username" value="{yun:}$Info.name{/yun}">
+            <input class="btn_1" type="submit" name="submit" value="打印简历 " onClick="window.print();">
+            <input class="btn_1 lt_down_resume" type="submit" name="submit" value="下载简历 ">
+            <input class="btn_1" type="submit" name="submit" value="分享简历" onClick="javascript:window.location.href='index.php?m=resume&c=resume_share&id={yun:}$Info.id{/yun}'">
+          </div>
+        </div>
+      </div>
+      <div class="foot"><a href="{yun:}$rows.config.sy_weburl{/yun}" target="_blank">{yun:}$rows.config.sy_webname{/yun}</a> &copy; 版权所有 {yun:}$rows.config.sy_weburl{/yun}  本网招聘及简历信息等 ,未经书面授权不得转载 <br />
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>
+<div id="bg"></div>
+<a name="resume"></a> {yun:}history uid=$uid id=$Info.id user_id=$Info.uid type=2{/yun}
+</body>
+</html>

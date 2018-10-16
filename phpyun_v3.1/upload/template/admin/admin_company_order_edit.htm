@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link href="./images/reset.css" rel="stylesheet" type="text/css" />
+<link href="./images/system.css" rel="stylesheet" type="text/css" />
+
+<link href="./images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script>
+<title></title>
+</head>
+<script>
+function check_form(){
+	var order_price=$("#order_price").val();
+	if(order_price==''){ 
+		parent.layer.msg('待付金额不能为空！', 2, 2);
+		return false;
+	}
+} 
+function replace_type(){$('#invoice').toggle();}
+</script>
+<body class="body_ifm">
+<div class="infoboxp">
+		<div class="infoboxp_top">
+			<h6>订单详情</h6>
+		</div>
+<div class="common-form">
+	<iframe id="supportiframe" name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+	<form name="myform" target="supportiframe" action="index.php?m=company_order&c=save" method="post" id="myform" onSubmit="return check_form();">
+    <input type="hidden" name="pytoken" value="{yun:}$pytoken{/yun}">
+    
+    
+		<table width="100%" class="table_form contentWrap table_form_bg"> 
+			<tr>
+				<td align="right"  width="230">订单号:</td>
+				<td>{yun:}$row.order_id{/yun}</td>
+			</tr>
+			<tr class="admin_table_trbg">
+				<td align="right">申请交易时间:</td>
+				<td>{yun:}$row.order_time|date_format:"%Y-%m-%d %H:%M:%S"{/yun}</td>
+			</tr>
+			<tr>
+				<td align="right">用户名:</td>
+				<td>{yun:}$row.username{/yun}</td>
+			</tr>
+			<tr class="admin_table_trbg">
+				<td align="right">待付金额:</td>
+				<td>
+				{yun:}if $row.order_state==1||$row.order_state==3{/yun}
+				<input type="text" name="order_price" id="order_price" class="input-text" size="10" value="{yun:}$row.order_price{/yun}" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')">{yun:}else{/yun}<input name='order_price' value='{yun:}$row.order_price{/yun}' type='hidden'/>{yun:}$row.order_price{/yun}{yun:}/if{/yun}元
+				</td>
+			</tr> 
+			<tr >
+				<td align="right">发票凭证:</td>
+				<td>{yun:}if $job.order_state!=2{/yun}{yun:}if $row.is_invoice=='1'{/yun}需要发票{yun:}else{/yun}不需发票{yun:}/if{/yun}{yun:}else{/yun}<select name='is_invoice' id='is_invoice' onChange="replace_type();">
+					<option value='1' {yun:}if $row.is_invoice=='1'{/yun}selected="select"{yun:}/if{/yun}>需要发票</option>
+					<option value='0' {yun:}if $row.is_invoice=='0'{/yun}selected="select"{yun:}/if{/yun}>不需发票</option>
+				</select>{yun:}/if{/yun}</td>
+			</tr>
+			<tr>
+				<td colspan="2" style="padding:0; background:#F3F3F3;">
+				  <table width="100%" id="invoice" {yun:}if $row.is_invoice=='0'{/yun}style="display:none"{yun:}/if{/yun}>
+					<tr>
+					   <th width='230'>发票抬头:</th>
+					<td ><input class='input-text' id="title" type='text' name='title' value='{yun:}$invoice.title{/yun}' style="width:300px;"></td>
+				  </tr>
+				  <tr>
+					<th>联系人:</th>
+					<td><input class='input-text' id="link_man" type='text' name='link_man' value='{yun:}$invoice.link_man{/yun}'></td>
+				  </tr>
+				  <tr>
+					<th>联系电话:</th>
+					<td><input class='input-text' id="link_moblie" type='text' name='link_moblie' value='{yun:}$invoice.link_moblie{/yun}'></td>
+				  </tr>
+				   <tr>
+					<th>邮寄地址:</th>
+					<td><input class='input-text' id="address" type='text' name='address' value='{yun:}$invoice.address{/yun}' style="width:300px;"></td>
+				  </tr>
+				   
+				   <tr>
+					<th>申请时间:</th>
+					<td style="color:red;">{yun:}if $invoice.addtime{/yun}{yun:}$invoice.addtime|date_format:"%Y-%m-%d %H:%M:%S"{/yun}{yun:}else{/yun}还未申请{yun:}/if{/yun}</td>
+				  </tr>
+                  <tr>
+					<th>发票状态:</th>
+					<td>
+					<select name='status'>
+						<option value='0' {yun:}if $invoice.status=='0'{/yun}selected="selected"{yun:}/if{/yun}>已申请</option>
+						<option value='1' {yun:}if $invoice.status=='1'{/yun}selected="selected"{yun:}/if{/yun}>通过审核</option>
+						<option value='2' {yun:}if $invoice.status=='2'{/yun}selected="selected"{yun:}/if{/yun}>审核不通过</option>
+						<option value='3' {yun:}if $invoice.status=='3'{/yun}selected="selected"{yun:}/if{/yun}>已打印</option>
+						<option value='4' {yun:}if $invoice.status=='4'{/yun}selected="selected"{yun:}/if{/yun}>已邮寄</option>
+					</select>
+					<input  type='hidden' name='inid' value='{yun:}$invoice.id{/yun}'>
+					<input  type='hidden' name='uid' value='{yun:}$row.uid{/yun}'>
+					<input  type='hidden' name='order_id' value='{yun:}$row.order_id{/yun}'>
+					</td>
+				  </tr>
+				  </table>
+				</td>
+			</tr>
+			<tr class="admin_table_trbg">
+				<td align="right">备注:</td>
+				<td>
+			   {yun:}if $row.order_state==1||$row.order_state==3{/yun}<textarea name="order_remark" id="order_remark" rows="3" cols="50" class="text">{yun:}$row.order_remark{/yun}</textarea>{yun:}else{/yun}{yun:}$row.order_remark{/yun}<input name='order_remark' value='{yun:}$row.order_remark{/yun}' type='hidden'/>{yun:}/if{/yun}
+				</td>
+			</tr>
+		<tr >
+				<td align="right">充值类型:</td>
+				<td> 
+					{yun:}if $row.type==1{/yun}购买会员{yun:}elseif $row.type=='2'{/yun}{yun:}$config.integral_pricename{/yun}充值{yun:}elseif $row.type=='3'{/yun}银行转帐{yun:}elseif $row.type=='4'{/yun}金额充值{yun:}elseif $row.type=='5'{/yun}购买短信{yun:}/if{/yun}
+				</td>
+			</tr>
+			{yun:}if $row.type=='2'{/yun}
+			<tr class="admin_table_trbg">
+				<td align="right">所得{yun:}$config.integral_pricename{/yun}:</td>
+				<td>{yun:}$row.integral{/yun}</td>
+			</tr>	
+			{yun:}/if{/yun} 
+		<tr>
+			<td align="right">&nbsp;</td>
+			<td > 
+				<input name="id" type="hidden" value="{yun:}$row.id{/yun}">
+				{yun:}if $job.order_state==2{/yun}<input class="admin_submit4" name="hotup" type="submit" value="修改" id="dosubmit">{yun:}/if{/yun} 
+				<input class="admin_submit4" name="" type="button" value="返回" onclick="javascript:history.go(-1);">
+			</td>
+		</tr> 
+		 </table>
+	 </form>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{yun:}include file="$comstyle/header.htm"{/yun} 
+{yun:}include file="$comstyle/left.htm"{/yun} 
+  <div class="brief">
+    <div class="brief-center">
+      <h1><span>公司简介</span></h1>
+      <p>{yun:}$com.content|strip_tags|mb_substr:0:200:'gbk'{/yun}...<a href="{yun:}curl url=id:$id,tp:intro{/yun}">查看更多</a> </p>
+    </div>
+    <div class="brief-right">
+      <h1><span>微博互动</span></h1>
+    </div>
+    <div class="clear"></div>
+    <div class="environment">
+      <h1><span>公司环境</span></h1>
+      {yun:}show val=job_ji limit=4{/yun}
+      {yun:}section name=i loop=$show{/yun}
+      <dl>
+        <dt><img src="{yun:}$config.sy_weburl{/yun}/{yun:}$show[i].picurl{/yun}" width="155" height="110" alt=""></dt>
+      </dl>
+      {yun:}/section{/yun}
+    </div>
+  </div>
+  <div class="clear"></div>
+{yun:}include file="$comstyle/footer.htm"{/yun} 

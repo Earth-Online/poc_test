@@ -1,0 +1,69 @@
+{yun:}include file="$userstyle/header.htm"{/yun}
+<script type="text/javascript"> 
+ 
+function gourl(){
+	parent.layer.confirm('确定要创建新的简历吗？', function(){window.location.href='index.php?c=expect&add={yun:}$uid{/yun}';window.event.returnValue = false;return false;   });
+}
+</script>
+<div class="w950"> 
+	{yun:}include file="$userstyle/left.htm"{/yun}
+	<div class="mian_right fltR mt20 re">
+    <div class="tabmenubox01 mt9">
+      <ul>
+        <li class="cur"> <a href="index.php?c=resume">我的简历</a></li>
+        <li> <a href="index.php?c=look">简历被浏览</a></li>
+        <li> <a href="index.php?c=privacy">隐私设置</a></li>
+      </ul>
+    </div>
+    <div class="resume_r_box">
+      <div class="remindbox-1"> 您好，您目前有 <b>{yun:}$statis.resume_num{/yun} </b>份标准简历{yun:}if $confignum!=""{/yun}，您还可以添加 <b>{yun:}$maxnum{/yun}</b> 份简历{yun:}/if{/yun}。
+      </div>
+      <div class="operatebox01 "> <a class="thickbox" title="创建新简历" href="javascript:void(0)" onclick="gourl();return false;">创建新简历</a> <a href="index.php?c=expectq&add={yun:}$uid{/yun}" title="直接粘贴已有的个人简历"class="thickbox2" >在线粘贴简历</a> </div>
+    </div>
+    <div id="" class="resume_box_list">
+      <div id="">
+        <table width="690" border="0" cellspacing="1" cellpadding="0" class="resume">
+          <tr>
+            <th nowrap>简历名称</th>
+            <th nowrap>更新时间</th>
+            <th nowrap>默认简历</th> 
+            <th nowrap>简历类型</th>
+            <th nowrap>操作</th>
+            <th nowrap>删除</th>
+          </tr>
+          {yun:}foreach item=resume from=$rows{/yun}
+          <tr>
+            <td nowrap>{yun:}$resume.name{/yun}</td>
+            <td nowrap><span>{yun:}$resume.lastupdate|date_format:'%Y-%m-%d'{/yun}</span></td>
+            <td nowrap><input type="radio" name="default_resume" value="{yun:}$resume.id{/yun}" {yun:}if $def_job.def_job==$resume.id{/yun} checked{yun:}/if{/yun} ></td> 
+            <td nowrap>{yun:}if $resume.doc=='1'{/yun}快速简历{yun:}else{/yun}标准简历{yun:}/if{/yun}</td>
+            <td nowrap><a title="修改" href="index.php?c=expect{yun:}if $resume.doc{/yun}q{yun:}/if{/yun}&e={yun:}$resume.id{/yun}"><img src="{yun:}$userstyle{/yun}/images/editico.gif" alt="修改"  align="absmiddle"/></a>&nbsp;&nbsp; <a title="预览" target="_blank" href="../{yun:}url m=resume url=id:`$resume.id`{/yun}"><img src="{yun:}$userstyle{/yun}/images/previewico.gif"  alt="预览" align="absmiddle"/></a>&nbsp;&nbsp;<a href="javascript:void(0)" onclick="layer_del('确定要刷新？', '{yun:}$now_url{/yun}&update={yun:}$resume.id{/yun}');" title="刷新"><img src="{yun:}$userstyle{/yun}/images/deleteico.gif"  alt="刷新" align="absmiddle"/></a></td>
+            <td nowrap><a href="javascript:void(0)" onclick="layer_del('确定要删除？', 'index.php?c=resume&del={yun:}$resume.id{/yun}');" class="re_sc"><img src="{yun:}$userstyle{/yun}/images/com_sc.jpg" alt="删除" title="删除" /></a></td>
+          </tr>
+          {yun:}foreachelse{/yun}
+          <tr>
+            <td colspan='7'>暂无简历！</td>
+          </tr>
+          {yun:}/foreach{/yun}
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="Commissioned_Resume_box" style=" position:absolute; display:none;background:none">
+  <div class="Commissioned_Resume_cont  " >   
+      <table class="Commissioned_table" cellpadding="1" cellspacing="1" style="width:510px;">
+        <tbody>
+          <tr>
+            <th>简历名称</th>
+            <th>电话号码</th>
+            <th>简历类型</th> 
+            <th>更新日期</th>
+			 <th>状态</th>
+            <th>操作</th> 
+          </tr> 
+        </tbody>
+      </table> 
+  </div>
+</div>
+{yun:}include file="$userstyle/footer.htm"{/yun}

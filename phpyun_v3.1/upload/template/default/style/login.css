@@ -1,0 +1,87 @@
+@charset "gb2312";
+/* CSS Document */
+* {margin: 0;padding: 0;}
+body {font-size: 12px;background: #f4f4f4 url(../images/bg.png) no-repeat top center;position: relative;width: 100%;height: 100%;}
+.yun_body {width: 100%;float: left;background: #fff url(../images/yun_com_bg.png) repeat-x;padding-bottom: 10px;}
+a {color: #505050;text-decoration: none;outline: none;}
+a:hover {color: #CD0200;text-decoration: underline;}
+em, i {font-style: normal;}
+li {list-style: none outside none;}
+img {border: 0 none;vertical-align: middle;}
+input {outline: medium none;}
+.m5 {margin-top: 5px;}
+.m10 {margin-top: 10px;}
+.m15 {margin-top: 15px;}
+.clear {clear: both}
+.fl {float: left}
+.fr {float: right;}
+.login_banner{ width:100%; overflow:hidden; background:#2e71c2; }
+.login_banner img{display:block; margin:0 auto;}
+.register_top{width:100%;height:30px; line-height:30px; background:#000;color:#fff;}
+.register_top a{color:#fff; display:inline-block;}
+.register_header{width:100%;height:150px; background:#2e70c1}
+.register_cot{width:980px; margin:0 auto}
+.reg_w980{width:980px;height:150px; margin:0 auto; position:relative}
+.reg_header_ban{ position:absolute;right:0px;top:0px;}
+.reg_logo{ float:left; margin-top:35px;}
+.reg_msg{ float:left; font-size:26px; font-family:Î¢ÈíÑÅºÚ; margin-top:38px;color:#fff;height:40px; line-height:40px; border-left:2px solid #fff; margin-left:20px; padding-left:20px;}
+.reg_content{width:980px;height:650px; margin:0 auto; position:relative;}
+.logoin_cont{width:940px; background:#fff; position:absolute;left:0px;top:-40px; padding-left:20px; padding-right:20px; padding-bottom:20px;}
+.register_h1{width:100%;height:10px;line-height:20px;border-bottom:1px solid #e5e5e5;float:left;margin-top:40px;margin-bottom:40px;position:relative}
+.register_h1 span{ display:block;width:69px;height:69px; line-height:69px; font-size:22px; font-family:ºÚÌå; background:url(../images/reg_icon.png) no-repeat; position:absolute;left:40px;top:-30px;color:#fff;}
+.register_left{width:630px; float:left;border-right:1px solid #f1f1f1;}
+.register_list{width:100%; float:left}
+.register_list li{width:100%; margin-top:20px; float:left}
+.register_list li em{ font-size:14px;width:130px; line-height:34px;display:inline-block; text-align:right; float:left}
+.logoin_text{width:283px;height:34px; line-height:36px;border:1px solid #d0d0d0;color:#999; float:left}
+.logoin_text_success{color:#999;}
+.receive_err{width:100%;height:23px; line-height:23px; overflow:hidden; float:left; margin-top:6px;display:none}
+.receive_err em{width:135px; display:inline-block;float:left;}
+.registe_Judge{color:#999;float:left;display:none}
+.registe_Judge img{ margin-right:5px; vertical-align:middle}
+.register_submit{width:165px;height:42px; background:url(../images/reg_sub.jpg) no-repeat;border:none; cursor:pointer}
+.logoin_text_yz{width:183px;height:34px;line-height:34px;border:1px solid #d0d0d0;color:#999; float:left; margin-right:10px;}
+.register_right{ float:left;width:300px;}
+.register_right_c{ padding-left:45px; font-size:18px;font-family:Î¢ÈíÑÅºÚ; line-height:37px;color:#aaa; }
+.register_right_c a{ display:block;width:106px;height:37px; font-size:16px;line-height:37px;color:#fff;text-indent:50px; background:url(../images/reg_sub2.jpg) no-repeat; margin-top:10px;}
+.register_right_q{ padding-left:80px}
+.register_right_q a{width:45px;height:45px; display:inline-block; background:url(../images/reg_icon2.jpg) no-repeat; line-height:45px; text-align:center; margin-top:10px; float:left; margin-right:10px;}
+.register_right_q img{ margin-top:10px;}
+.login_w980{width:980px;height:70px; margin:0 auto}
+.login_w980 .logo{ margin-top:13px;}
+.login_box{width:980px; margin:0 auto; position:relative}
+.login_box_cont{width:294px;position:absolute;right:0px;top:-395px; background:#f5f5f3; padding-bottom:10px;}
+.login_box_tit{width:100%;height:50px;overflow:hidden}
+.login_box_tit li{width:147px; float:left;height:49px; line-height:49px; text-align:center; font-size:16px;font-family:Î¢ÈíÑÅºÚ;border-left:1px solid #d7d7d5;border-bottom:1px solid #d7d7d5; margin-left:-1px; cursor:pointer }
+.login_box_tit .log_cur{width:146px; background:url(../images/log_cur.jpg) repeat-x;border-bottom:none;}
+.lgoin_box_cot{ padding-left:18px;}
+.login_box_list{width:258px;height:42px; background:url(../images/log_bth1.jpg) no-repeat; margin-top:15px;  float:left}
+.login_box_list_yz{width:158px;height:42px; background:url(../images/log_bthyz.jpg) no-repeat; margin-top:15px; float:left}
+
+.login_box_bth{width:250px;height:38px; line-height:40px;color:#a2a2a2; background:#fff; margin-top:1px; border:none; margin-left:3px;}
+.login_box_bth_yz{width:140px;height:38px; line-height:38px;color:#a2a2a2; background:#fff;  margin-top:1px; _margin-top:2px;border:none; margin-left:5px;_margin-left:3px; overflow:hidden ; float:left}
+.login_box_list_yzm{width:90px; height:38px;float:left; margin-top:15px;margin-left:5px;}
+.login_box_cz{width:258px; margin-top:10px; float:left; padding-left:18px;}
+.login_box_cz_l{ float:left; display:block;height:20px; line-height:20px;color:#a2a2a2}
+.login_box_cz_l input{width:13px;height:13px; overflow:hidden; vertical-align:middle; margin-right:5px;_margin-right:3px;float:left;}
+.login_box_cz a{ float:right;color:#a2a2a2; display:block;line-height:20px;}
+.login_box_bth2{width:121px;height:44px; background:url(../images/log_bth2.jpg) no-repeat;border:none; cursor:pointer; float:left;}
+.login_box_bth3{width:121px;height:44px; background:url(../images/log_bth3.jpg) no-repeat;border:none; cursor:pointer; float:left}
+.login_other{width:100%; background:url(../images/log_line.jpg) repeat-x top; margin-top:10px; float:left}
+.login_other p{ padding-left:20px; padding-top:15px; font-size:14px; font-weight:bold;color:#a2a2a2}
+.login_qq{ padding-left:10px; padding-top:10px;}
+.login_qq a{ display:inline-block; height:20px; line-height:20px;background:url(../images/log_qq.jpg) no-repeat left center; padding-left:25px;color:#a2a2a2; margin-left:10px;}
+.login_qq .log_sina{ background:url(../images/log_sina.jpg) no-repeat left center}
+.login_h1{width:100%; font-size:24px;font-family:Î¢ÈíÑÅºÚ; text-align:center;color:#666; padding-top:10px; padding-bottom:10px;}
+.log_can_list{width:455px;border-right:1px solid #ccc8c8; border-bottom:1px solid #ccc8c8; height:94px;float:left; padding-right:25px; padding-top:20px; padding-bottom:20px;}
+.log_can_list dt{width:110px;height:100px; background:#818286; text-align:center}
+.log_can_list dt img{ }
+.log_can_list dd{ width:320px;text-align:right; font-family:Î¢ÈíÑÅºÚ; float:left; padding-right:20px; font-size:15px; line-height:20px;color:#b6b6b6;}
+.log_can_list dd strong{font-size:18px;font-weight:normal; display:block ;color:#333; margin-bottom:15px; margin-top:10px;}
+.log_can_list2{border-right:none;padding-left:26px; padding-right:0px;}
+.log_can_list2 dd{ text-align:left; padding-left:20px; padding-right:0px;}
+.logoin_re{ position:relative; z-index:5}
+.logoin_msg{width:246px;height:28px; position:absolute;left:0px;top:-45px;}
+.logoin_msg_tx{width:230px;height:36px; line-height:36px; padding-left:24px;border:1px solid #ffc7c7; background:#ffecec url(../images/ico_warn2.png) no-repeat 5px center;color:#d54801; position:relative; font-size:14px;}
+.logoin_msg_icon{width:10px;height:6px; background:url(../images/yun_icon_sj.png) no-repeat; position:absolute;left:10px;bottom:-15px;}
+.logoin_re_m{ position:relative; z-index:10}

@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{yun:}$title{/yun}</title>
+<META name="keywords" content="{yun:}$keywords{/yun}">
+<META name="description" content="{yun:}$description{/yun}">
+<link rel="stylesheet" href="{yun:}$style{/yun}/style/css.css" type="text/css">
+<link rel="stylesheet" href="{yun:}$style{/yun}/style/yun_job_fairs.css" type="text/css">
+<!--[if IE 6]>
+<script src="{yun:}$config.sy_weburl{/yun}/js/png.js"></script>
+<script>
+DD_belatedPNG.fix('.png,.index_logoin,.index_logoin_current,.nav_list,.fairs_Status,.fairs_Status,.logoin_qybj,.logoin_grbj,.logoin_Shadow_right,.logoin_Shadow_left,.whitebg,.micro_resume_fast,.nav_list_hover a,#bg,.left_comapply_cont li,.icon2,.nav_list .nav_list_hover em,.Fast_right_icon_l,.Fast_right_icon_r,.index_logoin_after,.logoin_after em,.logoin_after_su2,.logoin_after_su1,.hbg,.pagination li a,.firm_post_list,.Auction_tit,.yun_title,.Recommended_tit,.Com_Search_Results_r ul .All_post_h1_act,.sButtonBlock a.closeButton,.Comment_list_top,.icon,.yun_wap_m_bg,.micro_box,.fast_issuance');
+</script>
+<![endif]--> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/lazyload.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/public.js" language="javascript"></script>
+<script>var integral_pricename='{yun:}$config.integral_pricename{/yun}';var weburl="{yun:}$config.sy_weburl{/yun}"; </script>
+</head>
+<body>
+{yun:}include file="$tplstyle/header.htm"{/yun}
+<script language="javascript">
+$(function(){
+ var scrtimeleft;
+ var scrtimeright;
+  $("#comment").hover(function(){clearInterval(scrtimeleft);},function(){ scrtimeleft = setInterval(function(){interval("comment");},3000); }).trigger("mouseleave");  
+  $("#reposts").hover(function(){clearInterval(scrtimeright);},function(){ scrtimeright = setInterval(function(){interval("reposts");},3000); }).trigger("mouseleave");
+});
+function interval(id){ 
+	var $ul = $("#"+id+" ul");
+	var liHeight = $ul.find("li:last").height();
+	$ul.animate({marginTop : liHeight+40 +"px"},1000,function(){
+		$ul.find("li:last").prependTo($ul)		
+		$ul.find("li:first").hide();
+		$ul.css({marginTop:0});		
+		$ul.find("li:first").fadeIn(1000);	
+	});  
+}
+</script>
+<div class="microblog_cont">
+  <div class="yun_content">
+    <div class="microblog_wb">
+      <div class="microblog_left">
+        <div class="left_h1 hbg">
+          <div class="left_h1_l fl hbg"></div>
+          <div class="left_h1_c fl hbg">微博明星</div>
+          <div class="left_h1_r fr hbg"></div>
+        </div>
+{yun:}foreach from=$iwebmx item=item{/yun}
+          <dl class="microblog_dl">
+          <dt> <a  href="{yun:}curl url=id:`$item.uid`{/yun}" target="_blank" title="{yun:}$item.company{/yun}">
+		  {yun:}if $item.comlogo{/yun}<img src="{yun:}$item.comlogo{/yun}" width="100" height="80" alt="{yun:}$item.company{/yun}">{yun:}else{/yun}<img src="{yun:}$config.sy_weburl{/yun}/{yun:}$config.sy_unit_icon{/yun}" width="100" height="80"/>{yun:}/if{/yun}</a> <span><span class="txt">         {yun:}$item.company|mb_substr:0:8:gbk{/yun}</span> <b class="mask"></b></span> </dt>
+          <dd> <a href="{yun:}curl url=id:`$item.uid`{/yun}" target="_blank" title="进入企业">进入企业</a> </dd>
+         </dl>
+      {yun:}/foreach{/yun}
+      </div>
+      <div class="microblog_right">
+        <div class="microblog_Comment"  id="comment">
+          <div class="microblog_h1">热门评论</div>
+          <ul class="microblog_Comment_list">
+		{yun:}foreach from=$hotcomment item=item{/yun}
+        <li>
+        <div class="microblog_C_l">
+        <div class="microblog_C_i"><img src="{yun:}$item.head{/yun}" width="50" height="50"></div>
+        </div>
+              <div class="microblog_n">
+                <div class="microblog_n_list"> <a href="{yun:}$item.iweburl{/yun}" title="{yun:}$item.nick{/yun}">{yun:}$item.nick{/yun}</a>：{yun:}$item.text{/yun}</div>
+                <div class="microblog_n_list"> 来自  <a href="{yun:}$item.iweburl{/yun}" title="{yun:}$item.from{/yun}">{yun:}$item.from{/yun}</a> </div>
+                <div class="microblog_n_list microblog_n_list2"> <a href="{yun:}$item.iweburl{/yun}" title="{yun:}$item.count{/yun}">转发({yun:}$item.count{/yun})</a> <span class="line1">|</span> <a href="{yun:}$item.iweburl{/yun}" title="{yun:}$item.mcount{/yun}">评论({yun:}$item.mcount{/yun})</a> </div>
+              </div>
+        </li>
+      {yun:}/foreach{/yun}
+          </ul>
+        </div>
+        <div class="microblog_Forwarding"  id="reposts" style="height:500px;line">
+        <div class="microblog_h1">热门转发</div>
+        <ul class="microblog_Comment_list">
+     {yun:}foreach from=$hotreposts item=hot_item{/yun}
+        <li class="w_ul_li">
+              <div class="microblog_C_l">
+                <div class="microblog_C_i"><img src="{yun:}$hot_item.head{/yun}" width="50" height="50"></div>
+              </div>
+              <div class="microblog_n">
+                <div class="microblog_n_list"> <a href="{yun:}$hot_item.iweburl{/yun}" title="{yun:}$hot_item.nick{/yun}">{yun:}$hot_item.nick{/yun}</a> ：{yun:}$hot_item.text{/yun}</div>
+                <div class="microblog_n_list"> 来自  <a href="{yun:}$hot_item.iweburl{/yun}" title="{yun:}$hot_item.from{/yun}">{yun:}$hot_item.from{/yun}</a> </div>
+                <div class="microblog_n_list microblog_n_list2"> <a href="{yun:}$hot_item.iweburl{/yun}" title="{yun:}$hot_item.count{/yun}">转发({yun:}$hot_item.count{/yun})</a> <span class="line1">|</span> <a href="{yun:}$hot_item.iweburl{/yun}" title="{yun:}$hot_item.count{/yun}">评论({yun:}$hot_item.mcount{/yun})</a> </div>
+              </div>
+        </li>
+         {yun:}/foreach{/yun}
+          </ul>
+        </div>
+      </div>
+      <div class="clear"></div>
+      <div class="">
+        <div class="microblog_job">招聘职位</div>
+    {yun:}foreach from=$linkrows item=item{/yun}
+                <dl class="microblog_job_list">
+          <dt> <a  href="{yun:}$item.iweburl{/yun}" title="{yun:}$item.company{/yun}">{yun:}if $item.comlogo{/yun}<img src="{yun:}$item.comlogo{/yun}" width="80" height="80" alt="{yun:}$item.company{/yun}">{yun:}else{/yun}<img src="{yun:}$config.sy_weburl{/yun}/{yun:}$config.sy_unit_icon{/yun}" width="80" height="80">{yun:}/if{/yun}</a> </dt>
+          <dd> <strong><a href="{yun:}$item.iweburl{/yun}" title="{yun:}$item.company{/yun}">{yun:}$item.company{/yun}</a></strong>
+            <div class="microblog_n_list3">{yun:}$item.text{/yun} </div>
+            <div class="microblog_n_list2"> <a href="{yun:}$item.iweburl{/yun}" title="({yun:}$item.count{/yun})">评论({yun:}$item.count{/yun})</a> | <a href="{yun:}$item.iweburl{/yun}" title="({yun:}$item.mcount{/yun})">转发({yun:}$item.mcount{/yun})</a> </div>
+          </dd>
+        </dl>
+     {yun:}/foreach{/yun}
+      </div>
+    </div>
+  </div>
+</div>
+{yun:}include file="$tplstyle/footer.htm"{/yun}

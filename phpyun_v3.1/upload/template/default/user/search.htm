@@ -1,0 +1,248 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{yun:}$title{/yun}</title>
+<META name="keywords" content="{yun:}$keywords{/yun}">
+<META name="description" content="{yun:}$description{/yun}">
+<link rel="stylesheet" href="{yun:}$style{/yun}/style/css.css" type="text/css">
+<link rel="stylesheet" href="{yun:}$style{/yun}/style/yun_seach.css" type="text/css">
+<!--[if IE 6]>
+<script src="{yun:}$config.sy_weburl{/yun}/js/png.js"></script>
+<script>
+DD_belatedPNG.fix('.png,.index_logoin,.index_logoin_current,.nav_list,.fairs_Status,.fairs_Status,.logoin_qybj,.logoin_grbj,.logoin_Shadow_right,.logoin_Shadow_left,.whitebg,.micro_resume_fast,.nav_list_hover a,#bg,.left_comapply_cont li,.icon2,.nav_list .nav_list_hover em,.Fast_right_icon_l,.Fast_right_icon_r,.index_logoin_after,.logoin_after em,.logoin_after_su2,.logoin_after_su1,.hbg,.pagination li a,.firm_post_list,.Auction_tit,.yun_title,.Recommended_tit,.Com_Search_Results_r ul .All_post_h1_act,.sButtonBlock a.closeButton,.Comment_list_top,.icon,.yun_wap_m_bg,.micro_box,.fast_issuance');
+</script>
+<![endif]-->
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/lazyload.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/public.js" language="javascript"></script>
+<script>var integral_pricename='{yun:}$config.integral_pricename{/yun}';var weburl="{yun:}$config.sy_weburl{/yun}"; </script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/search.js" type="text/javascript"></script>
+</head>
+<body>
+{yun:}include file="$tplstyle/header.htm"{/yun}
+{yun:}include file="$tplstyle/public_search/index_search.htm"{/yun}
+<script>
+function check_select_show(id){
+	$("#list"+id).show();
+}
+function check_onselect(id,val,name){
+	$("#"+id).val(val);
+	$("#list"+id).hide();
+	$("#button"+id).val(name);
+}
+function showselect(){
+	$(".seach_in_yc").slideToggle();
+	$(".seach_more").html('<span onclick="hideselect();">收起搜索条件</span>');
+}
+function hideselect(){
+	$(".seach_in_yc").slideToggle();
+	$(".seach_more").html('<span onclick="showselect();">更多搜索条件</span>');
+}
+$(function(){
+	$('body').click(function(evt) {
+		if($(evt.target).parents("#listhy").length==0 && evt.target.id != "buttonhy") {
+			$('#listhy').hide();
+		}
+		if($(evt.target).parents("#listpr").length==0 && evt.target.id != "buttonpr") {
+			$('#listpr').hide();
+		}
+		if($(evt.target).parents("#listmun").length==0 && evt.target.id != "buttonmun") {
+			$('#listmun').hide();
+		}
+		if($(evt.target).parents("#listexp").length==0 && evt.target.id != "buttonexp") {
+			$('#listexp').hide();
+		}
+		if($(evt.target).parents("#listsalary").length==0 && evt.target.id != "buttonsalary") {
+			$('#listsalary').hide();
+		}
+		if($(evt.target).parents("#listedu").length==0 && evt.target.id != "buttonedu") {
+			$('#listedu').hide();
+		}
+		if($(evt.target).parents("#listuptime").length==0 && evt.target.id != "buttonuptime") {
+			$('#listuptime').hide();
+		}
+		if($(evt.target).parents("#listreport").length==0 && evt.target.id != "buttonreport") {
+			$('#listreport').hide();
+		}
+		if($(evt.target).parents("#listsex").length==0 && evt.target.id != "buttonsex") {
+			$('#listsex').hide();
+		}
+	})
+})
+function search_keyword(){
+	var keyword=$("#userkeyword").val();
+	if(keyword=="请输入职位名称的关键字：例如会计"){
+		$("#userkeyword").val('');
+	}
+}
+function getTypeids(){
+	var typeids="";
+	$(".typeid:checked").each(function(){
+		if(typeids==""){
+			typeids=$(this).val();
+		}else{
+			typeids=typeids+","+$(this).val();
+		}
+	});
+	$("#typeids").val(typeids);
+}
+{yun:}if $getinfo.exp!=""||$getinfo.edu!=""||$getinfo.report!=""||$getinfo.sex!=""||$getinfo.salary!=""{/yun}
+$(document).ready(function(){
+	showselect();
+});
+{yun:}/if{/yun}
+</script>
+<input type="hidden" id="gettype" value="{yun:}$gettype{/yun}"/>
+<div class="yun_body">
+<div class="yun_content">
+<div class="current_Location icon com_current_Location png">
+  <div class="fl">您当前的位置：<a href="{yun:}$config.sy_weburl{/yun}">首页</a> > <a href="{yun:}$config.sy_weburl{/yun}/{yun:}url m=user{/yun}">招人才</a> </div>
+</div>
+<div class="clear"></div>
+<div class="yun_Looking_work">
+<form method="get" action="index.php" onsubmit="return search_keyword(this);">
+<input type="hidden" name="m" value="user" />
+<input type="hidden" name="c" value="search" />
+<div class="seach_box">
+  <div class="seach_industry seach_industry_re">
+    <input type="button" id="buttonhy" title="选择行业类别" value="{yun:}if $industry_name[$getinfo.hy]!=""{/yun}{yun:}$industry_name[$getinfo.hy]{/yun}{yun:}else{/yun}请选择行业类别{yun:}/if{/yun}" class="seach_industry_botton" onclick="check_select_show('hy');">
+    <div class="seach_Nature" style="display:none;" id="listhy">
+      <div class="seach_Nature_list">
+        <input type="hidden" name="hy" id="hy" value="{yun:}$getinfo.hy{/yun}" />
+        <a href="javascript:check_onselect('hy','','不限');" class="seach_Nature_cur">不限</a> {yun:}foreach item=v from=$industry_index{/yun} <a href="javascript:check_onselect('hy','{yun:}$v{/yun}','{yun:}$industry_name[$v]{/yun}');">{yun:}$industry_name[$v]{/yun}</a> {yun:}/foreach{/yun} </div>
+    </div>
+  </div>
+  <div class="seach_industry">
+    <input type="button" title="选择职位类别" value="{yun:}if $jobnames!=""{/yun}{yun:}$jobnames{/yun}{yun:}else{/yun}请选择职位类别{yun:}/if{/yun}" id="index_job_class_val" onclick="index_job();" class="seach_industry_botton">
+    <input type="hidden" id="job_class" name="jobids" value="{yun:}$getinfo.jobids{/yun}" />
+  </div>
+  <div class="seach_industry">
+    <input type="button" id="city" title="选择工作地区" value="{yun:}if $city_name[$getinfo.cityid]!=""{/yun}{yun:}$city_name[$getinfo.cityid]{/yun}{yun:}else{/yun}请选择工作地区{yun:}/if{/yun}" onclick="index_city();"  class="seach_industry_botton">
+    <input type="hidden" name="cityid" id="cityid" value="{yun:}$getinfo.cityid{/yun}"/>
+  </div>
+  <div class="seach_in_yc" style=" display:none;">
+    <div class="seach_industry_date seach_re20">
+      <input type="button" id="buttonexp" title="选择工作经验" value="{yun:}if $userclass_name[$getinfo.exp]!=""{/yun}{yun:}$userclass_name[$getinfo.exp]{/yun}{yun:}else{/yun}请选择工作经验{yun:}/if{/yun}" class="seach_industry_botton2" onclick="check_select_show('exp');">
+      <div class="seach_Nature" style="display:none" id="listexp">
+        <div class="seach_Nature_list">
+          <input type="hidden" name="exp" id="exp" value="{yun:}$getinfo.exp{/yun}" />
+          <a href="javascript:check_onselect('exp','','不限');" class="seach_Nature_cur">不限</a> {yun:}foreach item=v from=$userdata.user_word{/yun} <a href="javascript:check_onselect('exp','{yun:}$v{/yun}','{yun:}$userclass_name[$v]{/yun}');">{yun:}$userclass_name[$v]{/yun}</a> {yun:}/foreach{/yun} </div>
+      </div>
+    </div>
+    <div class="seach_industry_date seach_re20">
+      <input type="button" id="buttonedu" title="选择学历要求" value="{yun:}if $userclass_name[$getinfo.edu]!=""{/yun}{yun:}$userclass_name[$getinfo.edu]{/yun}{yun:}else{/yun}请选择学历要求{yun:}/if{/yun}" class="seach_industry_botton2" onclick="check_select_show('edu');">
+      <div class="seach_Nature" style="display:none" id="listedu">
+        <div class="seach_Nature_list">
+          <input type="hidden" name="edu" id="edu" value="{yun:}$getinfo.edu{/yun}" />
+          <a href="javascript:check_onselect('edu','','不限');" class="seach_Nature_cur">不限</a> {yun:}foreach item=v from=$userdata.user_edu{/yun} <a href="javascript:check_onselect('edu','{yun:}$v{/yun}','{yun:}$userclass_name[$v]{/yun}');">{yun:}$userclass_name[$v]{/yun}</a> {yun:}/foreach{/yun} </div>
+      </div>
+    </div>
+    <div class="seach_industry_date seach_re20">
+      <input type="button" id="buttonreport" title="选择到岗时间" value="{yun:}if $userclass_name[$getinfo.report]!=""{/yun}{yun:}$userclass_name[$getinfo.report]{/yun}{yun:}else{/yun}请选择到岗时间{yun:}/if{/yun}" class="seach_industry_botton2" onclick="check_select_show('report');">
+      <div class="seach_Nature" style="display:none" id="listreport">
+        <div class="seach_Nature_list">
+          <input type="hidden" name="report" id="report" value="{yun:}$getinfo.report{/yun}" />
+          <a href="javascript:check_onselect('report','','不限');" class="seach_Nature_cur">不限</a> {yun:}foreach item=v from=$userdata.user_report{/yun} <a href="javascript:check_onselect('report','{yun:}$v{/yun}','{yun:}$userclass_name[$v]{/yun}');">{yun:}$userclass_name[$v]{/yun}</a> {yun:}/foreach{/yun} </div>
+      </div>
+    </div>
+    <div class="seach_industry_date seach_re20">
+      <input type="button" id="buttonsex" title="请选择性别" value="{yun:}if $userclass_name[$getinfo.sex]!=""{/yun}{yun:}$userclass_name[$getinfo.sex]{/yun}{yun:}else{/yun}请选择性别{yun:}/if{/yun}" class="seach_industry_botton2" onclick="check_select_show('sex');">
+      <div class="seach_Nature" style="display:none" id="listsex">
+        <div class="seach_Nature_list">
+          <input type="hidden" name="sex" id="sex" value="{yun:}$getinfo.sex{/yun}" />
+          <a href="javascript:check_onselect('sex','','不限');" class="seach_Nature_cur">不限</a> {yun:}foreach item=v from=$userdata.user_sex{/yun} <a href="javascript:check_onselect('sex','{yun:}$v{/yun}','{yun:}$userclass_name[$v]{/yun}');">{yun:}$userclass_name[$v]{/yun}</a> {yun:}/foreach{/yun} </div>
+      </div>
+    </div>
+    <div class="seach_industry_date  seach_re20">
+      <input type="button" id="buttonsalary" title="选择月薪范围" value="{yun:}if $userclass_name[$getinfo.salary]!=""{/yun}{yun:}$userclass_name[$getinfo.salary]{/yun}{yun:}else{/yun}请选择月薪范围{yun:}/if{/yun}" class="seach_industry_botton2" onclick="check_select_show('salary');">
+      <div class="seach_Nature" style="display:none" id="listsalary">
+        <div class="seach_Nature_list">
+          <input type="hidden" name="salary" id="salary" value="{yun:}$getinfo.salary{/yun}" />
+          <a href="javascript:check_onselect('salary','','不限');" class="seach_Nature_cur">不限</a> {yun:}foreach item=v from=$userdata.user_salary{/yun} <a href="javascript:check_onselect('salary','{yun:}$v{/yun}','{yun:}$userclass_name[$v]{/yun}');">{yun:}$userclass_name[$v]{/yun}</a> {yun:}/foreach{/yun} </div>
+      </div>
+    </div>
+  </div>
+  <div class="seach_ind">
+    <div class="seach_industry_date  seach_re10">
+      <input type="button" id="buttonuptime" title="选择发布日期" value="{yun:}if $uptimename!=""{/yun}{yun:}$uptimename{/yun}{yun:}else{/yun}请选择发布日期{yun:}/if{/yun}" class="seach_industry_botton2" onclick="check_select_show('uptime');">
+      <div class="seach_Nature" style="display:none" id="listuptime">
+        <div class="seach_Nature_list">
+          <input type="hidden" name="uptime" id="uptime" value="{yun:}$getinfo.uptime{/yun}" />
+          <a href="javascript:check_onselect('uptime','','不限');" class="seach_Nature_cur">不限</a> <a uptime="1" href="javascript:check_onselect('uptime','1','今天');">今天</a> <a uptime="3" href="javascript:check_onselect('uptime','3','最近3天');">最近3天</a> <a uptime="7" href="javascript:check_onselect('uptime','7','最近7天');">最近7天</a> <a uptime="30" href="javascript:check_onselect('uptime','30','最近一个月');">最近一个月</a> <a uptime="90" href="javascript:check_onselect('uptime','90','最近三个月');">最近三个月</a> </div>
+      </div>
+    </div>
+    <div class="seach_keyword">
+      <input type="text" id="userkeyword" value="{yun:}if $getinfo.keyword!=""{/yun}{yun:}$getinfo.keyword{/yun}{yun:}else{/yun}请输入职位名称的关键字：例如会计{yun:}/if{/yun}" placeholder="请输入职位名称的关键字：例如会计" onclick="if(this.value=='请输入职位名称的关键字：例如会计'){this.value=''}" onblur="if(this.value==''){this.value='请输入职位名称的关键字：例如会计'}" name="keyword" class="seach_keyword_text placeholder">
+    </div>
+    {yun:}foreach item=v from=$userdata.user_type{/yun}
+    <input type="checkbox" value="{yun:}$v{/yun}" {yun:}if $getinfo.typeids|strstr:$v{/yun}checked{yun:}/if{/yun} onclick="getTypeids();" class="seach_checked typeid">
+    <span class="seach_checked_name">{yun:}$userclass_name[$v]{/yun}</span> {yun:}/foreach{/yun}
+    <input type="hidden" name="typeids" id="typeids" value="{yun:}$getinfo.typeids{/yun}" />
+    <input type="submit" value="" class="seach_user_submit">
+  </div>
+  <div class="clear"></div>
+  <div class="seach_box_zy">
+    <div class="seach_hot"><span>热门搜索：</span> {yun:}key limit=10 recom=1 type=5 item=keylist{/yun} <a href="{yun:}$keylist.url{/yun}" title="{yun:}$keylist.key_title{/yun}">{yun:}$keylist.key_name{/yun}</a> {yun:}/key{/yun} </div>
+    <div class="seach_more"><span onclick="showselect();">更多搜索条件</span></div>
+  </div>
+</div>
+<div class="clear"></div>
+</form>
+<div class="clear"></div>
+<div class="seach_box_zy">
+  <div class="seach_cur"> <span class="seach_cur_l">当前搜索：</span>
+    <div class="Post_select_end fl" style="_line-height:1px; margin-top:5px;height:100%;line-height:25px; font-size:14px;color:#797676;"> {yun:}$searchcondition{/yun} </div>
+    {yun:}if $gettype!="m=user"{/yun}
+    <div class="search_cz"><a href="{yun:}url m=user url=c:search{/yun}"> + 重置</a></div>
+    {yun:}/if{/yun} </div>
+</div>
+<div class="yun_Looking_work_left">
+  <div class="All_post_cot fl "> {yun:}if $total!=0{/yun}
+    <ul class="All_post_title  fl">
+         <li class="yun_td1_user"><i>姓名</i></li>
+      <li class="yun_td2_user">求职意向</li>
+      <li class="yun_td3_user">工作经验</li>
+      <li class="yun_td4_user">学历</li>
+      <li class="yun_td5_user">年龄</li>
+      <li class="yun_td6_user">性别</li>
+      <li class="yun_td7_user">求职地区</li>
+      <li class="yun_td8_user">到岗时间</li>
+      <li class="yun_td9_user">更新日期</li>
+    </ul>
+    {yun:}/if{/yun}
+    {yun:}userlist limit=20 salary=auto.salary edu=auto.edu exp=auto.exp sex=auto.sex keyword=auto.keyword hy=auto.hy provinceid=auto.provinceid report=auto.report cityid=auto.cityid three_cityid=auto.three_cityid jobids=auto.jobids typeids=auto.typeids job1_son=auto.job1_son job_post=auto.job_post uptime=auto.uptime post_len=14 ispage=1 item=user{/yun}
+    <ul class="All_post_seach_l All_post_title All_post_seach_user fl">
+      <li class="yun_td1_user"><a href="{yun:}url m=resume url=id:`$user.id`{/yun}" target="_blank" class="search_5t_a_user" title="{yun:}$user.username_n{/yun}"> {yun:}$user.username_n|mb_substr:0:4:'gbk'{/yun}</a>{yun:}if $user.photo{/yun}<span  class='tips_class' imgsrc="{yun:}$user.photo{/yun}"><img  style="margin-top:15px; float:left; margin-left:15px;"src="{yun:}$style{/yun}/images/profile.gif"></span>{yun:}/if{/yun}</li>
+      <li class="yun_td2_user"> {yun:}$user.job_post_n{/yun}</li>
+      <li class="yun_td3_user">{yun:}$user.exp_n{/yun}</li>
+      <li class="yun_td4_user">{yun:}$user.edu_n{/yun}</li>
+      <li class="yun_td5_user">{yun:}if $user.age==0{/yun}保密{yun:}else{/yun}{yun:}$user.age{/yun}岁{yun:}/if{/yun}</li>
+      <li class="yun_td6_user">{yun:}$user.sex_n{/yun}</li>
+      <li class="yun_td7_user">{yun:}$user.job_city_one{/yun} {yun:}$user.job_city_two{/yun}</li>
+      <li class="yun_td8_user">{yun:}$user.report_n{/yun}</li>
+      <li class="yun_td9_user">{yun:}$user.time{/yun}</li>
+    </ul>
+    {yun:}/userlist{/yun} </div>
+  <div class="clear"></div>
+  {yun:}if $total!=0{/yun}
+  <div class="pages"> {yun:}$pagenav{/yun}</div>
+  {yun:}/if{/yun}
+
+  {yun:}if $total==0{/yun}
+  <div class="seachno">
+    <div class="seachno_left"> <img src="{yun:}$style{/yun}/images/search-no.gif"></div>
+    <div class="listno-content"> <strong>很抱歉，没有找到满足条件的人才</strong><br>
+      <span> 建议您：<br>
+      1、适当减少已选择的条件<br>
+      2、适当删减或更改搜索关键字<br>
+      </span> <span> 热门关键字：<br>
+      {yun:}key limit=6 recom=1 type=5 item=top_key{/yun} <a href="{yun:}$top_key.url{/yun}">{yun:}$top_key.key_name{/yun}</a> {yun:}/key{/yun} </span> </div>
+  </div>
+  {yun:}/if{/yun} </div>
+</div>
+</div>
+</div>
+</div>
+{yun:}include file="$tplstyle/footer.htm"{/yun}

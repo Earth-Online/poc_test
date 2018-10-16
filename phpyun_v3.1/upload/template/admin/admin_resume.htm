@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" />
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script>
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+
+<div class="infoboxp">
+  <div class="infoboxp_top">
+    <h6>简历列表</h6>
+    <div class="infoboxp_right">
+		<a href="index.php?m=admin_resume&c=addresume" class="infoboxp_tj">添加简历</a>
+	</div>
+  </div>
+  <div class="company_job">
+    <div class="company_job_list_h1"> <span class="company_m6" style="float:left; margin-left:10px;">
+      <form action="index.php" name="myform" method="get">
+        <input name="m" value="admin_resume" type="hidden"/>
+		<span  style="margin-left:10px;">检索类型：</span>
+		<select name="salary_n">
+			<option value="">待遇要求</option>
+			{yun:}foreach from=$userdata.user_salary item=salary{/yun}
+			<option value="{yun:}$salary{/yun}" {yun:} if $get_type.salary_n ==$salary{/yun} selected="selected" {yun:}/if{/yun} >{yun:}$userclass_name[$salary]{/yun}</option>
+            {yun:}/foreach{/yun}
+		</select>
+		<select name="type_n">
+			<option value="">工作性质</option>
+			{yun:}foreach from=$userdata.user_type item=type{/yun}
+			<option value="{yun:}$type{/yun}" {yun:} if $get_type.type_n ==$type{/yun} selected="selected" {yun:}/if{/yun}>{yun:}$userclass_name[$type]{/yun}</option>
+            {yun:}/foreach{/yun}
+		</select>
+		<select name="report_n">
+			<option value="">到岗时间</option>
+			{yun:}foreach from=$userdata.user_report item=report{/yun}
+			<option value="{yun:}$report{/yun}" {yun:} if $get_type.report_n ==$report{/yun} selected="selected" {yun:}/if{/yun} >{yun:}$userclass_name[$report]{/yun}</option>
+            {yun:}/foreach{/yun}
+		</select>
+         <input class="company_job_text" type="text" name="s_news_id"  size="25"/>
+        <input class="company_job_new_sub"   type="submit" name="news_search" value="检索简历"/>
+      </form>
+      </span> </div>
+  </div>
+  <div class="table-list">
+    <div class="admin_table_border">
+      <iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+      <form action="index.php" target="supportiframe" name="myform" method="get" id='myform'>
+        <input name="m" value="admin_resume" type="hidden"/>
+        <input name="c" value="del" type="hidden"/>
+        <table width="100%">
+          <thead>
+            <tr class="admin_table_top">
+              <th style="width:20px;"><label for="chkall">
+                  <input type="checkbox" id='chkAll'  onclick='CheckAll(this.form)'/>
+                </label></th>
+
+              <th width="60">
+			  {yun:}if $smarty.get.t=="id" && $smarty.get.order=="asc"{/yun}
+			  <a href="index.php?m=admin_resume&order=desc&t=id">简历ID<img src="images/sanj.jpg"/></a>
+              {yun:}else{/yun}
+              <a href="index.php?m=admin_resume&order=asc&t=id">简历ID<img src="images/sanj2.jpg"/></a>
+              {yun:}/if{/yun}
+			  </th>
+              <th align="left" width="150">简历名称</th>
+              <th align="left" width="200">意向职位</th>
+              <th>工作地点</th>
+              <th>待遇要求</th>
+              <th>工作性质</th>
+              <th>到岗时间</th>
+
+              <th>
+			  {yun:}if $smarty.get.t=="time" && $smarty.get.order=="asc"{/yun}
+			  <a href="index.php?m=admin_resume&order=desc&t=time">更新时间<img src="images/sanj.jpg"/></a>
+              {yun:}else{/yun}
+              <a href="index.php?m=admin_resume&order=asc&t=time">更新时间<img src="images/sanj2.jpg"/></a>
+              {yun:}/if{/yun}
+			  </th>
+              <th class="admin_table_th_bg">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+
+          {yun:}foreach item=v from=$rows{/yun}
+          <tr align="center">
+            <td><input type="checkbox" value="{yun:}$v.id{/yun}-{yun:}$v.uid{/yun}"  name='del[]' onclick='unselectall()' rel="del_chk" /></td>
+            <td align="left" class="td1" style="text-align:center;"><span>{yun:}$v.id{/yun}</span></td>
+            <td class="ud" align="left" ><a href="../{yun:}url m=resume url=id:`$v.id`,look:admin{/yun}" target="_blank">{yun:}$v.name{/yun}</a></td>
+            <td class="od" align="left">{yun:}$v.job_post_n{/yun}(<a href="javascript:void(0)" class="job_name"  v="{yun:}$v.job_class_name{/yun}"><font color="red">共{yun:}$v.jobnum{/yun}个</font></a>)</td>
+            <td class="gd">{yun:}$v.cityid_n{/yun}</td>
+            <td class="td">{yun:}$v.salary_n{/yun}</td>
+            <td>{yun:}$v.type_n{/yun}</td>
+            <td>{yun:}$v.report_n{/yun}</td>
+            <td>{yun:}$v.lastupdate|date_format:"%Y-%m-%d"{/yun}</td>
+            <td><div class="admin_Operating_c" id="list_{yun:}$v.id{/yun}" aid="{yun:}$v.id{/yun}">
+				<div class="admin_Operating">操作</div>
+				<div class="admin_Operating_list admin_Operating_down" id="list{yun:}$v.id{/yun}" style="display:none;">
+				<a href="../{yun:}url m=resume url=id:`$v.id`,look:admin{/yun}" target="_blank" class="admin_cz_yl">预览</a>
+				<a href="index.php?m=admin_resume&c=saveresume&uid={yun:}$v.uid{/yun}&e={yun:}$v.id{/yun}" class="admin_cz_bj">编辑</a>
+				 <a href="javascript:void(0)"  onclick="layer_del('确定要删除？', 'index.php?m=admin_resume&c=del&id={yun:}$v.id{/yun}-{yun:}$v.uid{/yun}');"class="admin_cz_sc">删除</a></div></div></td>
+          </tr>
+          {yun:}/foreach{/yun}
+          <tr style="background:#f1f1f1;">
+            <td colspan="3" ><input class="admin_submit4" type="button" name="delsub" value="删除所选" onClick="return really('del[]')" /></td>
+            <td colspan="7" class="digg">{yun:}$pagenav{/yun}</td>
+          </tr>
+            </tbody>
+
+        </table>
+		<input type="hidden" name="pytoken"  id='pytoken' value="{yun:}$pytoken{/yun}">
+      </form>
+    </div>
+  </div>
+</div>
+<script>
+$(".job_name").hover(function(){
+	var job_name=$(this).attr('v');
+	if($.trim(job_name)!=''){
+		layer.tips(job_name, this, {guide: 1, style: ['background-color:#F26C4F; color:#fff;top:-7px', '#F26C4F']});
+	}
+},function(){
+	var job_name=$(this).attr('v');
+	if($.trim(job_name)!=''){
+		layer.closeTips();
+	}
+});
+</script>
+</body>
+</html>

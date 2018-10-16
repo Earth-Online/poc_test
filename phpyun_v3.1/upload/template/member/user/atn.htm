@@ -1,0 +1,28 @@
+{yun:}include file="$userstyle/header.htm"{/yun}
+<div class=mainbody> {yun:}include file="$userstyle/left.htm"{/yun}
+  <div class="w740 fl ml10">
+    <div class="boxtit01 mt8"> <span class=text>我关注的人</span> </div>
+    <div class="remindbox01 mt10" >
+      <div id="gms_showclew"></div>
+      {yun:}if empty($atnlist){/yun}
+      {yun:}else{/yun}
+      {yun:}foreach item=item from=$atnlist{/yun}
+      <dl>
+        <dt><a href="{yun:}furl url=c:profile,id:`$item.sc_uid`{/yun}" target="_blank"> {yun:}if $item.pic{/yun} <img width="50" height="50" src="{yun:}$item.pic{/yun}" title='{yun:}$item.nickname{/yun}'> {yun:}else{/yun} <img src="{yun:}$config.sy_weburl{/yun}/{yun:}$config.sy_lt_icon{/yun}" width="50" height="50"  title='{yun:}$item.nickname{/yun}'> {yun:}/if{/yun} </a></dt>
+        <dd>
+          <ul>
+            <li><a class="atnlist_list_name" href="{yun:}furl url=c:profile,id:`$item.sc_uid`{/yun}" target="_blank"> </a></li>
+            <li>关注时间：{yun:}$item.time|date_format:"%Y-%m-%d"{/yun}</li>
+            <li>{yun:}$item.nickname{/yun}</li>
+            <li><a href="index.php?c=atndel&id={yun:}$item.id{/yun}">取消关注</a></li>
+          </ul>
+        </dd>
+      </dl>
+      {yun:}/foreach{/yun}
+      {yun:}/if{/yun}
+      <div class="clear" ></div>
+      <div class="diggg">{yun:}$pagenav{/yun}</div>
+    </div>
+  </div>
+</div> 
+{yun:}include file="$userstyle/footer.htm"{/yun}

@@ -1,0 +1,39 @@
+{yun:}include file="$tplstyle/footer.htm"{/yun}
+<div id="TB_window" style=" display: none;" class="ask_report">
+	<div id="TB_closeAjaxWindow" class="ask_report_h1">
+    <div class="ask_report_h1_c ask_icon3">
+		<span class="ask_report_h1_span ask_icon3"></span>
+		<a id="TB_closeWindowButton" href="javascript:void(0);" onclick="TB_remove();" class="ask_icon3">关闭</a>
+        </div>
+        <div>
+        <div class="ask_report_h1_l"></div>
+        <div class="ask_report_h1_r"></div>
+        </div>
+	</div>
+	<div id="TB_ajaxContent" class="ask_report_cont">
+		<div class="ask_report_top"><span>举报原因：</span>
+				<select name="reason" id='reason'>
+					{yun:}foreach from=$reason item=reason{/yun}
+					<option value='{yun:}$reason.id{/yun}'>{yun:}$reason.name{/yun}</option>
+					{yun:}/foreach{/yun}
+				</select></div>
+			<div class="ask_report_top_sub">
+					<input type='button' value="提交" onclick="reason()" class="ask_report_top_bth"/> 
+					<input type='hidden' value="" id='eid' name='eid'>
+					<input type='hidden' value="" id='type' name='type'>
+		</div>
+	</div>
+</div>
+<script type="text/javascript"> 
+function get_show(eid,type){
+	$("#eid").val(eid);
+	$("#type").val(type);
+	position("#TB_window");
+}
+function TB_remove() { 
+	$("#TB_window").hide();
+	return false;
+}
+$("#TB_window").smartFloat('TB_window');
+</script> 
+<div id="uclogin" style="display:none"></div>

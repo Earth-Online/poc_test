@@ -1,0 +1,110 @@
+{yun:}include file="$comstyle/header.htm"{/yun} 
+{yun:}include file="$comstyle/left.htm"{/yun}
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script> 
+<script src="{yun:}$config.sy_weburl{/yun}/js/lazyload.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/public.js" language="javascript"></script>
+
+  <div class="brief">
+    <div class="connection">
+      <h1><span>联系我们</span></h1>
+
+        {yun:}if $look_msg!=""{/yun}
+    <div class="ahout_touch">
+      <div class="ahout_touch_title">
+        <div class="ahout_touch_red">{yun:}$look_msg{/yun}</div>
+        {yun:}if $looktype=="1"{/yun}
+        <a href="member/index.php?c=expect&add={yun:}$uid{/yun}">创建简历</a>
+        {yun:}elseif $looktype=="2"{/yun}
+        <a href="javascript:;" onclick="showcomlogin();">立即登陆</a> 
+        <a href="{yun:}$config.sy_weburl{/yun}/{yun:}url m=register url=usertype:1{/yun}">立即注册</a>
+        {yun:}/if{/yun} </div>
+    </div>
+    {yun:}else{/yun}
+      <div class="touch"> 
+      	企业地址：{yun:}$com.address{/yun}<br>
+        固定电话：{yun:}image uid=$com.uid action=linkphone{/yun}<br>
+        联系电话：{yun:}image uid=$com.uid action=linktel{/yun}<br>
+        联系邮件：{yun:}$com.linkmail{/yun}<br>
+        联 系 QQ：{yun:}$com.linkqq{/yun}<br>
+        邮政编码：{yun:}$com.zip{/yun}<br>
+        企业网址：{yun:}$com.website{/yun}<br>
+      </div>
+    {yun:}/if{/yun}
+    </div>
+<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+  {yun:}api type='comment'{/yun}
+        <div class="connection_list_top">
+		<h1><span>评论留言</span></h1>
+      <div class="Advice">
+		{yun:}if $usertype==1{/yun}
+        
+		 <form action="index.php" method="post" target="supportiframe" onsubmit="return check_pl();">
+		  <input type="hidden" name="id"  value="{yun:}$id{/yun}" />
+		<div class="commpay_textarea">
+			<textarea class="program_tooltip" data-rid="949" tip-text="您对这个公司有什么看法？"  id="content" name="content"></textarea>
+		</div>
+		<div class="commpay_Comment_input">
+			<input class="program_reply" type="submit" name="submit" value="提交">
+		</div>
+		</form>
+		{yun:}/if{/yun}
+		{yun:}foreach item=v from=$msglist{/yun}
+		<div class="Comment_list" {yun:}if empty($msglist){/yun}style="display:none;"{yun:}/if{/yun}>
+		<div class="Comment_list_left">
+			{yun:}if $v.photo!=""{/yun}
+			<img src=".{yun:}$v.photo{/yun}" width="50" height="50">
+			{yun:}else{/yun}
+			<img src="{yun:}$config.sy_weburl{/yun}/{yun:}$config.sy_lt_icon{/yun}" width="50" height="50">
+			{yun:}/if{/yun}
+		</div>
+		<div class="Comment_list_right">
+			<div class="Comment_w608">
+				<span class="fl"><a href="{yun:}$config.sy_weburl{/yun}/index.php?m=resume&uid={yun:}$v.uid{/yun}">{yun:}$v.name{/yun}</a></span>
+				<span class="fr"> {yun:}$v.ctime|date_format:"%Y-%m-%d %H:%M"{/yun}</span>
+			</div>
+			<div class="Comment_w608">
+				<span class="fl cmt_comment">{yun:}$v.content{/yun}</span>
+				{yun:}if $uid==$id && $v.reply==""{/yun}
+				<a class="fr blue ml10" href="javascript:huifu('{yun:}$v.id{/yun}');"> 回复</a>
+				{yun:}/if{/yun}
+			</div>
+			{yun:}if $v.reply!=""{/yun}
+			<div class="Comment_w608">
+				<div class="tips_reply">企业回复：<span>{yun:}$v.reply{/yun}</span></div>
+			</div>
+			{yun:}/if{/yun}
+			<div id="huifu{yun:}$v.id{/yun}" style="display:none;">
+				<form action="index.php" target="supportiframe" method="post" onsubmit="return check_huifu('{yun:}$v.id{/yun}');">
+					<div class="Comment_w608">
+						<textarea class="Comment_textarea_hf" tip-text="说两句吧```" id="reply{yun:}$v.id{/yun}" name="content"></textarea>
+						<input type="hidden" name="id" value="{yun:}$v.id{/yun}" />
+					</div>
+					<div class="Comment_w608">
+						<input class="program_reply" type="submit"  name="submit2" value="回复">
+					</div>
+				</form>
+			</div>
+		</div>
+		</div>
+		{yun:}/foreach{/yun}
+
+
+      </div>
+	  <div class="pages"  >{yun:}$pagenav{/yun}</div>
+      </div>
+<div class="connection_list_top">
+      <h1><span>给我们留言--腾讯微博</span></h1>
+      <div class="touch">
+        {yun:}$qqapi{/yun}
+      </div>
+    </div>
+<div class="connection_list_top">
+      <h1><span>给我们留言--新浪微博</span></h1>
+      <div class="touch">
+        {yun:}$sinaapi{/yun}
+      </div>
+
+    </div>
+  </div>
+{yun:}include file="$comstyle/footer.htm"{/yun}

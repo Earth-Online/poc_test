@@ -1,0 +1,15 @@
+<div class="clear"></div>
+<div class="foot">
+  <div class="foot_list">
+{yun:}nav item=navlist key=key nid=2{/yun}
+{yun:}if $key!='0'{/yun}|{yun:}/if{/yun} <a href="{yun:}$navlist.url{/yun}" {yun:}if $navlist.eject{/yun} target="_blank"{yun:}/if{/yun}>{yun:}$navlist.name{/yun}</a>
+{yun:}/nav{/yun}
+  </div>
+  <div class="foot_list">{yun:}$config.sy_webcopyright{/yun}{yun:}$config.sy_webrecord{/yun}</div>
+  <div class="foot_list">µÿ÷∑:{yun:}$config.sy_webadd{/yun}  µÁª∞(Tel):{yun:}$config.sy_webtel{/yun}  EMAIL:{yun:}$config.sy_webemail{/yun}  </div>
+  <div class="foot_list">Powered by <a target="_blank" href="http://www.phpyun.com">PHPYun.</a> v3.0 Business Edition. Certificate Code 2009-2013<a target="_blank" href="http://www.hr135.com">HR135</a>Corporation</div>
+</div>
+{yun:}include file="$imtplstyle/index.htm"{/yun}
+<div id="uclogin" style="display:none"></div>
+</body>
+</html>

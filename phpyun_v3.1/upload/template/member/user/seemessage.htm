@@ -1,0 +1,50 @@
+{yun:}include file="$userstyle/header.htm"{/yun}
+<div class="w950"> 
+{yun:}include file="$userstyle/left.htm"{/yun}
+<div class="mian_right fltR mt20">
+  <div class="tabmenubox01 mt9">
+    <ul>
+        <li><a href="index.php?c=commsg">求职咨询</a> </li>
+        <li><a href="index.php?c=message">留言反馈</a></li>  
+        <li class="cur"><a href="index.php?c=seemessage">留言列表</a></li>
+        <li><a href="index.php?c=xin">私信</a> </li>
+    </ul>
+  </div>
+    <div >
+      <div id="gms_showclew"></div>
+      <div class="resumelistbox01 mt10">
+        <div class="resume_box_list">
+          <table width="690" border="0" cellspacing="1" cellpadding="0" class="resume">
+            <tr>
+              <th>编号</th>
+              <th>用户名</th>
+              <th>内容</th>
+              <th>时间</th>
+              <th>状态</th>
+              <th>回复</th>
+              <th>删除</th>
+            </tr>
+            {yun:}foreach from=$rows item=item{/yun}
+            <tr>
+              <td> {yun:}$item.id{/yun}</td>
+              <td>{yun:}$item.username{/yun}</td>
+              <td style="width:240px;white-space: normal; word-break: break-all;"><div>{yun:}$item.content{/yun}</div></td>
+              <td><span>{yun:}$item.ctime|date_format:"%Y-%m-%d %H:%M"{/yun}</span></td>
+              <td> {yun:}if $item.status==1{/yun}<font color="green">已回复</font> {yun:}else{/yun}<font color="#FF0000">未回复</font>{yun:}/if{/yun} </td>
+              <td><a href="index.php?c=replys&id={yun:}$item.id{/yun}"><img src="{yun:}$userstyle{/yun}/images/editico.gif" title="回复" alt="回复"></a></td>
+              <td><a href="javascript:void(0)" onclick="layer_del('确定要删除？','index.php?c=seemessage&del={yun:}$item.id{/yun}'); "><img src="{yun:}$userstyle{/yun}/images/com_sc.jpg" alt="删除" title="删除" /></a></td>
+              
+            </tr>
+    {yun:}foreachelse{/yun}
+    <tr>
+    <td height="26"align="center"colspan="7" style=" background:#fff;">暂无留言信息！</td>      
+    </tr>
+    {yun:}/foreach{/yun}
+          </table>
+          <div class="diggg">{yun:}$pagenav{/yun}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{yun:}include file="$userstyle/footer.htm"{/yun}

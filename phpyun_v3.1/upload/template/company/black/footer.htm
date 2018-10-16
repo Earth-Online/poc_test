@@ -1,0 +1,17 @@
+</div>
+  <div class="clear"></div>
+  <div class=" footer">
+    <ul>
+        {yun:}foreach item=navlist key=key from=$menu_name[3]{/yun}
+    <li>{yun:}if $key>0{/yun} | {yun:}/if{/yun}<a href="{yun:}$navlist.url{/yun}" {yun:}if $navlist.eject{/yun} target="_blank"{yun:}/if{/yun}>{yun:}$navlist.name{/yun}</a></li>
+    {yun:}/foreach{/yun}
+    </ul>
+    {yun:}$config.sy_webcopyright{/yun}{yun:}$config.sy_webrecord{/yun}
+    <br>
+    µÿ÷∑:{yun:}$config.sy_webadd{/yun} µÁª∞(Tel):{yun:}$config.sy_webtel{/yun} EMAIL:{yun:}$config.sy_webemail{/yun}
+    <br>
+    Powered by <a target="_blank" href="http://www.phpyun.com">PHPYun.</a> v3.1 Business Edition. Certificate Code 2009-2014<a target="_blank" href="http://www.phpyun.com">PHPYUN</a>Corporation
+</div>
+</div>
+</body>
+</html>

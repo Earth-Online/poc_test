@@ -1,0 +1,22 @@
+  {yun:}productpage limit=8{/yun}
+{yun:}include file="$comstyle/header.htm"{/yun} 
+{yun:}include file="$comstyle/left.htm"{/yun} 
+  <div class="brief">
+    <div class="clear"></div>
+    <div class="environment">
+      <h1><span>产品展示</span></h1>
+    {yun:}if !empty($productpage){/yun}
+      {yun:}section name=i loop=$productpage{/yun}
+           <dl>
+            <dt><a class="fl" href="{yun:}curl url=id:$id,tp:productshow,pid:`$productpage[i].id`{/yun}" title="{yun:}$productpage[i].title{/yun}"><img src="{yun:}$config.sy_weburl{/yun}/{yun:}$productpage[i].pic{/yun}"width="155"height="110" alt="{yun:}$productpage[i].title{/yun}"></a></dt>
+            <dd><a class="fl" href="{yun:}curl url=id:$id,tp:productshow,pid:`$productpage[i].id`{/yun}" title="{yun:}$productpage[i].title{/yun}">{yun:}$productpage[i].title{/yun}</a></dd>
+          </dl>
+	  {yun:}/section{/yun}
+      <div class="page">{yun:}$pagenav{/yun}</div>
+      {yun:}else{/yun}
+        <div class="comapply_no_msg"> <div class="comapply_no_msg_cont"><span></span><em>该公司还没有上传产品展示!</em></div></div>
+      	{yun:}/if{/yun}
+</div>
+  </div>
+  <div class="clear"></div>
+{yun:}include file="$comstyle/footer.htm"{/yun} 

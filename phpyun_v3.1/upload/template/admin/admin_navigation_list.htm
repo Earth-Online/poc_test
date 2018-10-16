@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<link href="images/reset.css" rel="stylesheet" type="text/css" />
+<link href="images/system.css" rel="stylesheet" type="text/css" /> 
+<link href="images/table_form.css" rel="stylesheet" type="text/css" />
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="js/admin_public.js" language="javascript"></script> 
+<title>后台管理</title>
+</head>
+<body class="body_ifm">
+<div class="infoboxp">
+<div class="infoboxp_top">
+<h6>导航列表</h6>
+  <div class="infoboxp_right"> 
+<a href="index.php?m=navigation&c=add" class="infoboxp_tj">添加导航</a>
+<a href="index.php?m=navigation&c=group" class="infoboxp_tj">添加分类</a>
+</div>
+</div>
+   <div class="company_job">
+        <div class="company_job_list_h1">  <span class="company_m6" style="float:left; margin-left:10px;">
+            <form action="index.php" name="myform" method="get">
+                <input name="m" value="navigation" type="hidden"/>
+		<span class="company_s_l"> <font color="#666;">检索类型：</font></span> 
+		<span class="company_fl">
+        <select name="type">
+		<option value="">导航类别</option>
+		{yun:}foreach from=$navinfo item=na{/yun}
+		   <option value="{yun:}$na.id{/yun}" {yun:} if $get_type.type==$na.id{/yun} selected="selected" {yun:}/if{/yun} >{yun:}$na.typename{/yun}</option>
+		   {yun:}/foreach{/yun}
+        </select>
+        </span>
+                <input class="company_job_text"  type="text" name="s_news_id"  size="25" style="float:left"> 
+                <input  class="company_job_new_sub" type="submit" name="news_search" value="检索导航名称"/>&nbsp;
+                
+            </form>
+        </span>
+	</div>
+</div>
+<div class="table-list">
+<div class="admin_table_border">
+<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe> 
+<form action="index.php" name="myform" id='myform' method="get" target="supportiframe">
+<input name="m" value="navigation" type="hidden"/>
+<input name="c" value="del" type="hidden"/>
+<table width="100%">
+	<thead>
+		<tr class="admin_table_top">
+		    <th><label for="chkall"><input type="checkbox" id='chkAll'  onclick='CheckAll(this.form)'/></label></th>
+			<th>导航编号</th>
+            <th>导航名称</th>
+			<th>导航类别</th>
+			<th>连接地址</th>
+            <th>导航类型</th>
+			<th>排序</th>
+            <th>弹出窗口</th>
+            <th>显示</th>
+			<th class="admin_table_th_bg">操作</th>
+		</tr>
+	</thead>
+	<tbody>
+    {yun:}foreach item=v from=$nav{/yun}
+    <tr align="center">
+	    <td><input type="checkbox" value="{yun:}$v.id{/yun}"  name='del[]' onclick='unselectall()' rel="del_chk" /></td>
+    	<td align="left" class="td1" style="text-align:center;"><span>{yun:}$v.id{/yun}</span></td>
+        <td class="od" align="left">{yun:}$v.name{/yun}</td>
+    	<td class="ud">{yun:}$v.typename{/yun}</td>
+		<td class="gd">{yun:}$v.url{/yun}</td>
+        <td class="td">{yun:}if $v.type=='1'{/yun}站内链接{yun:}else{/yun}原链接{yun:}/if{/yun}</td>
+		<td class="td">{yun:}$v.sort{/yun}</td>
+        <td class="td">{yun:}if $v.eject=='1'{/yun}新窗口{yun:}else{/yun}原窗口{yun:}/if{/yun}</td>
+    	<td class="td">{yun:}if $v.display=='1'{/yun}是{yun:}else{/yun}否{yun:}/if{/yun}</td>
+    	<td><div class="admin_Operating_c" id="list_{yun:}$v.id{/yun}" aid="{yun:}$v.id{/yun}">
+				<div class="admin_Operating">操作</div>
+				<div class="admin_Operating_list admin_Operating_down" id="list{yun:}$v.id{/yun}" style="display:none;"><a href="index.php?m=navigation&c=add&id={yun:}$v.id{/yun}"class="admin_cz_bj">编辑</a> <a href="javascript:void(0)" onClick="layer_del('确定要删除？', 'index.php?m=navigation&c=del&id={yun:}$v.id{/yun}');"class="admin_cz_sc">删除</a></div></div></td>
+  </tr>
+  {yun:}/foreach{/yun}
+  <tr style="background:#f1f1f1;">
+    <td colspan="3" ><input class="admin_submit4"  type="button" name="delsub" value="删除所选"  onclick="return really('del[]')"/></td>
+    <td colspan="7" class="digg">{yun:}$pagenav{/yun}</td>
+  </tr>
+  </tbody>
+  </table>
+  <input type="hidden" name="pytoken" id='pytoken' value="{yun:}$pytoken{/yun}">
+</form>
+</div>
+</div>
+</div>
+</body>
+</html>

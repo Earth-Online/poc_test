@@ -1,0 +1,21 @@
+<script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/layer/layer.min.js" language="javascript"></script>
+<script src="{yun:}$config.sy_weburl{/yun}/js/public.js" language="javascript"></script>
+<div class="clear"></div>
+<div class="about_content">
+<div class="about_left_menu">
+<ul>
+    <li><a href="{yun:}$config.sy_weburl{/yun}">网站首页</a></li>
+    {yun:}singlenav  item=list{/yun}
+    <li {yun:}if $list.id==$smarty.get.id{/yun}class="about_cur"{yun:}/if{/yun}><a href="{yun:}$list.url{/yun}">{yun:}$list.name{/yun}</a></li>
+    {yun:}/singlenav{/yun}
+</ul>
+</div>
+<div class="about_right">
+<div class="about_tit">当前位置：<a href="{yun:}$config.sy_weburl{/yun}">首页</a> > {yun:}$title{/yun}</div>
+<div class="about_h1">{yun:}$title{/yun}</div>
+<div class="about_p">
+{yun:}$content{/yun}
+</div>
+</div>
+</div>

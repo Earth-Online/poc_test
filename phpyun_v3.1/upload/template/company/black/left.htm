@@ -1,0 +1,14 @@
+<div class="sidebar-left">
+    <div class="position">
+      <div class="position-title"><span>ÕÐÆ¸Ö°Î»</span></div>
+      <ul class="post">
+
+{yun:}joblist limit=5 uid=@id item=job{/yun}
+<li><a href="{yun:}$job.job_url{/yun}" style="overflow:hidden;">{yun:}$job.name{/yun}</a></li>
+{yun:}/joblist{/yun}
+      
+      </ul>
+    </div>
+    <div class="index_touch"><a href="{yun:}curl url=id:$id,tp:connection{/yun}"><img src="{yun:}$com_style{/yun}images/touch.png"></a></div>
+
+  </div>

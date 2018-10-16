@@ -1,0 +1,43 @@
+{yun:}include file="$userstyle/header.htm"{/yun}
+<div class="w950"> 
+{yun:}include file="$userstyle/left.htm"{/yun}
+<div class="mian_right fltR mt20">
+  <div class="tabmenubox01 mt9">
+    <ul>
+      <li > <a href="index.php?c=resume">我的简历</a></li>
+      <li class="cur"> <a href="index.php?c=look">简历被浏览</a></li>
+      <li> <a href="index.php?c=privacy">隐私设置</a></li>
+    </ul>
+  </div>
+  <div class="remind-job-msg  remind-job-msg-seach mt10"> 谁看过我简历 </div>
+  <div class="remindbox01 mt10" >
+    <div id="gms_showclew"></div>
+    <div class="resumelistbox01 mt10">
+      <div class="resume_box_list">
+        <table border="0" cellspacing="1" cellpadding="0" class="resume" style="width:690px;">
+          <tr>
+            <th nowrap>公司名称</th>
+            <th nowrap>简历名称</th>
+            <th nowrap>浏览时间</th>
+            <th nowrap>操作</th>
+          </tr> 
+          {yun:}foreach item=log from=$look{/yun}
+          <tr>
+            <td nowrap><a href="{yun:}curl url=id:`$log.com_id`{/yun}" target="_blank" title="{yun:}$log.com{/yun}">{yun:}$log.com{/yun}</A></td>
+            <td nowrap><span>{yun:}$log.resume{/yun}</span></td>
+            <td nowrap>{yun:}$log.datetime|date_format:'%Y-%m-%d'{/yun}</td>
+            <td nowrap><a href="javascript:void(0)"  onclick="layer_del('确定要删除？', 'index.php?c=look&del={yun:}$log.id{/yun}');"> <img src="{yun:}$userstyle{/yun}/images/com_sc.jpg"  alt="删除" title="删除"/></a></td>
+          </tr>
+         {yun:}foreachelse{/yun}  
+          <tr style="height:30px">
+            <td colspan="4">还没有公司浏览我的简历。</td>
+          </tr>
+          {yun:}/foreach{/yun} 
+        </table>
+      </div>
+    </div>
+    <div class="diggg" style="width:710px;">{yun:}$pagenav{/yun}</div>
+  </div>
+</div>
+</div> 
+{yun:}include file="$userstyle/footer.htm"{/yun}

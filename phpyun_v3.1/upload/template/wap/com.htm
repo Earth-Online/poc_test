@@ -1,0 +1,53 @@
+{yun:}include file="$wapstyle/header_cont.htm"{/yun}
+<div class="fm">
+  <form action="index.php" method="get">
+    <input type="hidden" name="m" value="com" />
+    <div class="seach_post">
+      <input type="text" name="keyword" value="{yun:}$smarty.get.keyword{/yun}" class="seach_post_text placeholder"  placeholder="请输入关键字/职位/地点搜索" />
+    </div>
+    <div class="seach_post_sel">
+      <select name="hy" class="seach_post_select">
+        <option value="">选择行业</option>
+        
+{yun:}foreach from=$industry_index item=v{/yun}
+
+        <option value="{yun:}$v{/yun}" {yun:}if $smarty.get.hy==$v{/yun}selected{yun:}/if{/yun}>{yun:}$industry_name[$v]{/yun}</option>
+        
+{yun:}/foreach{/yun}
+
+      </select>
+    </div>
+    <div class="seach_post_sel">
+      <select name="job1" class="seach_post_select">
+        <option value="">选择职位类别</option>
+        
+{yun:}foreach from=$job_index item=v{/yun}
+
+        <option value="{yun:}$v{/yun}"  {yun:}if $smarty.get.job1==$v{/yun}selected{yun:}/if{/yun}>{yun:}$job_name[$v]{/yun}</option>
+        
+
+{yun:}/foreach{/yun}
+
+      </select>
+    </div>
+    <div class="seach_post_submit">
+      <input type="submit" value="搜索"class="seach_post_sub" />
+    </div>
+  </form>
+</div>
+<section>
+<div class="main">
+  <div class="index_post_list"> 
+   {yun:}joblist namelen=8 comlen=12 ispage=1 hy=auto.hy job1=auto.job1 job1_son=auto.job1_son job_post=auto.job_post pr=auto.pr mun=auto.mun provinceid=auto.provinceid cityid=auto.cityid three_cityid=auto.three_cityid type=auto.type edu=auto.edu exp=auto.exp sex=auto.sex salary=auto.salary keyword=auto.keyword urgent=auto.urgent job=auto.job   limit=25 islt=4 item=job_list{/yun} <a href="{yun:}wapurl url=m:com,c:view,id:`$job_list.id`{/yun}" class="index_post_list_b index_post_list_b_com">
+ 
+    <h3>{yun:}$job_list.name_n{/yun}</h3>
+    <aside>{yun:}$job_list.com_name{/yun}</aside>
+    <i>{yun:}$job_list.job_city_one{/yun}-{yun:}$job_list.job_city_two{/yun}</i> <em>{yun:}$job_list.time{/yun}</em> </a> {yun:}/joblist{/yun} </div>
+  <div>
+   
+    <div class="pages"> {yun:}$pagenav{/yun}</div>
+  
+  </div>
+  </section>
+</div>
+{yun:}include file="$wapstyle/footer.htm"{/yun}

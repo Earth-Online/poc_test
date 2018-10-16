@@ -1,0 +1,102 @@
+{yun:}include file="$comstyle/header.htm"{/yun}
+<div class="w950">
+<div class="admin_mainbody">
+{yun:}include file="$comstyle/left.htm"{/yun}
+<div class=right_box>
+<div class=admincont_box >
+<div class=admin_tit><span class="admin_tit_bg">咨询列表</span></div>
+<div class="clear"></div>
+<div class=admin_note2>
+<iframe id="supportiframe"  name="supportiframe" onload="returnmessage('supportiframe');" style="display:none"></iframe>
+<table width="100%" border="0" cellpadding="0" cellspacing="1"class="my_table_msg" >
+<tr>
+<th width="8%"  height="26" align="center" bgcolor="#F7FAFF">咨询人</th>
+<th width="10%"  height="26" align="center" bgcolor="#F7FAFF">职位名称</th>
+<th width="15%" align="center" bgcolor="#F7FAFF">内容</th>
+<th width="10%" align="center" bgcolor="#F7FAFF">时间</th>
+<th width="6%" align="center" bgcolor="#F7FAFF">状态</th>
+<th width="6%" align="center" bgcolor="#F7FAFF">删除</th>
+</tr>
+{yun:}foreach from=$rows item=msg{/yun}
+<tr>
+<td  height="26"align="center" bgcolor="#FFFFFF"><a href="/{yun:}url m=resume url=id:`$msg.uid`{/yun}">{yun:}$msg.username{/yun}</a></td>
+<td  height="26"align="center" bgcolor="#FFFFFF">
+<a href="/{yun:}url m=com url=c:comapply,id:`$msg.jobid`{/yun}">{yun:}$msg.job_name{/yun}</a>
+
+</td>
+<td  height="26"align="center" bgcolor="#FFFFFF">{yun:}$msg.content|mb_substr:0:20:'gbk'{/yun}</td>
+<td  height="26"align="center" bgcolor="#FFFFFF">{yun:}$msg.datetime|date_format:'%Y-%m-%d'{/yun}</td>
+<td align="center" bgcolor="#FFFFFF">{yun:}if $msg.reply!=""{/yun}<a href="javascript:void(0)" onclick="show_reply(URLdecode('{yun:}"GB2312"|iconv:"UTF-8":$msg.reply|nl2br|urlencode{/yun}'))">查看回复</a>{yun:}else{/yun}<span onclick="reply_msg('{yun:}$msg.id{/yun}',URLdecode('{yun:}"GB2312"|iconv:"UTF-8":$msg.content|nl2br|urlencode{/yun}'));" style="cursor:pointer">未回复</span>{yun:}/if{/yun}</td>
+<td align="center" bgcolor="#FFFFFF"><a href="javascript:void(0)" onclick="layer_del('您确定要删除？', 'index.php?c=msg&del={yun:}$msg.id{/yun}'); ">删除</a></td>
+</tr>
+{yun:}foreachelse{/yun}
+<tr style="height:30px">
+<td colspan="6" align="center">您还没有咨询记录。</td>
+</tr>
+{yun:}/foreach{/yun}
+</table><div class="diggg" style="margin-top:10px;">{yun:}$pagenav{/yun}</div>
+<script type="text/javascript" src="{yun:}$config.sy_weburl{/yun}/js/member_public.js"></script>
+<script>
+function URLdecode(str) {
+	var ret = "";
+	for(var i=0;i<str.length;i++) {
+			var chr = str.charAt(i);
+			if(chr == "+") {
+					ret += " ";
+			}else if(chr=="%") {
+					var asc = str.substring(i+1,i+3);
+					if(parseInt("0x"+asc)>0x7f) {
+							ret += decodeURI("%"+ str.substring(i+1,i+9));
+							i += 8;
+					}else {
+							ret += String.fromCharCode(parseInt("0x"+asc));
+							i += 2;
+					}
+			}else {
+					ret += chr;
+			}
+	}
+	return ret;
+}
+function show_reply(msg){
+	layer.alert(msg,-1);
+}
+function reply_msg(id,content){
+	$("#msgid").val(id);
+	$.layer({
+		type : 1,
+		title :'咨询内容',
+		offset: [($(window).height() -300)/2 + 'px', ''],
+		closeBtn : [0 , true],
+		border : [10 , 0.3 , '#000', true],
+		area : ['440px','300px'],
+		page : {dom :"#status_div"}
+	});
+	$(".admin_Operating_sh_h1 div").html(content);
+ }
+function check_msg(){
+	if($.trim($("#content").val())==""){
+		parent.layer.msg('回复内容不能为空！', 2, 2);return false;
+	}
+}
+</script>
+<div id="status_div"  style="display:none; width: 440px;float:left ">
+    <div id="infobox">
+      <form action="index.php?c=msg" target="supportiframe" method="post" id="formstatus" onsubmit="return check_msg();">
+		 <div class="admin_Operating_sh" style="padding:10px;">
+		<div class="admin_Operating_sh_h1" style="padding:5px;">咨询内容：<div style="height:100px;overflow:auto;"></div></div>
+		<div class="admin_Operating_sh_sm">我的回复：</div>
+        <div><input type="hidden" id="msgid" name="id" value="" />
+        <textarea id="content" name="reply" class="admin_Operating_text" style="width:100%"></textarea></div>
+		<div class="admin_Operating_sub" style="margin-top:10px;"> <input type="submit"  name='submit' value='确认' class="submit_btn">
+          &nbsp;&nbsp;<input type="button" id="zxxCancelBtn" onClick="layer.closeAll();" class="cancel_btn" value='取消'></div>
+
+		</div>
+        <input name="msgid" value="0" id='msgid' type="hidden">
+
+      </form>
+  </div>
+</div>
+</div> </div></div>
+</div></div>
+{yun:}include file="$comstyle/footer.htm"{/yun}

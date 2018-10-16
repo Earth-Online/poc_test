@@ -1,0 +1,47 @@
+{yun:}include file="$userstyle/header.htm"{/yun} 
+<div class="w950"> 
+{yun:}include file="$userstyle/left.htm"{/yun}
+<div class="mian_right fltR mt20">
+  <div class="tabmenubox01 mt9">
+    <ul>
+      <li class="cur"><a href="index.php?c=commsg">求职咨询</a> </li>
+      <li><a href="index.php?c=message">留言反馈</a></li>
+      <li><a href="index.php?c=seemessage">留言列表</a></li>
+      <li><a href="index.php?c=xin">私信</a> </li>
+    </ul>
+  </div>
+  <div class="remindbox01 mt10" >
+    <div id="gms_showclew"></div>
+    <div class="resumelistbox01 mt10">
+      <div id="" class="resume_box_list">
+        <table border="0" cellspacing="1" cellpadding="0" class="resume" style="width:690px;">
+          <tr>
+            <th nowrap>职位名称</th>
+            <th nowrap>公司名称</th>
+            <th nowrap>咨询时间</th>
+            <th nowrap>状态</th>
+          </tr>
+          {yun:}foreach item=log from=$rows{/yun}
+          <tr>
+            <td nowrap> <a href="{yun:}$config.sy_weburl{/yun}/{yun:}url m=com url=c:comapply,id:`$log.jobid`{/yun}">{yun:}$log.job_name{/yun}</a> </td>
+            <td nowrap><span><a href="{yun:}curl url=id:`$log.job_uid`{/yun}">{yun:}$log.com_name{/yun}</A></span></td>
+            <td nowrap>{yun:}$log.datetime|date_format:'%Y-%m-%d'{/yun}</td>
+            <td nowrap>{yun:}if $log.reply!=""{/yun}<a href="javascript:;" class="seemsg" id="{yun:}$log.id{/yun}"><img src="{yun:}$userstyle{/yun}/images/previewico.gif" alt="查看" title="查看" align="absmiddle"/>查看回复</a>{yun:}else{/yun}未回复{yun:}/if{/yun}</td>
+          </tr>
+          <tr id="msg{yun:}$log.id{/yun}" class="msgcontent" style="display:none; color:#f00;">
+            <td colspan="4">回复内容：{yun:}$log.reply{/yun}&nbsp;&nbsp;回复时间：{yun:}$log.datetime|date_format:'%Y-%m-%d'{/yun}</td>
+          </tr>
+          {yun:}foreachelse{/yun}
+          <tr style="height:30px">
+            <td colspan="4">您还没有咨询信息。</td>
+          </tr>
+          {yun:}/foreach{/yun}
+         
+        </table>
+      </div>
+    </div>
+    <div class="diggg">{yun:}$pagenav{/yun}</div>
+  </div>
+</div>
+</div>
+{yun:}include file="$userstyle/footer.htm"{/yun} 

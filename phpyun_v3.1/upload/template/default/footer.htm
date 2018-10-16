@@ -1,0 +1,23 @@
+<script>var weburl = '{yun:}$config.sy_weburl{/yun}'</script>
+<div class="clear"></div>
+<div class="footer">
+<div class="foot">
+	<div class="foot_conent">
+	{yun:}nav item=navlist key=key nid=2{/yun}
+	 {yun:}if $key!='0'{/yun}|{yun:}/if{/yun} <a href="{yun:}$navlist.url{/yun}" {yun:}if $navlist.eject{/yun} target="_blank"{yun:}/if{/yun} style="{yun:}if $navlist.color{/yun}color:{yun:}$navlist.color{/yun};{yun:}/if{/yun}{yun:}if $navlist.bold==1{/yun}font-weight:bolder;{yun:}/if{/yun}">{yun:}$navlist.name{/yun}</a>
+	{yun:}/nav{/yun}
+	<br>
+	{yun:}$config.sy_webcopyright{/yun}{yun:}$config.sy_webrecord{/yun}
+	<br>
+	µÿ÷∑:{yun:}$config.sy_webadd{/yun}  µÁª∞(Tel):{yun:}$config.sy_webtel{/yun}  EMAIL:{yun:}$config.sy_webemail{/yun}
+	<br>
+	Powered by <a target="_blank" href="http://www.phpyun.com">PHPYun.</a> v3.1 Business Edition. Certificate Code 2009-2014<a target="_blank" href="http://www.phpyun.com">PHPYUN</a>Corporation
+    </div>
+	<div class="clear"></div>
+
+</div>
+</div>
+<div id="uclogin" style="display:none"></div>
+<div id="bg" style=""></div>
+</body>
+</html>
