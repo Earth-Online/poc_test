@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-touch-fullscreen" content="yes"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="msapplication-tap-highlight" content="no"/>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,minimum-scale=1"/>
+<title>我的商城</title>
+<link rel="stylesheet" type="text/css" href="{zzz:plugpath}template/css/base.css">
+<link rel="stylesheet" type="text/css" href="{zzz:plugpath}template/css/nctouch_member.css">
+<script src="{zzz:sitepath}js/jquery.min.js"></script>
+<script src="{zzz:plugpath}imageselect/imageselect.js"></script>
+<script src="{zzz:sitepath}js/zzzcms.js"></script>
+<link  rel="stylesheet" type="text/css" href="{zzz:plugpath}imageselect/imageselect.css"/>
+<style>
+.jqis{ height:auto !important;width: 90% !important;}
+.jqis_dropdown{ position:relative; overflow: inherit}
+</style>
+</head>
+<body>
+<div class="scroller-body">
+  <div class="scroller-box"> 
+    <div class="member-center">
+      <form action="{zzz:sitepath}form/?edituser" method="post">
+      <input name="uid" value="[user:uid]" type="hidden">
+        <div class="edituser nctouch-inp-con">
+          <header id="header">
+            <div class="header-wrap">
+              <div class="header-l"> <a href="{zzz:sitepath}wap/?user"> <i class="back"></i> </a> </div>
+              <div class="header-title">
+                <h1>编辑信息</h1>
+              </div>
+            </div>
+          </header>
+          <ul  class="user_info" >
+           <li class="form-item">
+              <h4>用户名</h4>
+              <div class="input-box">
+               [user:username]
+              </div>
+            </li>
+              <h4>姓名</h4>
+              <div class="input-box">
+                <input type="text" class="inp" name="truename" id="truename" value="[user:truename]">
+              </div>
+            </li>
+            <li class="form-item">
+              <h4>联系电话</h4>
+              <div class="input-box">
+                <input type="text" class="inp" name="tel" id="tel" value="[user:tel]">
+              </div>
+            </li>
+            <li class="form-item">
+              <h4>手机</h4>
+              <div class="input-box">
+                <input type="text" class="inp" name="mobile" id="mobile" value="[user:mobile]">
+              </div>
+            </li>
+            <li class="form-item">
+              <h4>邮箱</h4>
+              <div class="input-box">
+                <input type="text" class="inp" name="email" id="email" value="[user:email]">
+              </div>
+            </li>
+            <li class="form-item">
+              <h4>QQ号码</h4>
+              <div class="input-box">
+                <input type="text" class="inp" name="qq" id="qq" value="[user:qq]">
+              </div>
+            </li>
+            <li class="form-item">
+              <h4>地区选择</h4>
+              <div class="input-box">
+
+                <select class="form-control m-b" name="province"  id="Province" onChange="get_province()">
+                  <option value="[user:province]">{region:p,[user:province]}</option>
+                </select>
+               <select class="form-control m-b" name="city"  id="City" onChange="get_city()">
+                  <option value="[user:city]">{region:c,[user:province],[user:city]}</option>
+                </select>
+                 <select class="form-control m-b" name="district"  id="District">
+                  <option value="[user:district]">{region:d,[user:city],[user:district]}</option>
+                </select>
+              </div>
+            </li>
+            <li class="form-item">
+              <h4>头像</h4>
+              <div class="input-box">
+                <select name="face"  id='face' class="form-control" >
+                 <option value="[user:face]">[user:facepath]</option>
+                  <option value="face1.png">/plugins/face/face1.png</option>   
+                  <option value="face2.png" >/plugins/face/face2.png</option>
+                  <option value="face3.png" >/plugins/face/face3.png</option>
+                  <option value="face4.png" >/plugins/face/face4.png</option>
+                  <option value="face5.png" >/plugins/face/face5.png</option>
+                  <option value="face6.png" >/plugins/face/face6.png</option>
+                  <option value="face7.png" >/plugins/face/face7.png</option>
+                  <option value="face8.png" >/plugins/face/face8.png</option>
+                  <option value="face9.png" >/plugins/face/face9.png</option>              
+                  <option value="face10.png" >/plugins/face/face10.png</option>
+                  <option value="face11.png" >/plugins/face/face11.png</option>
+                  <option value="face12.png" >/plugins/face/face12.png</option>
+                  <option value="face13.png" >/plugins/face/face13.png</option>
+                  <option value="face14.png" >/plugins/face/face14.png</option>
+                  <option value="face15.png" >/plugins/face/face15.png</option>
+                  <option value="face16.png" >/plugins/face/face16.png</option>
+                  <option value="noface.png" >/plugins/face/noface.png</option>
+                </select>
+              </div>
+            </li>
+            <li class="form-item">
+              <h4>联系地址</h4>
+              <div class="input-box">
+                <input type="text" class="inp" name="address" id="address" value="[user:address]">
+              </div>
+            </li>
+            <li class="form-item">
+              <h4>邮编</h4>
+              <div class="input-box">
+                <input type="text" class="inp" name="post" id="post" value="[user:post]">
+              </div>
+            </li>
+            <li class="form-item">
+              <h4>个人介绍</h4>
+              <div class="input-box">
+                <input type="text" class="inp" name="desc" id="desc" value="[user:desc]">
+              </div>
+            </li>
+          </ul>
+          <div class="form-btn ok">
+            <input type="submit" name="Submit" value="修改信息" class="btn">
+          </div>
+        </div>
+      </form>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+  <footer id="footer"></footer>
+</div>
+<script>
+$(function(){ 
+$('select[name=face]').ImageSelect({dropdownHeight:200, dropdownWidth:100, height:32});
+});
+function opennew(url){layer.open({type:2,shade:0.8, maxmin: true, area:['90%','90%'],content:url,end:function(){location.reload();}});}
+</script>
+</body>
+</html>

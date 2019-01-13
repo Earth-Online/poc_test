@@ -1,0 +1,34 @@
+* { margin: 0; padding: 0 }
+body { font-family: "微软雅黑"; background: #DAD9D7 }
+img { border: none }
+a * { cursor: pointer }
+ul, li { list-style: none }
+table { table-layout: fixed; }
+table tr td { word-break: break-all; word-wrap: break-word; }
+a { text-decoration: none; outline: none }
+a:hover { text-decoration: underline }
+.cf:after { content: "."; display: block; height: 0; font-size: 0; clear: both; visibility: hidden; }
+.cf { zoom: 1; clear: both }
+.bg { width: 100%; background: url("../images/01.jpg") no-repeat center top #DAD9D7; position: absolute; top: 0; left: 0; height:100% auto; overflow: hidden }
+.cont { margin: 0 auto; width: 100%; line-height: 1.5rem }
+.c1 { min-height: 20rem; text-align: center; background:url(../images/error.png) no-repeat bottom} 
+.ok{background:url(../images/true.png) no-repeat center}
+.cont h1 { text-align: center; color: #555; font-size: 2rem; font-weight: normal; line-height:2rem; margin-bottom:1rem }
+.cont h2 { text-align: center; color: #555; font-size: 1rem; font-weight: normal; line-height:1.5rem ;margin-bottom:1rem}
+.cont p{text-align:center;color:#999;font-size:0.76rem;font-weight:normal;height:2rem margin-bottom:6rem}
+.c1 .norecord{ padding-top: 20rem;}
+.c1 .list { width: 500px; margin: 0 auto; padding: 2.5rem 0; }
+.c1 .list li{ width: 100%; line-height: 2.5rem; height: 2.5rem; border-bottom: 1px dashed #ddd;background:#DAD9D7}
+.c1 .list li a { display: block; width: 100%; height: 2.5rem; line-height: 2.5rem; overflow: hidden; text-align:center; color: #454545; }
+.c2 { height: 3rem; text-align: center; margin-top:1rem}
+.c2 a { display: inline-block; margin: 0 4px; font-size: 0.76rem;  color: #626262; padding-top: 1px; text-decoration: none; text-align: center ;padding:0.5rem 1.3rem }
+.c2 a.button{ background: #3aa601;    color: #fff;    line-height: 1rem;    height: 1rem;     padding: 0.5rem 2rem;  box-shadow: 1px 2px 2px #4c8e2d; }
+.c2 a.home {  background: url(../images/home.png) no-repeat 0 center; }
+.c2 a.help { background: url(../images/help.png) no-repeat 0 center; }
+.c2 a:hover {color: #fff; text-decoration: none; background-image:none; background-color:#3aa601;box-shadow: 1px 2px 2px #285812;}
+.c3 { height: 16rem text-align: center; color: #999; font-size: 12px }
+#bf { position: absolute; top: 20rem; left: 0; width: 100% }
+.bf1 { margin: 0 auto; width:6rem padding-left: 3rem }
+.bd { height: 600px; overflow: hidden }
+#box { position: absolute; top: 165px; left: 0; width: 100%; text-align: center }
+.bf1 { margin: 0 auto; width:6rem padding-left: 3rem }
