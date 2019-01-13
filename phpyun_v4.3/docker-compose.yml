@@ -5,7 +5,20 @@ services:
     image: phpyun
     ports:
      - "9200:80"
+    links:
+        - "db:db"
+
        
-  mysql:
-    image: "mysql/mysql-server:5.7"
+  db:
+    image: "mysql"
+    environment:
+                - MYSQL_DATABASE=phpyun
+                - MYSQL_USER=phpyun
+                - MYSQL_PASSWORD=phpyun
+                - MYSQL_ROOT_PASSWORD=phpyun
+    volumes:
+           - ./db:/var/lib/mysql
+    expose:
+            - "3306"
+                       
 
