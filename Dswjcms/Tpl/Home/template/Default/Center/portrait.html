@@ -1,0 +1,21 @@
+<include file="Index:header" />
+<style type="text/css" media="screen">
+html, body { height:100%; background-color: #ffffff;}
+#flashContent { width:100%; height:100%; }
+</style>
+<!--头部 end -->
+<include file="top" />
+<div class=" row-fluid">
+<div class="container paddtop">
+    <form action="" enctype="multipart/form-data" method="post">  
+    <if condition="$heads gt 0">
+    <img src="__PUBLIC__/uploadify/uploads/portrait/big_user_{$Think.session.user_uid}.jpg"/><br/>
+    </if>
+    <input type="file" name="myfile"/>  
+    <button class="btn btn-primary" type="submit" value="1" name="but">上传头像</button>
+    </form>  
+    
+</div>
+<!-- container end -->
+<!--底部  start-->
+<include file="Index:footer" />
