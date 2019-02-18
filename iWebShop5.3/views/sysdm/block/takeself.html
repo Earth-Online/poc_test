@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>选择自提点</title>
+	{js:jquery}
+	{js:dialog}
+	{js:artTemplate}
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+	<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container" style="width:370px">
+        <div class="form-group" style="margin-top:10px;">
+    		<select class="form-control" style="width:32%;display:inline;" name="province" onchange="getData('province');">
+    			<option value="">选省份</option>
+    			{foreach:items=Api::run('getTakeselfProvince')}
+    			<option value="{$item['area_id']}">{$item['area_name']}</option>
+    			{/foreach}
+    		</select>
+
+    		<select class="form-control" style="width:32%;display:inline;" name="city" onchange="getData('city');">
+    			<option value="">选城市</option>
+    		</select>
+
+    		<select class="form-control" style="width:32%;display:inline;" name="area" onchange="getData('area');">
+    			<option value="">选区域</option>
+    		</select>
+    	</div>
+
+         <ul class="list-group" id="takeselfBox"></ul>
+    </div>
+
+	<!--自提点模板-->
+	<script type="text/html" id="takeselfRowTemplate">
+	<li class="list-group-item">
+        <h4 class="list-group-item-heading">
+            <label class="radio-inline"><input type='radio' value='<%=JSON().stringify(item)%>' name='takeselfItem' /><%=item['name']%></label>
+        </h4>
+        <p class="list-group-item-text">
+            <%=item['address']%>
+
+			<%if(item['phone']){%>
+			电话：<%=item['phone']%>
+			<%}%>
+
+			<%if(item['mobile']){%>
+			手机：<%=item['mobile']%>
+			<%}%>
+        </p>
+	</li>
+	</script>
+</body>
+
+<script type='text/javascript'>
+//获取数据
+function getData(typeVal)
+{
+	var selectedVal = $('[name="'+typeVal+'"] option:selected').val();
+	$.getJSON("{url:/block/getTakeselfList}",{"id":selectedVal,"type":typeVal},function(jsonData)
+	{
+		switch(typeVal)
+		{
+			case "province":
+			{
+				$('[name="city"] option:gt(0)').remove();
+				for(var index in jsonData)
+				{
+					var item = jsonData[index];
+					$('[name="city"]').append('<option value="'+item['city']+'">'+item['city_str']+'</option>');
+				}
+			}
+			break;
+
+			case "city":
+			{
+				$('[name="area"] option:gt(0)').remove();
+				for(var index in jsonData)
+				{
+					var item = jsonData[index];
+					$('[name="area"]').append('<option value="'+item['area']+'">'+item['area_str']+'</option>');
+				}
+			}
+			break;
+
+			case "area":
+			{
+				$('#takeselfBox').empty();
+				for(var index in jsonData)
+				{
+					var item = jsonData[index];
+					var takeselfHtml = template.render('takeselfRowTemplate',{"item":item});
+					$('#takeselfBox').append(takeselfHtml);
+				}
+			}
+			break;
+		}
+	});
+}
+</script>
+</html>
